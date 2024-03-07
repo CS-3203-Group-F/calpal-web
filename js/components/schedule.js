@@ -11,7 +11,7 @@ class Schedule {
 
     this.parseData(); // parseData function call
 
-    this.displaySchedule();
+    // this.displaySchedule();
   }
 
   parseData() {

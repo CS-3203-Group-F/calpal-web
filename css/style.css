@@ -9,25 +9,37 @@ html {
 }
 
 body {
+  background: #fff;
+
   width: 100%;
 
-  font-family: "Montserrat";
+  font-family: "Inter";
   font-weight: 500;
-  color: #fff;
-
-  font-family: "Montserrat";
-  font-weight: 500;
-  color: #fff;
-
-  background-color: #232323;
+  color: #232323;
 
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-h1 {
-  color: orange;
+.main {
+  display: flex;
+  width: 1920px;
+  height: 1080px;
+  align-items: flex-start;
+}
+
+.left {
+  display: flex;
+  width: 379px;
+  padding: 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  flex-shrink: 0;
+  align-self: stretch;
+
+  border-right: 1px solid var(--stone-200, #e7e5e4);
 }
 
 .scheduleView {
