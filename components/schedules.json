@@ -1,0 +1,38 @@
+{
+  "person": {
+    "name": "Lauren Dodge",
+    "ouID": 113535461,
+    "schedules": [
+      {
+        "date": "2024-03-07",
+        "events": [
+          {
+            "time": "09:00",
+            "title": "Meeting with Client"
+          },
+          {
+            "time": "12:00",
+            "title": "Lunch"
+          },
+          {
+            "time": "14:00",
+            "title": "Team Brainstorming Session"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-08",
+        "events": [
+          {
+            "time": "10:30",
+            "title": "Conference Call"
+          },
+          {
+            "time": "15:00",
+            "title": "Project Presentation"
+          }
+        ]
+      }
+    ]
+  }
+}
