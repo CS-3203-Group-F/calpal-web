@@ -3,7 +3,7 @@
 // class {components name}
 class Schedule {
   data;
-  search = document.querySelector(`.search__bar`);
+
   // This function calls the generateMarkup function and performs any other operations that are required for to start correctly.
   init(data) {
     // Init funciton

@@ -1,8 +1,8 @@
-import { schedule } from "./schedule.js";
+import { schedule } from "./components/schedule.js";
 
 class SellerAccounts {
   data;
-  url = `../components/schedules.json`;
+  url = `../schedules.json`;
 
   async init() {
     await this.getData(this.url);
