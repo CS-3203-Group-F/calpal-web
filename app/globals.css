@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: white;
+}
+
+h2 {
+  color: #202020;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+h3 {
+  color: #202020;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
