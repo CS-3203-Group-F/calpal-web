@@ -8,12 +8,6 @@ interface RsvpProps {
   time: string;
 }
 
-//   // RSVP Accepted State
-//   {accepted && <div className="p-4 h-32"> </div>}
-
-//   {/* // RSVP Accepted State */}
-//   {declined && <div></div>}
-
 export const Rsvp = (props: RsvpProps) => {
   const [accepted, setAccepted] = useState<boolean>(false);
   const [declined, setDeclined] = useState<boolean>(false);
