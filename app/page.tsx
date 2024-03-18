@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Rsvp } from "./Rsvp";
+import { RsvpStack, RsvpCard } from "./Rsvp";
 import { ReactNode } from "react";
 
 export default function Home() {
@@ -15,17 +15,41 @@ export default function Home() {
 
 // Define the prop types for the component
 
+// FAKE ARRAY OF COMPONENTS
+// const rsvps: React.ReactNode[] = [
+//   <RsvpCard
+//     key={`${0}`}
+//     group="Group F"
+//     description="CalPal planning"
+//     time="Sun, 6:30pm-11:30pm"
+//     transform={0}
+//   />,
+//   <RsvpCard
+//     key={`${1}`}
+//     group="Group 2"
+//     description="CalPal planning"
+//     time="Sun, 6:30pm-11:30pm"
+//     transform={1}
+//   />,
+//   <RsvpCard
+//     key={`${2}`}
+//     group="Group 2"
+//     description="CalPal planning"
+//     time="Sun, 6:30pm-11:30pm"
+//     transform={2}
+//   />,
+// ];
+
+// FAKE ARRAY
+const rsvps: Array<Object> = [{}, {}, {}];
+
 interface PanelProps {}
 
 export const Panel = (props: PanelProps) => {
   return (
     <div className="flex flex-col min-h-screen w-96 p-6 items-center gap-8 shrink-0 border-r border-stone-200">
       <Section title="RSVP">
-        <Rsvp
-          group="Group F"
-          description="CalPal planning"
-          time="Sun, 6:30pm-11:30pm"
-        ></Rsvp>
+        <RsvpStack rsvps={rsvps} />
       </Section>
       <Section title="Groups">
         <div className="flex flex-col gap-2">

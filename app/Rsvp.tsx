@@ -2,17 +2,51 @@
 
 import React, { MouseEvent, useState, useEffect } from "react";
 
-interface RsvpProps {
+//For later when we receive database information
+interface RsvpStackProps {
+  rsvps: any;
+}
+
+export const RsvpStack = (props: RsvpStackProps) => {
+  //Top card, CLick on accept or decline
+  // Middle card becomes top card
+  //Bottom card becomes middle card
+  //4th card becomes bottom card
+  //Extra cards in the array are loaded in as 4th card
+
+  return (
+    <div className="relative w-full h-36">
+      {props.rsvps.map((card: any, index: number) => (
+        <RsvpCard
+          key={`${index}`}
+          group="Group F"
+          description="CalPal planning"
+          time="Sun, 6:30pm-11:30pm"
+          transform={index}
+        />
+      ))}
+    </div>
+  );
+};
+
+interface RsvpCardProps {
   group: string;
   description: string;
   time: string;
+  transform: number;
 }
 
-export const Rsvp = (props: RsvpProps) => {
+export const RsvpCard = (props: RsvpCardProps) => {
   const [accepted, setAccepted] = useState<boolean>(false);
   const [declined, setDeclined] = useState<boolean>(false);
   const [slide, setSlide] = useState("");
   const [active, setActive] = useState(true);
+
+  const cardTransforms = [
+    "scale-1 z-[3]",
+    "scale-[.95] z-[2] translate-y-3",
+    "scale-[.90] z-[1] translate-y-6",
+  ];
 
   const handleAccept = (event: MouseEvent) => {
     setAccepted(true);
@@ -29,14 +63,18 @@ export const Rsvp = (props: RsvpProps) => {
       setTimeout(() => {
         setActive(false);
       }, 700);
-    }, 250);
+    }, 150);
   };
 
-  return (
-    <>
-      {active && (
+  if (active)
+    return (
+      <div
+        className={`absolute transition-all duration-200 w-full ${
+          cardTransforms[props.transform]
+        } ${slide}`}
+      >
         <div
-          className={`relative overflow-hidden rounded-lg transition-all duration-300 bg-stone-50 border border-stone-200 ${slide}`}
+          className={`relative overflow-hidden rounded-lg bg-stone-50 border border-stone-200  `}
         >
           <div
             className={`flex flex-col justify-between items-start gap-2 self-stretch p-4 h-32 rounded-lg`}
@@ -67,7 +105,7 @@ export const Rsvp = (props: RsvpProps) => {
             onTransitionEnd={handleTransitionEnd}
           >
             <div className="flex flex-row gap-2">
-              <p className="font-semibold text-white">Accepted</p>
+              <p className="font-semibold text-white">Added to calendar</p>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -130,9 +168,9 @@ export const Rsvp = (props: RsvpProps) => {
             </div>
           </div>
         </div>
-      )}
-    </>
-  );
+      </div>
+    );
+  return <></>;
 };
 
 function AcceptButton() {
