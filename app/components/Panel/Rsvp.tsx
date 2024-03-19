@@ -78,31 +78,23 @@ function formatDateTimeRange(startTimeStr: string, endTimeStr: string) {
   return outputString;
 }
 
+// COMPONENT TREE LOOKS SOMETHING LIKE THIS (Parents are on the outside of the braces)
+// Rsvp[Rsvp pill, Rsvp stack[Rsvp card]]
+
 export const Rsvp = () => {
   // Here, we would get in data from database in the form of an object array
   const data = rsvps;
 
-  //Set States
+  // Here, the state is an array of the rsvps
   const [cards, setcards] = useState(data);
-  const [shrink, setShrink] = useState(false);
 
-  // When Rsvp changes the stack, handle it in here
+  // When RsvpStack changes, update cards state so that the cards "react" to the change by animating
   function handleChange(result: any) {
     setcards(result);
   }
 
-  if (cards.length === 0) {
-    setTimeout(() => {
-      setShrink(true);
-    }, 300);
-  }
-
   return (
-    <Section
-      title="RSVP"
-      shrink={shrink}
-      pill={<RsvpPill count={cards.length} />}
-    >
+    <Section title="RSVP" pill={<RsvpPill count={cards.length} />}>
       <RsvpStack rsvps={rsvps} onChange={handleChange} items={cards} />
     </Section>
   );
@@ -117,11 +109,13 @@ interface RsvpStackProps {
 export const RsvpStack = (props: RsvpStackProps) => {
   // Using conditional rendering, we have to unmount rsvp card from the dom so that rsvp stack rerenders correctly
 
+  // The card removes itself via this function, which is passed down to it via props
   const removeItem = (id: any) => {
     const change = props.items.filter((card: any) => card.id !== id);
-    props.onChange(change);
+    props.onChange(change); // When the card stack is changed, call the onChange function passed down by parent (Rsvp)
   };
 
+  // For every object in the props.items array, map it and its properties to a rsvp card component
   const cardStack = props.items.map((card: any, index: number) => (
     <RsvpCard
       key={card.id}
@@ -157,40 +151,43 @@ interface RsvpCardProps {
 export const RsvpCard = (props: RsvpCardProps) => {
   const [accepted, setAccepted] = useState<boolean>(false);
   const [declined, setDeclined] = useState<boolean>(false);
-  const [slide, setSlide] = useState("");
+  const [slide, setSlide] = useState(""); // The card slides off screen when the rsvp is accepted or declined
   const [active, setActive] = useState(true);
 
-  let cardTransform = "";
-
+  //Change this to edit flashcard effect
+  let cardTransform = ""; // Defines styling for the cards, which is what makes the flashcard effect
   switch (props.position) {
-    case 0:
+    case 0: // The topmost card, which is visible
       cardTransform = "scale-1 z-[3]";
       break;
-    case 1:
+    case 1: // Middle card
       cardTransform = "scale-[.95] z-[2] translate-y-3";
       break;
-    case 2:
+    case 2: // Last card
       cardTransform = "scale-[.90] z-[1] translate-y-6";
       break;
-    default:
+    default: // For when there are more than 3 rsvps
       cardTransform = "scale-[.85] z-[0] translate-y-3";
       break;
   }
 
+  // When the user accepts the rsvp, put the effects of that in here
   const handleAccept = () => {
     setAccepted(true);
   };
 
+  // When the user declines the rsvp, put the effects of that in here
   const handleDecline = () => {
     setDeclined(true);
   };
 
+  // This is for the transition only
   const handleTransitionEnd = () => {
     setTimeout(() => {
       setSlide(`-translate-x-96`);
       setTimeout(() => {
         setActive(false);
-        props.removeSelf();
+        props.removeSelf(); // Card is removed from the DOM after the transition ends
       }, 100);
     }, 150);
   };
