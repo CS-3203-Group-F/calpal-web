@@ -18,6 +18,7 @@
     gap: 24px; /* Adjust gap for spacing between elements */
     border-radius: 73px;
     background: #EBEBEB;
+    
   }
   
   .title {
@@ -37,8 +38,14 @@
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: normal;
+    border-bottom: 1.5px solid black;
+    margin-left: 20px;
+    
+    
+    
+    
   }
 
   .input {
@@ -64,6 +71,7 @@
     border-radius: 114.5px;
     border: 1px solid #000;
     background: var(--Default-F886A8, #F886A8);
+    margin-top: 30px;
   }
   
   .signUpButton {
@@ -87,4 +95,12 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+  }
+
+  .passResetContainer{
+    width: 465px;
+    height: 493px;
+    flex-shrink: 0;
+    border-radius: 73px;
+    background: #EBEBEB;
   }

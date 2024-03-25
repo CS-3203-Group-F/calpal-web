@@ -12,7 +12,11 @@ import Link from 'next/link';
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
         e.preventDefault();
+        //
+        //DELETE ONCE FINISHED
+        //
         console.log(email);
+        console.log(pass);
         //submit form logic goes here
 
     }
@@ -20,7 +24,7 @@ import Link from 'next/link';
         <div className={styles.loginContainer}>
         <div className={styles.loginBox}>
         <div className={styles.logoContainer}>
-          {/* Logo or title; replace with actual logo image */}
+        {/*<img src="/Images/logo.png" alt="Logo"/>*/}
           <h1 className={styles.title}>CalPal</h1>
           </div>
 
@@ -41,13 +45,13 @@ import Link from 'next/link';
                     value={pass}
                     onChange={(e) => setPass(e.target.value)}
                     type="password"
-                    placeholder="********"
+                    placeholder="Password"
                     id="password"
                     name="password"
                 />
                 <div className={styles.forgotPassword}>
                     {/* Forgot Password link */}
-                    <a href="/forgot-password" className={styles.forgotPasswordLink}>Forgot Password?</a>
+                    <a href="../ResetPassword" className={styles.forgotPasswordLink}>Forgot Password?</a>
                 </div>
                 <button type="submit" className={styles.loginButton}>Login</button>
             </form>
