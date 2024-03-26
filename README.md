@@ -67,4 +67,8 @@ Thank you for choosing CalPal to simplify your meeting scheduling experience!
 
 - **The Layout:** Inside the "app folder" we have sub-folders which all house indvidual features/pages. Different Pages of the Website can be found under the various folders in the "app" folder. Each folder will be the name of a different page on the website. For example, the Login houses the Login Page of the website. Inside this folder you will have your page.tsx, which displays the physical screen, along with any other components that the Login Page may require. These pages of the website can be accessed by adding /NameOfTheFolder onto http://localhost3000 in this case it would be http://localhost3000/Loign.
 
+## Branching and Versioning
 
+New branches will be created for any new feature or bug fix. They should be given descriptive names, and prefixed with either `feat/` or `fix/` to denote the type of work being done on that branch.
+
+Versioning will follow a modified version of the [semantic versioning](https://semver.org) standard, and will be somewhat dependent on the CalPal backend. When breaking changes are made to the backend, the major version of the backend and web. 
