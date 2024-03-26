@@ -45,3 +45,26 @@ We're constantly striving to improve CalPal and welcome any feedback or suggesti
 Thank you for choosing CalPal to simplify your meeting scheduling experience!
 
 *CalPal Team*
+
+# Getting Started as a Programmer
+
+## Setting Up Your Work Space
+
+- **VScode :** We use VScode as our IDE because it allows us to use all the languages that we write our code in. These Languages include HTML, JavaScript, CSS for our front end development along with React library and tailwind framework
+
+- **Next.JS:** Next.js is used to host local servers when programming to test and see how your code would display on a screen.
+
+ 1. **Install Node.js** install node.js at  https://nodejs.org/ and open it. It should give you a terminal like screen
+
+ 2. **Install Next.js** with the node.js terminal open navigate to the CalPal directory then run the following command: npm install next
+
+ 3. **Run the local Server** once Next.js is installed you use the command: npm run dev to start the server. this will generate a link to your local server which will open in your browser. Think link should look like  http://localhost:3000. 
+
+ 4. **Updating the Server** The server will need to be started only one time in which you are using it until you close out of the tab on your browser. The server gets updated automatically as the files in your directry are updated so any changes you make in your code will be updated as you make them.
+
+## How to Navigate the CalPal Directory
+- **Where to Start:** The app functions through the "app" folder so any visible edits will be made through this folder. Inside of the app folder we have the main page that is shown when you first launch the server. This will eventually be the page you are taken to when you vist https://CalPal.US.
+
+- **The Layout:** Inside the "app folder" we have sub-folders which all house indvidual features/pages. Different Pages of the Website can be found under the various folders in the "app" folder. Each folder will be the name of a different page on the website. For example, the Login houses the Login Page of the website. Inside this folder you will have your page.tsx, which displays the physical screen, along with any other components that the Login Page may require. These pages of the website can be accessed by adding /NameOfTheFolder onto http://localhost3000 in this case it would be http://localhost3000/Loign.
+
+
