@@ -2,6 +2,9 @@
 import styles from '../Login/Login.module.css';
 import React, {useState} from "react";
 
+
+//TODO: Add Username regex to prevent users from using special characters and inappropriate words
+
 export const Register = () =>{
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
@@ -9,7 +12,13 @@ export const Register = () =>{
     const[firstName, setFirstName] = useState('');
     const[lastName, setLastName] = useState('');
     const[Username, setUsername] = useState('');
+
     const [error, setError] = useState('');
+    const [firstNameError, setFirstNameError] = useState(false);
+    const [lastNameError, setLastNameError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [UsernameError, setUsernameError] = useState(false);
+
     const [showPassword, setShowPassword] = useState(false);
     const passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()]).{8,}$/;
 
@@ -20,6 +29,57 @@ export const Register = () =>{
 
             const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
                 e.preventDefault();
+
+                setFirstNameError(false);
+                setLastNameError(false);
+                setEmailError(false);
+                setUsernameError(false);
+                setError('');
+
+               
+
+                if (!firstName) {
+                    setFirstNameError(true);
+                    return;
+                }
+            
+                if (!lastName) {
+                    setLastNameError(true);
+                    return;
+                }
+
+                if (!email || !email.includes('@') || !email.includes('.') || email.includes(' ')){
+                    setEmailError(true);
+                    return;
+                }
+
+                {/*TODO: Check if email exists in database
+                if (emailExists) {
+                    setEmailError(true);
+                }*/}
+            
+                if (!Username) {
+                    setUsernameError(true);
+                    return;
+                }
+
+               {/*TODO: Check if username exists in database
+                if (usernameExists) {
+                    setUsernameError(true);
+                }*/
+                }
+             
+
+                {/*Check if password is valid */}
+            if (!passwordRegex.test(pass)) {
+            setError('Password must be at least 8 characters long, include a special character, and include at least one number and one capital letter.');
+            return;
+            }
+            if (pass !== confirmPass) {
+            setError('Passwords do not match.');
+            return;
+            }
+
 
                 {/*DELETE ONCE FINISHED */}
                 {/*DELETE ONCE FINISHED */}
@@ -32,15 +92,7 @@ export const Register = () =>{
                 console.log(lastName);
                 console.log(Username);
 
-                {/*Check if password is valid */}
-            if (!passwordRegex.test(pass)) {
-            setError('Password must be at least 8 characters long, include a special character, and include at least one number and one capital letter.');
-            return;
-            }
-            if (pass !== confirmPass) {
-            setError('Passwords do not match.');
-            return;
-            }
+
             }
 
 
@@ -48,7 +100,7 @@ export const Register = () =>{
         <div className={styles.loginContainer}>
         <div className={styles.loginBox}>
         <div className={styles.logoContainer}>
-          {/* Logo or title; replace with actual logo image */}
+        <img src="../../Public/Images/logo.png" alt="CalPal Logo" className={styles.logo} />
           <h1 className={styles.title}>CalPal</h1>
           </div>
         
@@ -62,6 +114,8 @@ export const Register = () =>{
                     id="name"
                     name="name"
                 />
+                {firstNameError && <p className={styles.error} style={{ color: 'red' }}>First name is required</p>}
+                
                 {/* Last Name input field */}
                 <input
                     className={styles.input}
@@ -71,6 +125,8 @@ export const Register = () =>{
                     id="name"
                     name="name"
                 />
+                {lastNameError && <p className={styles.error} style={{ color: 'red' }}>Last name is required</p>}
+                
                 {/* Email input field */}
                 <input
                     className={styles.input}
@@ -81,6 +137,8 @@ export const Register = () =>{
                     id="email"
                     name="email"
                 />
+                {emailError && <p className={styles.error} style={{ color: 'red' }}>Invalid Email</p>}
+               
                 {/* Username input field */}
                 <input
                     className={styles.input}
@@ -91,6 +149,8 @@ export const Register = () =>{
                     id="username"
                     name="username"
                 />
+                {UsernameError && <p className={styles.error} style={{ color: 'red' }}>Username is required</p>}
+
                 {/* Password input field */}
             <div style={{ position: 'relative' }}>
                 <input

@@ -61,6 +61,7 @@
   
   .loginButton {
     display: flex;
+    width: 100%; 
     width: 400px;
     height: 60px;
     flex-direction: column;
@@ -104,3 +105,44 @@
     border-radius: 73px;
     background: #EBEBEB;
   }
+
+  /* Adjust styles for screens smaller than 600px */
+@media (max-width: 600px) {
+  .passResetContainer {
+    border-radius: 50px; /* Reduce border radius for small screens */
+  }
+
+  .loginBox {
+    width: 300px; /* Adjust width for small screens */
+    padding: 24px; /* Adjust padding for small screens */
+  }
+
+  .input {
+    width: 250px; /* Adjust width for small screens */
+    height: 38px; /* Adjust height for small screens */
+    padding: 0 12px; /* Adjust padding for small screens */
+    margin: 4px 0; /* Adjust margin for small screens */
+    border-radius: 19px; /* Adjust border radius for small screens */
+
+  }
+
+  .loginButton {
+    width: 250px; /* Adjust width for small screens */
+    height: 38px; /* Adjust height for small screens */
+    margin-top: 20px; /* Adjust margin for small screens */
+  }
+
+  .signUpButton {
+    width: 250px; /* Adjust width for small screens */
+    height: 38px; /* Adjust height for small screens */
+  }
+
+  .orSeparator {
+    font-size: 16px; /* Adjust font size for small screens */
+  }
+
+  .forgotPasswordLink {
+    font-size: 12px; /* Adjust font size for small screens */
+    margin-left: 10px; /* Adjust margin for small screens */
+  }
+}
