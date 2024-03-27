@@ -8,11 +8,42 @@ export const Register = () =>{
     const [confirmPass, setConfirmPass] = useState('');
     const[firstName, setFirstName] = useState('');
     const[lastName, setLastName] = useState('');
+    const[Username, setUsername] = useState('');
+    const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()]).{8,}$/;
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
-        e.preventDefault();
-        console.log(email);
-    }
+            const handleTogglePassword = () => {
+                setShowPassword(!showPassword);
+            };
+   
+
+            const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
+                e.preventDefault();
+
+                {/*DELETE ONCE FINISHED */}
+                {/*DELETE ONCE FINISHED */}
+                {/*DELETE ONCE FINISHED */}
+                {/*DELETE ONCE FINISHED */}
+                console.log(email);
+                console.log(pass);
+                console.log(confirmPass);
+                console.log(firstName);
+                console.log(lastName);
+                console.log(Username);
+
+                {/*Check if password is valid */}
+            if (!passwordRegex.test(pass)) {
+            setError('Password must be at least 8 characters long, include a special character, and include at least one number and one capital letter.');
+            return;
+            }
+            if (pass !== confirmPass) {
+            setError('Passwords do not match.');
+            return;
+            }
+            }
+
+
     return (
         <div className={styles.loginContainer}>
         <div className={styles.loginBox}>
@@ -22,7 +53,7 @@ export const Register = () =>{
           </div>
         
         <form onSubmit={handleSubmit} className={styles.loginForm}>
-                {/*Input Fields of login Page */}
+                {/* First Name input field */}
                 <input
                     className={styles.input}
                     value={firstName}
@@ -31,7 +62,7 @@ export const Register = () =>{
                     id="name"
                     name="name"
                 />
-
+                {/* Last Name input field */}
                 <input
                     className={styles.input}
                     value={lastName}
@@ -40,7 +71,7 @@ export const Register = () =>{
                     id="name"
                     name="name"
                 />
-                
+                {/* Email input field */}
                 <input
                     className={styles.input}
                     value={email}
@@ -50,31 +81,54 @@ export const Register = () =>{
                     id="email"
                     name="email"
                 />
+                {/* Username input field */}
+                <input
+                    className={styles.input}
+                    value={Username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    type="username"
+                    placeholder="Username"
+                    id="username"
+                    name="username"
+                />
+                {/* Password input field */}
+            <div style={{ position: 'relative' }}>
+                <input
+                className={styles.input}
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                id="password"
+                name="password"
+                />
+                    <button type="button" onClick={handleTogglePassword} style={{ position: 'absolute', right: '5px', top: '50%', transform: 'translateY(-50%)' }}>
+                    {showPassword ? 'Hide' : 'Show'}
+                    </button>
+            </div>
+
+                {/* Confirm Password input field */}
+            <div style={{ position: 'relative' }}>
+                <input
+                className={styles.input}
+                value={confirmPass}
+                onChange={(e) => setConfirmPass(e.target.value)}
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Confirm Password"
+                id="password"
+                name="password"
+                />
+                    <button type="button" onClick={handleTogglePassword} style={{ position: 'absolute', right: '5px', top: '50%', transform: 'translateY(-50%)' }}>
+                    {showPassword ? 'Hide' : 'Show'}
+                    </button>
+            </div>  
+
                 
-                <input
-                    className={styles.input}
-                    value={pass}
-                    onChange={(e) => setPass(e.target.value)}
-                    type="password"
-                    placeholder="Password"
-                    id="password"
-                    name="password"
-                />
-
-                <input
-                    className={styles.input}
-                    value={confirmPass}
-                    onChange={(e) => setConfirmPass(e.target.value)}
-                    type="password"
-                    placeholder=" Confirm Password"
-                    id="password"
-                    name="password"
-                />
-
                 <div className={styles.forgotPassword}>
                     {/* Already have an account? link */}
                     <a href="../Login" className={styles.forgotPasswordLink}>Already have an account? Login</a>
                 </div>
+                {error && <p className={styles.error} style={{ color: 'red' }}>{error}</p>}
                 <button type="submit" className={styles.loginButton}>Sign up</button>
             </form>
         </div>
@@ -83,3 +137,8 @@ export const Register = () =>{
 } 
 
 export default Register; 
+
+
+
+
+
