@@ -19,6 +19,7 @@ export const Register = () =>{
     const [emailError, setEmailError] = useState(false);
     const [UsernameError, setUsernameError] = useState(false);
 
+    const [buttonClicked, setButtonClicked] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const passwordRegex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()]).{8,}$/;
 
@@ -29,6 +30,10 @@ export const Register = () =>{
 
             const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
                 e.preventDefault();
+
+                setTimeout(() => {
+                    setButtonClicked(false);
+                  }, 500); // Revert signup button back to original color after 0.5 second of being clicked
 
                 setFirstNameError(false);
                 setLastNameError(false);
@@ -97,7 +102,7 @@ export const Register = () =>{
 
 
     return (
-        <div className={styles.loginContainer}>
+        <div className={styles.screenContainer}>
         <div className={styles.loginBox}>
         <div className={styles.logoContainer}>
         <img src="../../Public/Images/logo.png" alt="CalPal Logo" className={styles.logo} />
@@ -189,7 +194,10 @@ export const Register = () =>{
                     <a href="../Login" className={styles.forgotPasswordLink}>Already have an account? Login</a>
                 </div>
                 {error && <p className={styles.error} style={{ color: 'red' }}>{error}</p>}
-                <button type="submit" className={styles.loginButton}>Sign up</button>
+                {/* Sign up button */}
+                <button type="submit" className={styles.loginButton} style={{ backgroundColor: buttonClicked ? 'var(--Default-CF577B, #CF577B) ' : 'var(--Default-F886A8, #F886A8)' }}
+            onMouseEnter={() => setButtonClicked(false)}
+            onMouseDown={() => setButtonClicked(true)}>Sign up</button>
             </form>
         </div>
     </div>

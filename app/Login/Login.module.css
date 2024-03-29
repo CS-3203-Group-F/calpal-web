@@ -1,6 +1,6 @@
-.loginContainer {
+.screenContainer {
   display: flex;
-  padding: 148px 0px 287px 0px;
+  height: 100vh;
   justify-content: center;
   align-items: center;
   flex: 1 0 0;

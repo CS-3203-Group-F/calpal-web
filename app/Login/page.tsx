@@ -21,7 +21,7 @@ import Link from 'next/link';
 
     }
     return (
-        <div className={styles.loginContainer}>
+        <div className={styles.screenContainer}>
         <div className={styles.loginBox}>
         <div className={styles.logoContainer}>
         {/*<img src="/Images/logo.png" alt="Logo"/>*/}

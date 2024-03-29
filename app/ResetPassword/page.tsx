@@ -1,6 +1,7 @@
 "use client"
 import React, {useState} from "react";
 import styles from '../Login/Login.module.css';
+import Link from 'next/link';
 
 
 export const passReset =()=> {
@@ -12,11 +13,12 @@ export const passReset =()=> {
 
 
     return (
-        <div className={styles.loginContainer}>
+        <div className={styles.screenContainer}>
         <div className={styles.loginBox}>
         <div className={styles.logoContainer}>
           {/* Logo or title; replace with actual logo image */}
-          <h1 className={styles.title}>Reset Password</h1>
+          <h1 className={styles.title} style={{ height: '100%', width: '100%'}}>Reset Password</h1>
+          <p>Enter the email associated with your account and we’ll send an email with a code to reset your password.</p>
           </div>
 
             <form onSubmit={handleSubmit} className={styles.loginForm}>
@@ -31,7 +33,11 @@ export const passReset =()=> {
                     name="email"
                 />
                 
-                <button type="submit" className={styles.loginButton}>Login</button>
+                <button type="submit" className={styles.loginButton}>Next</button>
+                
+                <Link href="../Login" passHref>
+            <button  className={styles.signUpButton} style = {{marginTop: '10px'}}>Go Back</button>
+            </Link>
             </form>
 
 
