@@ -56,7 +56,12 @@ import Link from 'next/link';
                 <button type="submit" className={styles.loginButton}>Login</button>
             </form>
 
-            <div className={styles.orSeparator}>______________________or______________________</div>
+            <div className={styles.orSeparator}>
+                <div className={styles.line}></div>
+                <span>or</span>
+                <div className={styles.line}></div>
+            </div>
+            
             {/*Link is being passed as a button to Register page*/}
             <Link href="../Register" passHref>
             <button  className={styles.signUpButton}>Sign Up</button>
