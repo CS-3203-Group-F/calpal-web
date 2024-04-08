@@ -1,12 +1,44 @@
-import { Panel } from "./components/Panel/Panel";
+"use client"
+import { useState } from "react";
+import './Settings.css'; // Import your CSS
 
-export default function Home() {
+export const Settings = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openSettings = () => {
+    setIsOpen(true);
+  };
+
+  const closeSettings = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <main className="text-stone-800 flex min-h-screen flex-row items-center justify-betweenS">
-      <Panel></Panel>
-      <div className="flex flex-col items-start w-full min-h-screen">
-        <img src="http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/075jdbmz87nmcit/calendar_view_iurGMpKA8V.png?token="></img>
-      </div>
-    </main>
+    <div>
+      <button onClick={openSettings}>Settings</button>
+
+      {isOpen && (
+        <div className="backdrop" onClick={closeSettings}>
+          <div className="settingsContainer">
+        
+           
+            <div className="leftPanel">
+              <h1 className ="title" style={{ paddingTop: '50px', paddingLeft: '20px' }}>Settings</h1>
+                  {/* Add your settings here */}
+                  <button onClick={closeSettings}>Close</button>
+            
+            </div>
+
+            <div className="mainBox">
+              
+              
+            </div>
+
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
+
+export default Settings;
