@@ -22,7 +22,7 @@
     
   }
   .leftPanel {
-    width: calc(80vw * 0.2);
+    width: calc(80vw * 0.25);
     height: 80vh;   
     flex-shrink: 0;
     border-radius: 16px 0px 0px 16px;
@@ -48,4 +48,33 @@
     font-weight: 600;
     line-height: normal;
     letter-spacing: -1.44px;
+  }
+
+  subtitle {
+    color: #1C1917;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 450;
+    line-height: normal;
+    letter-spacing: -0.96px;
+  }
+  .leftPanelButton{
+    width: 18vw;
+    height: 5vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-radius: 8px;
+    margin: 10px;
+    cursor: pointer;
+    margin-left: 5%;
+    padding-left: 20%;
+    
+    }  
+
+  
+  .selected {
+    background:rgba(220, 130, 85, 0.6);
+    border-radius: 8px;
   }
