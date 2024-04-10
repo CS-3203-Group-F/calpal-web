@@ -80,47 +80,63 @@ export const Settings = () => {
             </div>
             {/* the right side of settings display that shows all the actual settings starts here*/}
             <div className="mainBox">
-              {currentView === 'view1' &&(
+              {/*Public Profile View of the mainBox */}
+              {currentView === 'view1' &&( 
               
               <form onSubmit={handleSubmit} className="profileForm">
                   <h1 className="title" style={{ paddingTop: '50px', paddingLeft: '20px' }}>Public Profile</h1>
                   
+                  {/** Profile Picture **/}
                   <label>
                     Profile Picture:
-                    <input type="file" onChange={handleProfilePictureChange} className="input" />
+                    <input type="file" onChange={handleProfilePictureChange} />
                   </label>
-                  {avatar && <img src={avatar} alt="Profile" />}
+                  {avatar && <img className="avatarImage" src={avatar} alt="Profile" />}
                   
-                    <div className="inputContainer">
+                  {/** Display Name **/}
+                  <div className="inputContainer">
                       <hr className="thinLine" />
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column' }}> 
                       <h2 className="subtitle">Display Name</h2>
                       <p className="subtitleDescription">The name that other people will recognize you with.</p>
+                      </div>
                       <div className="input">
-                        <input
-                          className="inputBox"
-                          value={firstName}
-                          onChange={handleFirstNameChange}
-                          type="text"
-                          placeholder="First Name"
-                          id="firstName"
-                          name="firstName"
-                        />
-                        <input
-                          className="inputBox"
-                          value={lastName}
-                          onChange={handleLastNameChange}
-                          type="text"
-                          placeholder="Last Name"
-                          id="lastName"
-                          name="lastName"
-                        />
+                        <div className="inputLabelContainer">
+                          <label className= "inputLabel" htmlFor="firstName">First Name</label>
+                          <input
+                            className="inputBox"
+                            value={firstName}
+                            onChange={handleFirstNameChange}
+                            type="text"
+                            placeholder="First Name"
+                            id="firstName"
+                            name="firstName"
+                          />
+                        </div>
+                        <div className="inputLabelConatiner">
+                          <label className ="inputLabel" htmlFor="lastName">Last Name</label>
+                          <input
+                            className="inputBox"
+                            value={lastName}
+                            onChange={handleLastNameChange}
+                            type="text"
+                            placeholder="Last Name"
+                            id="lastName"
+                            name="lastName"
+                          />
+                          </div>
                       </div>
                     </div>
-                  
+                  </div>
+                  {/** Biography **/}
                     <div className="inputContainer">
                       <hr className="thinLine" />
+                      <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column' }}>
                       <h2 className="subtitle">Biography</h2>
-                      <p className="subtitleDescription">Tell others about yourself.</p>
+                      <p className="subtitleDescription" style ={{whiteSpace: 'nowrap'}}>Tell others about yourself.</p>
+                      </div>
                         <textarea
                         className="inputBiographyBox"
                         value={biography}
@@ -129,8 +145,10 @@ export const Settings = () => {
                         id="biography"
                         name="biography"
                       />
-                    <div/>
                     </div>
+                    </div>
+
+
                   <button type="submit" className="saveButton">Save</button>
                 </form>
               

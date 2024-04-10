@@ -61,13 +61,15 @@
   }
   .subtitleDescription {
     color: var(--stone-500, #78716C);
+    margin-top: 2%;
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 22px; /* 137.5% */
     letter-spacing: -0.4px;
-    width: 26%;
+    width: 70%;
+    
   }
 
   .leftPanelButton{
@@ -84,15 +86,23 @@
     
     }  
 
-  
   .selected {
     background:rgba(220, 130, 85, 0.6);
     border-radius: 8px;
   }
 
+  .avatarImage {
+    border-radius: 50%;
+    width: 130px; /* Adjust this value to your liking */
+    height: 130px; /* Adjust this value to your liking */
+    object-fit: cover; /* This will ensure the image covers the entire area of the circle without distortion */
+    margin-left: 32px;
+  }
+
   .inputBox {
-    width: 265.5px;
-    height: 42px;
+    width: 13vw;
+    height: 4vh;
+    margin-top: 5%;
     flex-shrink: 0;
     border-radius: 8px;
     fill: rgba(255, 255, 255, 0.50);
@@ -104,6 +114,9 @@
   .inputBiographyBox{
     width: 62%;
     height: 8vh;
+    margin-left: 13.5%;
+    margin-right: 5%;
+    border-radius: 8px;
     fill: rgba(255, 255, 255, 0.50);
     stroke-width: 1px;
     stroke: var(--stone-300, #D6D3D1);
@@ -112,15 +125,16 @@
 
   .inputContainer {
     margin-left: 32px;
+    margin-bottom: 32px;
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: left;
-    gap: 10px;
+    gap: 40px;
   }
   .thinLine {
    
-    width: 90%;
+    width: 95%;
     height: 1px;
     background: #A8A29E66;
   }
@@ -134,4 +148,41 @@
     font-weight: 600;
     line-height: 22px; /* 110% */
     letter-spacing: -0.4px;
+  }
+
+  .saveButton{
+    width: 160px;
+    height: 37px;
+    flex-shrink: 0;
+    fill: rgba(255, 255, 255, 0.50);
+    stroke-width: 1px;
+    stroke: var(--stone-300, #D6D3D1);
+    filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
+
+  }
+
+  .input{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: -10%; 
+  }
+
+  .inputLabel{
+    color: var(--stone-700, #44403C);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 137.5% */
+    letter-spacing: -0.4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .inputlabelContainer {
+    display: flex;
+    flex-direction: column;
+    
   }
