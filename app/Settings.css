@@ -35,7 +35,7 @@
     height: 80vh;
     flex-shrink: 0;
     border-radius: 0px 16px 16px 0px;
-    background: rgba(231, 222, 222, 0.8);
+    background: rgba(245, 245, 244, 0.80);
     backdrop-filter: blur(37.5px);
   }
 
@@ -50,15 +50,26 @@
     letter-spacing: -1.44px;
   }
 
-  subtitle {
-    color: #1C1917;
+  .subtitle {
+    color: var(--stone-700, #44403C);
     font-family: Inter;
     font-size: 20px;
     font-style: normal;
-    font-weight: 450;
-    line-height: normal;
-    letter-spacing: -0.96px;
+    font-weight: 600;
+    line-height: 22px; /* 110% */
+    letter-spacing: -0.4px;
   }
+  .subtitleDescription {
+    color: var(--stone-500, #78716C);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 137.5% */
+    letter-spacing: -0.4px;
+    width: 26%;
+  }
+
   .leftPanelButton{
     width: 18vw;
     height: 5vh;
@@ -77,4 +88,50 @@
   .selected {
     background:rgba(220, 130, 85, 0.6);
     border-radius: 8px;
+  }
+
+  .inputBox {
+    width: 265.5px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    fill: rgba(255, 255, 255, 0.50);
+    stroke-width: 1px;
+    stroke: var(--stone-300, #965f3a);
+    filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
+  }
+
+  .inputBiographyBox{
+    width: 62%;
+    height: 8vh;
+    fill: rgba(255, 255, 255, 0.50);
+    stroke-width: 1px;
+    stroke: var(--stone-300, #D6D3D1);
+    filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
+  }
+
+  .inputContainer {
+    margin-left: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    gap: 10px;
+  }
+  .thinLine {
+   
+    width: 90%;
+    height: 1px;
+    background: #A8A29E66;
+  }
+
+  .profileName {  
+    color: var(--stone-900, #1C1917);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px; /* 110% */
+    letter-spacing: -0.4px;
   }
