@@ -3,7 +3,7 @@ import { useState } from "react";
 import './Settings.css'; 
 
 export const Settings = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);  //allows you to open and close the settings page
   const [currentView, setCurrentView] = useState('view1'); //allows you to switch between different views of the mainBox
   const [selectedButton, setSelectedButton] = useState('view1'); // allows you to change the color of the selected button
 
@@ -11,17 +11,17 @@ export const Settings = () => {
   //Public Profile Variables
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const displayName = `${firstName} ${lastName}`; //display name is a combination of first and last name
+  const displayName = `${firstName} ${lastName}`; //display name is a combination of first and last name, this will used in the database
   const [biography, setBiography] = useState('');
   const [avatar, setAvatar] = useState('');
   const [displayGroups, setDisplayGroups] = useState(false);
   const [displayOption, setDisplayOption] = useState('');
 
-  const openSettings = () => {
+  const openSettings = () => { //function to open settings
     setIsOpen(true);
   };
 
-  const closeSettings = () => {
+  const closeSettings = () => { //function to close settings
     setIsOpen(false);
   };
 
@@ -30,33 +30,33 @@ export const Settings = () => {
     setSelectedButton(view);
   };
 
-  const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle first name change
     setFirstName(event.target.value);
   };
   
-  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {  //function to handle last name change
     setLastName(event.target.value);
   };
   
-  const handleBiographyChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleBiographyChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {  //function to handle biography change
     setBiography(event.target.value);
   };
   
-  const handleProfilePictureChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleProfilePictureChange = (event: React.ChangeEvent<HTMLInputElement>) => {  //function to handle profile picture change
     if (event.target.files && event.target.files.length > 0) {
       setAvatar(URL.createObjectURL(event.target.files[0]));
     }
   };
 
-  const handleDisplayGroupsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDisplayGroupsChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle display groups change
     setDisplayGroups(event.target.checked);
   };
   
-  const handleDisplayOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDisplayOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle display option change
     setDisplayOption(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => { //function to handle save Changes button click
     event.preventDefault();
   
     // Update the user's profile details
@@ -74,7 +74,7 @@ export const Settings = () => {
 
   return (
     <div>
-      <button onClick={openSettings}>Settings</button>
+      <button onClick={openSettings}>Settings</button> {/* button to open settings Page */}
 
       {isOpen && (
         <div className="backdrop">
@@ -84,6 +84,7 @@ export const Settings = () => {
             <div className="leftPanel">
               <h1 className ="title" style={{ paddingTop: '50px', paddingLeft: '20px' }}>Settings</h1>
               <h2 className="profileName" style={{ paddingLeft: '20px' }}>{accountName}</h2>
+              {/*Next three Lines Chnages the color of the selected button as you click and change views of the settings MainBox */ }
               <button className={ `leftPanelButton  ${selectedButton === 'view1' ? 'selected' : ''}`} onClick={() => handleButtonClick('view1')}>Public Profile</button> 
               <button className={ `leftPanelButton  ${selectedButton === 'view2' ? 'selected' : ''}`} onClick={() => handleButtonClick('view2')}>Account</button> 
               <button className={ `leftPanelButton  ${selectedButton === 'view3' ? 'selected' : ''}`} onClick={() => handleButtonClick('view3')}>Appearance</button> 
@@ -102,7 +103,7 @@ export const Settings = () => {
                   <button type="submit" className="saveButton">Save Changes</button>
                 </div>
                   
-                  {/** Profile Picture **/}
+                  {/** Profile Picture Section**/}
                   <div className="avatarContainer">
                     <div>
                     <div className="imageContainer">
@@ -117,15 +118,15 @@ export const Settings = () => {
                     </div>
                   </div>
                   
-                  {/** Display Name **/}
+                  {/** Display Name Section**/}
                   <div className="inputContainer">
                       <hr className="thinLine" />
-                    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                      <div style={{ display: 'flex', flexDirection: 'column' }}> 
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}> {/*allows correct spacing between input box and subtitle */}
+                      <div style={{ display: 'flex', flexDirection: 'column' }}> {/*allows correct spacing between Title and subtitle */}
                       <h2 className="subtitle">Display Name</h2>
                       <p className="subtitleDescription">The name that other people will recognize you with.</p>
                       </div>
-                      <div className="input">
+                      <div className="inputHorizontal">
                         <div className="inputLabelContainer">
                           <label className= "inputLabel" htmlFor="firstName">First Name</label>
                           <input
@@ -153,11 +154,11 @@ export const Settings = () => {
                       </div>
                     </div>
                   </div>
-                  {/** Biography **/}
+                  {/** Biography Section**/}
                     <div className="inputContainer">
                       <hr className="thinLine" />
-                      <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                      <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <div style={{ display: 'flex', alignItems: 'flex-start' }}> {/*allows correct spacing between input box and subtitle */}
+                      <div style={{ display: 'flex', flexDirection: 'column' }}> {/*allows correct spacing between Title and subtitle */}
                       <h2 className="subtitle">Biography</h2>
                       <p className="subtitleDescription" style ={{whiteSpace: 'nowrap'}}>Tell others about yourself.</p>
                       </div>
@@ -178,11 +179,11 @@ export const Settings = () => {
                     </div>
                     </div>
 
-                    {/** Privacy **/}
+                    {/** Privacy Section**/}
                     <div className="inputContainer">
                     <hr className="thinLine" />
-                    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}> {/*allows correct spacing between input box and subtitle */}
+                    <div style={{ display: 'flex', flexDirection: 'column' }}> {/*allows correct spacing between Title and subtitle */}
                     <h2 className="subtitle">Privacy</h2>
                     <p className="subtitleDescription">Choose what information other users can see.</p>
                     </div>
@@ -197,7 +198,9 @@ export const Settings = () => {
                         />
                         <label htmlFor="displayGroups">Display my groups on my profile</label>
                       </div>
-                      <div className="subOptions" style={{ opacity: displayGroups ? 1 : 0.5 }}>
+
+                      <div style={{ opacity: displayGroups ? 1 : 0.5 }}> {/* only show options if displayGroups is true */}
+                      <div className="option">
                         <input
                           type="radio"
                           id="displayToEveryone"
@@ -208,6 +211,8 @@ export const Settings = () => {
                           onChange={handleDisplayOptionChange}
                         />
                         <label htmlFor="displayToEveryone">Display to everyone</label>
+                        </div>
+                        <div className="option">
                         <input
                           type="radio"
                           id="displayToFriends"
@@ -218,6 +223,7 @@ export const Settings = () => {
                           onChange={handleDisplayOptionChange}
                         />
                         <label htmlFor="displayToFriends">Display only to friends</label>
+                        </div>
                       </div>
                       </div>
                     </div>
@@ -225,12 +231,12 @@ export const Settings = () => {
 
                 
                  
-                </form>
-              
-              
+                </form>   ///////////////////////////////** End of Public Profile Form **/////////////////////////////////////////////////
               )} 
-              {currentView === 'view2' && <div>Content for View 2</div>}
-              {currentView === 'view3' && <div>Content for View 3</div>}
+
+
+              {currentView === 'view2' && <div>Content for View 2</div>}  {/*Account View of the mainBox */}
+              {currentView === 'view3' && <div>Content for View 3</div>}  {/*Apperance View of the mainBox */}
               
             </div>
 

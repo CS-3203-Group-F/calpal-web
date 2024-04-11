@@ -1,4 +1,4 @@
-.backdrop {
+.backdrop { /* This is the backdrop that appears when the settings button is clicked */
     position: fixed;
     top: 0;
     left: 0;
@@ -10,7 +10,7 @@
     align-items: center;
   }
   
-  .settingsContainer {
+  .settingsContainer { /* This is the container that holds the entire settings Page */
     width: 60vw;
     height: 80vh;
     display: flex;
@@ -21,7 +21,7 @@
   
     
   }
-  .leftPanel {
+  .leftPanel {  /* This is the left panel that holds the settings options */
     width: calc(80vw * 0.25);
     height: 80vh;   
     flex-shrink: 0;
@@ -30,7 +30,7 @@
     backdrop-filter: blur(37.5px);
   }
 
-  .mainBox {
+  .mainBox { /* This is the main box that holds the settings options */
     width: calc(80vw * 0.555);
     height: 80vh;
     flex-shrink: 0;
@@ -39,7 +39,7 @@
     backdrop-filter: blur(37.5px);
   }
 
-  .title {
+  .title { /* This is the title of the settings page */
     color: #1C1917;
     font-feature-settings: 'cv11' on, 'cv05' on;
     font-family: Inter;
@@ -50,7 +50,7 @@
     letter-spacing: -1.44px;
   }
 
-  .subtitle {
+  .subtitle { /* This is the subtitles of the settings page */
     color: var(--stone-700, #44403C);
     font-family: Inter;
     font-size: 20px;
@@ -59,7 +59,7 @@
     line-height: 22px; /* 110% */
     letter-spacing: -0.4px;
   }
-  .subtitleDescription {
+  .subtitleDescription { /* This is the small descriptions of subtitles of the settings page */
     color: var(--stone-500, #78716C);
     margin-top: 2%;
     font-family: Inter;
@@ -72,7 +72,7 @@
     
   }
 
-  .leftPanelButton{
+  .leftPanelButton{ /* This is the button that appears in the left panel */
     width: 18vw;
     height: 5vh;
     display: flex;
@@ -86,20 +86,20 @@
     
     }  
 
-  .selected {
+  .selected { /* This is the selected button in the left panel when clicked on */
     background:rgba(220, 130, 85, 0.6);
     border-radius: 8px;
   }
 
-  .avatarImage {
+  .avatarImage { /* This is the profile picture */
     border-radius: 50%;
-    width: 130px; /* Adjust this value to your liking */
-    height: 130px; /* Adjust this value to your liking */
+    width: 130px; 
+    height: 130px; 
     object-fit: cover; /* This will ensure the image covers the entire area of the circle without distortion */
     margin-left: 32px;
   }
 
-  .inputBox {
+  .inputBox { /* This is the input box */
     width: 13vw;
     height: 4vh;
     margin-top: 5%;
@@ -111,7 +111,7 @@
     filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
   }
 
-  .inputBiographyBox{
+  .inputBiographyBox{ /* This is the input box for biography section */
     width: 62%;
     height: 8vh;
     margin-left: 13.5%;
@@ -123,14 +123,14 @@
     filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
   }
 
-  .characterCount {
+  .characterCount { /* This is the character count for the biography input box*/
     position: absolute;
     bottom: 0;
     left: 0;
-    /* Add other styles as needed */
+    
   }
 
-  .inputContainer {
+  .inputContainer { /* This is the container for the input boxes */
     margin-left: 32px;
     margin-bottom: 32px;
     display: flex;
@@ -139,14 +139,14 @@
     align-items: left;
     gap: 40px;
   }
-  .thinLine {
+  .thinLine {   /* This is the thin line that appears under the profile picture */
    
     width: 95%;
     height: 1px;
     background: #A8A29E66;
   }
 
-  .profileName {  
+  .profileName {    /* This is the name of the profile */
     color: var(--stone-900, #1C1917);
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Inter;
@@ -157,11 +157,11 @@
     letter-spacing: -0.4px;
   }
 
-  .saveButton{
+  .saveButton{  /* This is the save button */
     display: inline-block;
     padding: 10px 20px;
     border: none;
-    background-color: #ffffff; /* Change this to your preferred color */
+    background-color: #ffffff; 
     color: var(--stone-700, #44403C);
     text-align: center;
     text-decoration: none;
@@ -172,14 +172,14 @@
     border-radius: 8px;
   }
 
-  .input{
+  .inputHorizontal {   /* This allows the input boxes to be side by side */
     display: flex;
     flex-direction: row;
     gap: 10px;
     margin-left: -10%; 
   }
 
-  .inputLabel{
+  .inputLabel{  /* This is the label for the input boxes; The Text above the input boxes */
     color: var(--stone-700, #44403C);
     font-family: Inter;
     font-size: 16px;
@@ -192,13 +192,13 @@
     align-items: flex-start;
   }
 
-  .inputlabelContainer {
+  .inputlabelContainer {  /* Container for the label and the input boxes */
     display: flex;
     flex-direction: column;
     
   }
 
-  .saveButtonContainer{
+  .saveButtonContainer{ /* Container for the save button */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -206,12 +206,14 @@
     
     }
 
-    .subOptions {
-      display: flex;
-      flex-direction: column;
+    
+
+    .option {  /*Allows the suboptions to be left aligned on top of each other */
+      display: flex; 
+      align-items: center;
     }
 
-    .avatarContainer {
+    .avatarContainer { /* Container for the profile picture and the text */
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -223,11 +225,11 @@
       margin-right: 10%; /* adjust this to add more or less space between the profile picture and the text */
     }
 
-    .imageContainer {
+    .imageContainer {   /* This is the container for the profile picture and the change photo button */
       position: relative;
     }
 
-    .changeButton {
+    .changeButton {    /* This is the button that appears when you click on the profile picture */
       position: absolute;
       bottom: 0px;
       right: -25px;
@@ -239,7 +241,7 @@
       font-size: 12px;
     }
 
-    .characterCount {
+    .characterCount {   /* This is the character count text for the biography input box*/
       color: var(--stone-400, #8d8784);
       text-align: right;
       font-family: Inter;
@@ -249,7 +251,7 @@
       line-height: 22px; /* 220% */
     }
 
-    .biographyContainer {
+    .biographyContainer {  /* This is the container for the biography input box */
       position: relative;
       bottom: -8.5vh;
       left: -3.4vw;
