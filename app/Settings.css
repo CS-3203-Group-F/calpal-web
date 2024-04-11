@@ -31,7 +31,7 @@
   }
 
   .mainBox {
-    width: calc(80vw * 0.6);
+    width: calc(80vw * 0.555);
     height: 80vh;
     flex-shrink: 0;
     border-radius: 0px 16px 16px 0px;
@@ -115,12 +115,19 @@
     width: 62%;
     height: 8vh;
     margin-left: 13.5%;
-    margin-right: 5%;
+    margin-right: 3%;
     border-radius: 8px;
     fill: rgba(255, 255, 255, 0.50);
     stroke-width: 1px;
     stroke: var(--stone-300, #D6D3D1);
     filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
+  }
+
+  .characterCount {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /* Add other styles as needed */
   }
 
   .inputContainer {
@@ -151,14 +158,18 @@
   }
 
   .saveButton{
-    width: 160px;
-    height: 37px;
-    flex-shrink: 0;
-    fill: rgba(255, 255, 255, 0.50);
-    stroke-width: 1px;
-    stroke: var(--stone-300, #D6D3D1);
-    filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
-
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    background-color: #ffffff; /* Change this to your preferred color */
+    color: var(--stone-700, #44403C);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
   }
 
   .input{
@@ -186,3 +197,61 @@
     flex-direction: column;
     
   }
+
+  .saveButtonContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10%;
+    
+    }
+
+    .subOptions {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .avatarContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 3%;
+      margin-bottom: 3%;
+    }
+
+    .avatarContainer > div:first-child {
+      margin-right: 10%; /* adjust this to add more or less space between the profile picture and the text */
+    }
+
+    .imageContainer {
+      position: relative;
+    }
+
+    .changeButton {
+      position: absolute;
+      bottom: 0px;
+      right: -25px;
+      border-radius: 80px;
+      color: #000000;
+      cursor: pointer;
+      background-color: #ffffff;
+      padding: 1px;
+      font-size: 12px;
+    }
+
+    .characterCount {
+      color: var(--stone-400, #8d8784);
+      text-align: right;
+      font-family: Inter;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 220% */
+    }
+
+    .biographyContainer {
+      position: relative;
+      bottom: -8.5vh;
+      left: -3.4vw;
+
+    }

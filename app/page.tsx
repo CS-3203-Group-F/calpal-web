@@ -14,6 +14,8 @@ export const Settings = () => {
   const displayName = `${firstName} ${lastName}`; //display name is a combination of first and last name
   const [biography, setBiography] = useState('');
   const [avatar, setAvatar] = useState('');
+  const [displayGroups, setDisplayGroups] = useState(false);
+  const [displayOption, setDisplayOption] = useState('');
 
   const openSettings = () => {
     setIsOpen(true);
@@ -46,6 +48,14 @@ export const Settings = () => {
     }
   };
 
+  const handleDisplayGroupsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDisplayGroups(event.target.checked);
+  };
+  
+  const handleDisplayOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDisplayOption(event.target.value);
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   
@@ -55,6 +65,9 @@ export const Settings = () => {
     console.log('Last Name:', lastName);
     console.log('Biography:', biography);
     console.log('Profile Picture:', avatar);
+
+    // Close the settings
+    closeSettings();
   
     
   };
@@ -84,14 +97,25 @@ export const Settings = () => {
               {currentView === 'view1' &&( 
               
               <form onSubmit={handleSubmit} className="profileForm">
+                <div className ="saveButtonContainer">
                   <h1 className="title" style={{ paddingTop: '50px', paddingLeft: '20px' }}>Public Profile</h1>
+                  <button type="submit" className="saveButton">Save Changes</button>
+                </div>
                   
                   {/** Profile Picture **/}
-                  <label>
-                    Profile Picture:
-                    <input type="file" onChange={handleProfilePictureChange} />
-                  </label>
-                  {avatar && <img className="avatarImage" src={avatar} alt="Profile" />}
+                  <div className="avatarContainer">
+                    <div>
+                    <div className="imageContainer">
+                      <img className="avatarImage" src={avatar} alt="Profile" />
+                      <label htmlFor="profilePicture" className="changeButton">Change</label>
+                      <input type="file" id="profilePicture" className="hidden" onChange={handleProfilePictureChange} />
+                      </div>
+                    </div>
+                    <div>
+                      <h2 className="subtitle">Avatar</h2>
+                      <p className="subtitleDescription">Your avatar will be displayed to other CalPal users you share a group with, or anyone that finds your profile.</p>
+                    </div>
+                  </div>
                   
                   {/** Display Name **/}
                   <div className="inputContainer">
@@ -137,6 +161,7 @@ export const Settings = () => {
                       <h2 className="subtitle">Biography</h2>
                       <p className="subtitleDescription" style ={{whiteSpace: 'nowrap'}}>Tell others about yourself.</p>
                       </div>
+                      
                         <textarea
                         className="inputBiographyBox"
                         value={biography}
@@ -144,12 +169,62 @@ export const Settings = () => {
                         placeholder="Biography"
                         id="biography"
                         name="biography"
+                        maxLength={200}
                       />
+                      <div className="biographyContainer">
+                      <span className="characterCount">{biography.length}/200</span>
+                      </div>
+                      
                     </div>
                     </div>
 
+                    {/** Privacy **/}
+                    <div className="inputContainer">
+                    <hr className="thinLine" />
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <h2 className="subtitle">Privacy</h2>
+                    <p className="subtitleDescription">Choose what information other users can see.</p>
+                    </div>
+                    <div className="privacyOptions">
+                      <div>
+                        <input
+                          type="checkbox"
+                          id="displayGroups"
+                          name="displayGroups"
+                          checked={displayGroups}
+                          onChange={handleDisplayGroupsChange}
+                        />
+                        <label htmlFor="displayGroups">Display my groups on my profile</label>
+                      </div>
+                      <div className="subOptions" style={{ opacity: displayGroups ? 1 : 0.5 }}>
+                        <input
+                          type="radio"
+                          id="displayToEveryone"
+                          name="displayOption"
+                          value="everyone"
+                          disabled={!displayGroups}
+                          checked={displayOption === 'everyone'}
+                          onChange={handleDisplayOptionChange}
+                        />
+                        <label htmlFor="displayToEveryone">Display to everyone</label>
+                        <input
+                          type="radio"
+                          id="displayToFriends"
+                          name="displayOption"
+                          value="friends"
+                          disabled={!displayGroups}
+                          checked={displayOption === 'friends'}
+                          onChange={handleDisplayOptionChange}
+                        />
+                        <label htmlFor="displayToFriends">Display only to friends</label>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
 
-                  <button type="submit" className="saveButton">Save</button>
+                
+                 
                 </form>
               
               
