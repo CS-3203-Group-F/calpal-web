@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { Pagination } from "./Pagination";
 import { Key, useState } from "react";
