@@ -2,6 +2,8 @@ import { PFPDefault } from "../Panel/GroupCard";
 import { Section } from "../Panel/Section";
 import { Members } from "./Members";
 import { ChevronLeft, ChevronRight } from "./Icons";
+import { Events } from "./Events";
+import { Socials } from "./Socials";
 
 interface Member {
   firstName: string;
@@ -27,6 +29,7 @@ interface GroupData {
   color: string;
   description: string;
   image: string;
+  socialLinks: any;
 }
 
 const groupFDataExample: GroupData = {
@@ -107,6 +110,29 @@ const groupFDataExample: GroupData = {
   color: "#6366F1",
   description: "This is a placeholder description",
   image: "milo.jpg",
+  socialLinks: [
+    {
+      link: "https://www.facebook.com/groupF",
+      description: "Official Facebook page",
+    },
+    {
+      link: "https://twitter.com/groupF",
+      description: "Official Twitter account",
+    },
+    {
+      link: "https://www.instagram.com/groupF",
+      description: "Official Instagram profile",
+    },
+    {
+      link: "https://www.linkedin.com/company/groupF",
+      description: "Official LinkedIn page",
+    },
+    {
+      link: "https://www.youtube.com/groupF",
+      description: "Feature demos and videos",
+    },
+    // Add more social media links as needed
+  ],
 };
 
 interface GroupProps {}
@@ -115,11 +141,11 @@ export const Group = () => {
   // Need loading animation
 
   return (
-    <div className="flex flex-col min-h-screen w-96 items-center gap-8 shrink-0 border-r border-stone-200">
-      <GroupHeader></GroupHeader>
+    <div className="flex flex-col min-h-screen w-96 items-center shrink-0 border-r border-stone-200">
+      <GroupHeader />
       <Members members={groupFDataExample.members} />
-      <Section title="Meetings"></Section>
-      <Section title="Social Links"></Section>
+      <Events events={groupFDataExample.events} />
+      <Socials links={groupFDataExample.socialLinks} />
     </div>
   );
 };
@@ -132,7 +158,7 @@ const GroupHeader = () => {
 
   return (
     <div
-      className="h-32 w-32 flex bg-no-repeat bg-center bg-cover"
+      className="h-72 w-full flex bg-no-repeat bg-center bg-cover"
       style={{
         backgroundImage: `linear-gradient(180deg, #FFF 25.5%, rgba(255, 255, 255, 0.75) 100%), url(${groupImage})`,
       }}

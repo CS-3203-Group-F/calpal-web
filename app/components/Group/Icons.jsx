@@ -31,3 +31,37 @@ export function ChevronLeft({ color = "#1C1B1F" }) {
     </svg>
   );
 }
+
+export function ExpandMore({ color = "#1C1B1F" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="25"
+      viewBox="0 0 24 25"
+      fill={color}
+    >
+      <path
+        d="M11.9941 15.7716L5.99414 9.77158L7.39414 8.37158L11.9941 12.9716L16.5941 8.37158L17.9941 9.77158L11.9941 15.7716Z"
+        fill={color}
+      />
+    </svg>
+  );
+}
+
+export function ExpandLess({ color = "#1C1B1F" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="25"
+      viewBox="0 0 24 25"
+      fill={color}
+    >
+      <path
+        d="M7.39414 15.7716L5.99414 14.3716L11.9941 8.37158L17.9941 14.3716L16.5941 15.7716L11.9941 11.1716L7.39414 15.7716Z"
+        fill={color}
+      />
+    </svg>
+  );
+}
