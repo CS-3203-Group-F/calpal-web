@@ -112,26 +112,25 @@ const groupFDataExample: GroupData = {
   image: "milo.jpg",
   socialLinks: [
     {
-      link: "https://www.facebook.com/groupF",
-      description: "Official Facebook page",
+      link: "https://www.figma.com/file/2Xuq6ueiTBRP7milKU7jay/CalPal?type=design&node-id=988%3A6345&mode=design&t=bkfiFZ87U0axDumw-1",
+      description: "Figma file",
     },
     {
-      link: "https://twitter.com/groupF",
-      description: "Official Twitter account",
+      link: "https://discord.gg/g9rRCcMY3u",
+      description: "Group discord",
     },
     {
-      link: "https://www.instagram.com/groupF",
-      description: "Official Instagram profile",
+      link: "https://www.instagram.com/mrboom192",
+      description: "Group Insta",
     },
     {
-      link: "https://www.linkedin.com/company/groupF",
-      description: "Official LinkedIn page",
+      link: "https://github.com/CS-3203-Group-F/calpal-web",
+      description: "Repo",
     },
     {
-      link: "https://www.youtube.com/groupF",
-      description: "Feature demos and videos",
+      link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      description: "secret link",
     },
-    // Add more social media links as needed
   ],
 };
 
