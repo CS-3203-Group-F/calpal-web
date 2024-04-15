@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Panel } from "./components/Panel/Panel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main className="text-stone-800 flex min-h-screen flex-row items-center justify-betweenS">
+          <Panel>{children}</Panel>
+          <div className="flex flex-col items-start w-full min-h-screen">
+            <img src="http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/075jdbmz87nmcit/calendar_view_iurGMpKA8V.png?token="></img>
+          </div>
+        </main>
+      </body>
     </html>
   );
+}
+
+{
+  /* <link
+rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+/>
+<link
+rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+/> */
 }
