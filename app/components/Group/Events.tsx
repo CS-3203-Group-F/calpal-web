@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { Pagination } from "./Pagination";
-import { Key, useState } from "react";
+import { useState } from "react";
 import { ExpandLess, ExpandMore } from "./Icons";
 
 interface EventsProps {

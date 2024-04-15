@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { Pagination } from "./Pagination";
-import { Key, useState } from "react";
+import { useState } from "react";
+import { RoundedAvatar } from "./RoundedAvatar";
 
 // Number of members per pagination page
 const membersPerPage = 3;
@@ -35,14 +36,15 @@ function Member(props: { name: string; profilePicture: string }) {
     props.name.length > 20 ? props.name.slice(0, 20) + "..." : props.name;
 
   return (
-    <div className="flex flex-col w-24 h-32 p-2 items-center gap-2  text-center rounded-lg cursor-pointer hover:bg-stone-200">
-      <div className="w-16 h-16 relative rounded-full overflow-hidden">
+    <div className="flex flex-col w-24 h-32 p-2 m-auto items-center gap-2  text-center rounded-lg cursor-pointer hover:bg-stone-200">
+      {/* <div className="w-16 h-16 relative rounded-full overflow-hidden">
         <Image
           src={props.profilePicture}
           fill={true}
           alt={`${props.name}'s profile picture`}
         />
-      </div>
+      </div> */}
+      <RoundedAvatar image={props.profilePicture} name={props.name} />
       <p className="font-normal text-sm">{truncatedName}</p>
     </div>
   );
@@ -50,7 +52,7 @@ function Member(props: { name: string; profilePicture: string }) {
 
 function MembersList(props: { members: any; currentPage: number }) {
   return (
-    <div className="flex flex-row w-full py-2 items-center justify-evenly">
+    <div className="grid grid-cols-3 w-full p-2 items-center justify-evenly">
       {props.members
         .slice(
           props.currentPage * membersPerPage,

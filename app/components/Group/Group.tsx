@@ -1,11 +1,9 @@
-import { PFPDefault } from "../Panel/GroupCard";
-import { Section } from "../Panel/Section";
 import { Members } from "./Members";
-import { ChevronLeft, ChevronRight } from "./Icons";
 import { Events } from "./Events";
 import { Socials } from "./Socials";
+import { GroupHeader } from "./GroupHeader";
 
-interface Member {
+export interface Member {
   firstName: string;
   lastName: string;
   id: string;
@@ -20,6 +18,11 @@ interface Event {
   endDate?: string; // Optional property for events with end date
 }
 
+interface SocialLink {
+  link: string;
+  description: string;
+}
+
 interface GroupData {
   id: string;
   ownerId: string;
@@ -29,7 +32,8 @@ interface GroupData {
   color: string;
   description: string;
   image: string;
-  socialLinks: any;
+  socialLinks: SocialLink[];
+  isPrivate: boolean;
 }
 
 const groupFDataExample: GroupData = {
@@ -109,7 +113,7 @@ const groupFDataExample: GroupData = {
   name: "Group F",
   color: "#6366F1",
   description: "This is a placeholder description",
-  image: "milo.jpg",
+  image: "/groupPictures/group-f/group-f.png",
   socialLinks: [
     {
       link: "https://www.figma.com/file/2Xuq6ueiTBRP7milKU7jay/CalPal?type=design&node-id=988%3A6345&mode=design&t=bkfiFZ87U0axDumw-1",
@@ -132,6 +136,7 @@ const groupFDataExample: GroupData = {
       description: "secret link",
     },
   ],
+  isPrivate: true,
 };
 
 interface GroupProps {}
@@ -141,26 +146,16 @@ export const Group = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-96 items-center shrink-0 border-r border-stone-200">
-      <GroupHeader />
+      <GroupHeader
+        groupName={groupFDataExample.name}
+        ownerId={groupFDataExample.ownerId}
+        members={groupFDataExample.members}
+        isPrivate={groupFDataExample.isPrivate}
+        image={groupFDataExample.image}
+      />
       <Members members={groupFDataExample.members} />
       <Events events={groupFDataExample.events} />
       <Socials links={groupFDataExample.socialLinks} />
     </div>
-  );
-};
-
-const GroupHeader = () => {
-  const groupImage =
-    "http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/m3nnylsjf045clv/d138_ef64_114_e_46_b7_8_c86_eeba193_ea2_cd_1_105_c_2_aCaJUzZlvX.png?token=";
-
-  //background: linear-gradient(180deg, #FFF 25.5%, rgba(255, 255, 255, 0.75) 100%)
-
-  return (
-    <div
-      className="h-72 w-full flex bg-no-repeat bg-center bg-cover"
-      style={{
-        backgroundImage: `linear-gradient(180deg, #FFF 25.5%, rgba(255, 255, 255, 0.75) 100%), url(${groupImage})`,
-      }}
-    ></div>
   );
 };

@@ -1,4 +1,6 @@
-export function ChevronRight({ color = "#1C1B1F" }) {
+const defaultColor = "#1C1B1F";
+
+export function ChevronRight({ color = defaultColor }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +17,7 @@ export function ChevronRight({ color = "#1C1B1F" }) {
   );
 }
 
-export function ChevronLeft({ color = "#1C1B1F" }) {
+export function ChevronLeft({ color = defaultColor }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +34,7 @@ export function ChevronLeft({ color = "#1C1B1F" }) {
   );
 }
 
-export function ExpandMore({ color = "#1C1B1F" }) {
+export function ExpandMore({ color = defaultColor }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +51,7 @@ export function ExpandMore({ color = "#1C1B1F" }) {
   );
 }
 
-export function ExpandLess({ color = "#1C1B1F" }) {
+export function ExpandLess({ color = defaultColor }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +62,40 @@ export function ExpandLess({ color = "#1C1B1F" }) {
     >
       <path
         d="M7.39414 15.7716L5.99414 14.3716L11.9941 8.37158L17.9941 14.3716L16.5941 15.7716L11.9941 11.1716L7.39414 15.7716Z"
+        fill={color}
+      />
+    </svg>
+  );
+}
+
+export function MoreHoriz({ color = defaultColor }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="25"
+      viewBox="0 0 25 25"
+      fill={color}
+    >
+      <path
+        d="M6.13672 14.2646C5.58672 14.2646 5.11589 14.0688 4.72422 13.6771C4.33255 13.2855 4.13672 12.8146 4.13672 12.2646C4.13672 11.7146 4.33255 11.2438 4.72422 10.8521C5.11589 10.4605 5.58672 10.2646 6.13672 10.2646C6.68672 10.2646 7.15755 10.4605 7.54922 10.8521C7.94089 11.2438 8.13672 11.7146 8.13672 12.2646C8.13672 12.8146 7.94089 13.2855 7.54922 13.6771C7.15755 14.0688 6.68672 14.2646 6.13672 14.2646ZM12.1367 14.2646C11.5867 14.2646 11.1159 14.0688 10.7242 13.6771C10.3326 13.2855 10.1367 12.8146 10.1367 12.2646C10.1367 11.7146 10.3326 11.2438 10.7242 10.8521C11.1159 10.4605 11.5867 10.2646 12.1367 10.2646C12.6867 10.2646 13.1576 10.4605 13.5492 10.8521C13.9409 11.2438 14.1367 11.7146 14.1367 12.2646C14.1367 12.8146 13.9409 13.2855 13.5492 13.6771C13.1576 14.0688 12.6867 14.2646 12.1367 14.2646ZM18.1367 14.2646C17.5867 14.2646 17.1159 14.0688 16.7242 13.6771C16.3326 13.2855 16.1367 12.8146 16.1367 12.2646C16.1367 11.7146 16.3326 11.2438 16.7242 10.8521C17.1159 10.4605 17.5867 10.2646 18.1367 10.2646C18.6867 10.2646 19.1576 10.4605 19.5492 10.8521C19.9409 11.2438 20.1367 11.7146 20.1367 12.2646C20.1367 12.8146 19.9409 13.2855 19.5492 13.6771C19.1576 14.0688 18.6867 14.2646 18.1367 14.2646Z"
+        fill={color}
+      />
+    </svg>
+  );
+}
+
+export function Check({ color = defaultColor }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="25"
+      height="25"
+      viewBox="0 0 25 25"
+      fill={color}
+    >
+      <path
+        d="M9.6668 18.2413L3.9668 12.5413L5.3918 11.1163L9.6668 15.3913L18.8418 6.21631L20.2668 7.64131L9.6668 18.2413Z"
         fill={color}
       />
     </svg>

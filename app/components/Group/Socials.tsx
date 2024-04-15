@@ -1,7 +1,4 @@
 import Image from "next/image";
-import { Pagination } from "./Pagination";
-import { Key, useState } from "react";
-import { ExpandLess, ExpandMore } from "./Icons";
 
 interface SocialsProps {
   links: any;
@@ -9,7 +6,7 @@ interface SocialsProps {
 
 export function Socials({ links }: SocialsProps) {
   return (
-    <div className="flex flex-row flex-wrap gap-4 p-6 content-center items-start self-stretch border-t border-stone-200">
+    <div className="flex flex-row flex-wrap gap-3 p-6 content-center items-start self-stretch border-t border-stone-200">
       {links.map((link: any, i: number) => (
         <LinkPill link={link.link} description={link.description} key={i} />
       ))}
@@ -19,7 +16,6 @@ export function Socials({ links }: SocialsProps) {
 
 function LinkPill(props: { link: string; description: string }) {
   const url = props.link;
-
   const websiteFavicon = `https://s2.googleusercontent.com/s2/favicons?domain=${url}`;
 
   return (
