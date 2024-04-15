@@ -141,7 +141,7 @@ const groupFDataExample: GroupData = {
 
 interface GroupProps {}
 
-export const Group = () => {
+export function Group() {
   // Need loading animation
 
   return (
@@ -158,4 +158,4 @@ export const Group = () => {
       <Socials links={groupFDataExample.socialLinks} />
     </div>
   );
-};
+}

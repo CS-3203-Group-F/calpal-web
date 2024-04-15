@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Member } from "./Group";
 import { ChevronLeft, MoreHoriz, Check } from "./Icons";
 import { RoundedAvatar } from "./RoundedAvatar";
@@ -40,10 +41,10 @@ export function GroupHeader({
 function GroupHeaderNavigation() {
   return (
     <div className="flex flex-row items-center justify-between self-stretch py-4">
-      <button className="flex flex-row items-center">
+      <Link className="flex flex-row items-center" href="/">
         <ChevronLeft />
-        <p className="text-[17px]">Back</p>
-      </button>
+        <p className="text-[17px]">Home</p>
+      </Link>
       <button>
         <MoreHoriz />
       </button>
