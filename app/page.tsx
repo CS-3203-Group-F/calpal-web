@@ -8,7 +8,7 @@ import { ToolboxCard } from "./components/Panel/Toolbox";
 export default function Home() {
   return (
     <div className="flex flex-col items-center self-stretch p-6 gap-8">
-      <Rsvp></Rsvp>
+      <Rsvp />
       <Section title="Groups">
         <div className="flex flex-col gap-2">
           <GroupCard

@@ -132,7 +132,7 @@ export const RsvpStack = (props: RsvpStackProps) => {
   return (
     <div className="relative w-full h-36">
       <p className="absolute text-stone-400 top-1/2 w-full text-center">
-        No more rsvps
+        {"You're all set!"}
       </p>
       {cardStack}
     </div>
