@@ -8,7 +8,7 @@ export default function Calendar() {
   return (
     <FullCalendar
       plugins={[dayGridPlugin]}
-      initialView="dayGridMonth"
+      initialView="dayGridWeek"
       events={groupFDataExample}
     />
   );

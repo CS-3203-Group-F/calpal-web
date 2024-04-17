@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="text-stone-800 flex min-h-screen flex-row items-center justify-betweenS">
           <Panel>{children}</Panel>
-          <div className="h-screen w-screen">
+          <div className="w-screen h-screen overflow-auto">
             <Calendar />
           </div>
           {/* <div className="flex flex-col items-start w-full min-h-screen">
