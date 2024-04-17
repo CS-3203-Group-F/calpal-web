@@ -26,7 +26,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/components/Group/Icons.jsx"
+    "app/components/Group/Icons.jsx",
+    "app/components/Calendar/Calendar.tsx"
   ],
   "exclude": ["node_modules"]
 }

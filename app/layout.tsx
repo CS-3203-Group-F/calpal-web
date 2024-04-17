@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Panel } from "./components/Panel/Panel";
 import Image from "next/image";
-import { Calendar } from "./components/Calendar/Calendar";
+import Calendar from "./components/Calendar/Calendar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +22,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="text-stone-800 flex min-h-screen flex-row items-center justify-betweenS">
           <Panel>{children}</Panel>
-          <Calendar />
+          <div className="h-screen w-screen">
+            <Calendar />
+          </div>
           {/* <div className="flex flex-col items-start w-full min-h-screen">
             <Image
               width={1541}
