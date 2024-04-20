@@ -30,7 +30,7 @@ export function Pagination({ onSetPage, numOfPages }: PaginationProps) {
       >
         <ChevronLeft color={page === 0 ? "#D6D3D1" : ""} />
       </button>
-      <p className=" text-base font-normal">
+      <p className=" text-base font-normal w-12 text-center">
         {page + 1} of {numOfPages}
       </p>
 
