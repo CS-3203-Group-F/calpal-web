@@ -108,17 +108,6 @@ export default function CalendarPanel() {
         headerToolbar={false}
         nowIndicator={true}
         eventContent={renderEventContent}
-        customButtons={{
-          filterSchool: {
-            text: "School",
-          },
-          filterGym: {
-            text: "Gym",
-          },
-          filterWork: {
-            text: "Work",
-          },
-        }}
       />
     </div>
   );
