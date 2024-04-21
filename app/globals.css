@@ -37,6 +37,15 @@ h3 {
   }
 }
 
+/* .fc .fc-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.fc .fc-scroller {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+} */
+
 /* Removes side borders */
 .fc .fc-scrollgrid {
   border-left-style: none;

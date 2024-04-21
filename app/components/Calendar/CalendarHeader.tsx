@@ -52,7 +52,7 @@ export function CalendarHeader(props: {
       <div className="flex flex-row items-center gap-4">
         <button
           onClick={changeView}
-          className="flex px-3 py-2 items-center rounded-lg bg-amber-400"
+          className="flex px-3 py-2 items-center rounded-lg bg-amber-400 hover:bg-amber-500"
         >
           {currentView === "dayGridMonth" ? (
             <CalendarViewWeek />
@@ -76,7 +76,7 @@ function FilterButton(props: { category: string; color: string }) {
   return (
     <button
       style={{ border: `2px solid ${props.color}` }}
-      className="flex flex-row items-center px-3 py-2 gap-2 rounded-lg"
+      className="flex flex-row items-center px-3 py-2 gap-2 rounded-lg "
     >
       <span className="font-semibold text-base">{props.category}</span>
     </button>
@@ -85,7 +85,7 @@ function FilterButton(props: { category: string; color: string }) {
 
 function AddEventButton() {
   return (
-    <button className="flex flex-row items-center px-3 py-2 gap-2 rounded-lg bg-amber-400">
+    <button className="flex flex-row items-center px-3 py-2 gap-2 rounded-lg bg-amber-400 hover:bg-amber-500">
       <Add />
       <span className="font-bold text-base">New event</span>
     </button>
