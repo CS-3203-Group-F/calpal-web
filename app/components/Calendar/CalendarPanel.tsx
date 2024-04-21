@@ -65,6 +65,30 @@ const groupFDataExample = {
       ],
       textColor: "#EF4444",
     },
+    {
+      title: "New Event 1",
+      description: "Description of new event 1.",
+      location: "Location of new event 1",
+      start: "2024-04-17T15:00:00.000Z",
+      end: "2024-04-17T16:00:00.000Z",
+      editable: true,
+      classNames: [
+        "bg-blue-200/50 border rounded-lg font-semibold border-blue-500",
+      ],
+      textColor: "#3B82F6",
+    },
+    {
+      title: "New Event 2",
+      description: "Description of new event 2.",
+      location: "Location of new event 2",
+      start: "2024-04-18T13:00:00.000Z",
+      end: "2024-04-18T14:00:00.000Z",
+      editable: true,
+      classNames: [
+        "bg-green-200/50 border rounded-lg font-semibold border-green-500",
+      ],
+      textColor: "#10B981",
+    },
   ],
 };
 
@@ -72,21 +96,18 @@ export default function CalendarPanel() {
   const calendarRef = useRef<FullCalendar>(null);
 
   return (
-    <>
+    <div className="flex flex-col w-screen h-screen overflow-auto">
       <CalendarHeader calendarRef={calendarRef} />
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         ref={calendarRef}
         initialView="dayGridMonth"
         events={groupFDataExample}
-        eventClassNames={"border rounded font-semibold py-2 px-1"}
+        eventClassNames={"border rounded font-semibold py-2 px-1 shadow"}
+        height={"100%"}
         headerToolbar={false}
-        footerToolbar={{
-          start: "title",
-          center: "",
-          end: "filterSchool filterGym filterWork today prev,next",
-        }}
         nowIndicator={true}
+        eventContent={renderEventContent}
         customButtons={{
           filterSchool: {
             text: "School",
@@ -99,6 +120,22 @@ export default function CalendarPanel() {
           },
         }}
       />
-    </>
+    </div>
+  );
+}
+
+function renderEventContent(eventInfo: any) {
+  return (
+    <div className="flex flex-col h-full justify-between overflow-hidden">
+      <p style={{ color: `${eventInfo.event.textColor}` }} className="">
+        {eventInfo.event.title}
+      </p>
+      <p
+        style={{ color: `${eventInfo.event.textColor}` }}
+        className="font-normal text-xs"
+      >
+        {eventInfo.timeText}
+      </p>
+    </div>
   );
 }

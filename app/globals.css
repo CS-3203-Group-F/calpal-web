@@ -36,3 +36,32 @@ h3 {
     scrollbar-width: none; /* Firefox */
   }
 }
+
+/* Removes side borders */
+.fc .fc-scrollgrid {
+  border-left-style: none;
+}
+
+.fc .fc-timegrid-slot-minor {
+  border-top-style: hidden;
+}
+
+.fc .fc-timeGridWeek-view td,
+th {
+  border-color: #e7e5e4;
+  border-left: none;
+  border-right: none;
+}
+
+.fc .fc-timegrid-slot-label {
+  font-size: 12px;
+}
+
+/* .fc .fc-timeGridWeek-view table {
+  border-collapse: collapse;
+} */
+
+/* .fc .fc-timeGridWeek-view tr {
+  border-top: 1px dashed #e7e5e4;
+  border-bottom: 1px solid #e7e5e4;
+} */

@@ -76,7 +76,7 @@ function FilterButton(props: { category: string; color: string }) {
   return (
     <button
       style={{ border: `2px solid ${props.color}` }}
-      className="flex flex-row px-3 py-2 gap-2 rounded-lg"
+      className="flex flex-row items-center px-3 py-2 gap-2 rounded-lg"
     >
       <span className="font-semibold text-base">{props.category}</span>
     </button>
