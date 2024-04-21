@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Panel } from "./components/Panel/Panel";
 import Image from "next/image";
-import Calendar from "./components/Calendar/Calendar";
+import Calendar from "./components/Calendar/CalendarPanel";
 
 const inter = Inter({ subsets: ["latin"] });
 

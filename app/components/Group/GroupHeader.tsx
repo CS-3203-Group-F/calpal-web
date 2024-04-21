@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Member } from "./Group";
-import { ChevronLeft, MoreHoriz, Check } from "./Icons";
+import { ChevronLeft, MoreHoriz, Check } from "../Icons";
 import { RoundedAvatar } from "./RoundedAvatar";
 
 interface GroupHeaderProps {

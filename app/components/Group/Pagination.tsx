@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "./Icons";
+import { ChevronLeft, ChevronRight } from "../Icons";
 
 interface PaginationProps {
   onSetPage?: any;

@@ -4,35 +4,15 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import "./Calendar.css";
-
-export default function Calendar() {
-  return (
-    <FullCalendar
-      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-      initialView="timeGridWeek"
-      events={groupFDataExample}
-      eventClassNames={"border rounded font-semibold py-2 px-1"}
-      headerToolbar={{
-        start: "title",
-        center: "",
-        end: "filterSchool filterGym filterWork today prev,next",
-      }}
-      nowIndicator={true}
-      customButtons={{
-        filterSchool: {
-          text: "School",
-        },
-        filterGym: {
-          text: "Gym",
-        },
-        filterWork: {
-          text: "Work",
-        },
-      }}
-    />
-  );
-}
+import { CalendarMonth, Add } from "../Icons";
+import { useState, useRef, ReactNode } from "react";
+import { CalendarHeader } from "./CalendarHeader";
+import {
+  Calendar,
+  CalendarApi,
+  CalendarOptions,
+} from "@fullcalendar/core/index.js";
+import { CalendarContentProps } from "@fullcalendar/core/internal";
 
 const groupFDataExample = {
   events: [
@@ -88,8 +68,37 @@ const groupFDataExample = {
   ],
 };
 
-// export function Calendar() {
-//   return <div className="w-full"></div>;
-// }
+export default function CalendarPanel() {
+  const calendarRef = useRef<FullCalendar>(null);
 
-// Will use big calendar library
+  return (
+    <>
+      <CalendarHeader calendarRef={calendarRef} />
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        ref={calendarRef}
+        initialView="dayGridMonth"
+        events={groupFDataExample}
+        eventClassNames={"border rounded font-semibold py-2 px-1"}
+        headerToolbar={false}
+        footerToolbar={{
+          start: "title",
+          center: "",
+          end: "filterSchool filterGym filterWork today prev,next",
+        }}
+        nowIndicator={true}
+        customButtons={{
+          filterSchool: {
+            text: "School",
+          },
+          filterGym: {
+            text: "Gym",
+          },
+          filterWork: {
+            text: "Work",
+          },
+        }}
+      />
+    </>
+  );
+}
