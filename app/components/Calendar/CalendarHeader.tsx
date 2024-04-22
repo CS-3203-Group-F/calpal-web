@@ -80,9 +80,7 @@ export function CalendarHeader(props: {
         <FilterButton category="All" color="#000" />
         <FilterButton category="School" color="#F886A8" />
         <FilterButton category="Work" color="#DFDD6C" />
-        <AddEventButton>
-          <AddEventForm />
-        </AddEventButton>
+        <AddEventButton setEvents={props.setEvents} />
       </div>
     </div>
   );
@@ -101,7 +99,7 @@ function FilterButton(props: { category: string; color: string }) {
   );
 }
 
-function AddEventButton(props: { children: any }) {
+function AddEventButton(props: { setEvents: any }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -113,7 +111,7 @@ function AddEventButton(props: { children: any }) {
         <Add />
         <span className="font-bold text-base">New event</span>
       </button>
-      {open && props.children}
+      {open && <AddEventForm setEvents={props.setEvents} setOpen={setOpen} />}
     </div>
   );
 }
@@ -128,7 +126,7 @@ type FormData = {
   notes: string;
 };
 
-function AddEventForm() {
+function AddEventForm(props: { setEvents: any; setOpen: any }) {
   const {
     register,
     handleSubmit,
@@ -136,45 +134,114 @@ function AddEventForm() {
     formState: { errors },
   } = useForm<FormData>();
 
-  // Prints form data
-  const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
+  const [minEndDate, setMinEndDate] = useState("");
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    // Adds in classes and interactivity into events
+    const newEvent = {
+      ...data,
+      editable: true,
+      classNames: [
+        "bg-blue-200/50 border rounded-lg font-semibold border-blue-500",
+      ],
+      textColor: "#3B82F6",
+    };
+
+    // Updates event state, which updates the calendar
+    props.setEvents((curr: any) => [...curr, newEvent]);
+
+    // Closes the new event modal
+    props.setOpen(false);
+  };
+
+  // Minimum length of an event is 5 minutes
+  function handleMinEndDate(data: any) {
+    console.log(data);
+
+    // Convert the time string to a Date object
+    const inputStartTime = new Date(data);
+
+    // Add 5 minutes to the current time
+    inputStartTime.setMinutes(inputStartTime.getMinutes() + 5);
+
+    inputStartTime.setTime(
+      inputStartTime.getTime() - inputStartTime.getTimezoneOffset() * 60 * 1000
+    );
+
+    // Format the new time as a string
+    const newMinTime = inputStartTime.toISOString().slice(0, 16);
+
+    console.log(newMinTime);
+    setMinEndDate(newMinTime);
+  }
 
   return (
     <div
       style={{ transform: "translateX(-45%)" }}
       className="flex flex-col items-center rounded-lg overflow-hidden absolute top-[58px] w-72 h-max bg-white shadow-lg z-50"
     >
-      <AddEventFormHeader />
+      <AddEventFormHeader setOpen={props.setOpen} />
       <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="flex flex-col items-center gap-4 self-stretch p-6"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <input
+            className="flex py-3 px-4 gap-2 items-center self-stretch rounded-lg border border-stone-200"
             placeholder="Title"
             {...register("title", { required: true })}
           />
 
-          <input placeholder="Location (optional)" {...register("location")} />
+          <input
+            className="flex py-3 px-4 gap-2 items-center self-stretch rounded-lg border border-stone-200"
+            placeholder="Location (optional)"
+            {...register("location")}
+          />
 
           <input
+            className="flex py-3 px-4 gap-2 items-center self-stretch rounded-lg border border-stone-200"
             placeholder="Description (optional)"
             {...register("description")}
           />
 
-          <label htmlFor="allDay">All-day?</label>
-          <input id="allDay" type="checkbox" {...register("allDay")} />
+          <div className="flex flex-row justify-between items-center self-stretch">
+            <label htmlFor="allDay">All-day?</label>
+            <input id="allDay" type="checkbox" {...register("allDay")} />
+          </div>
 
-          <label htmlFor="start">Choose a time for your appointment:</label>
+          <div>
+            <label htmlFor="start">Start date</label>
+            <input
+              className="flex py-3 px-4 gap-2 items-center self-stretch rounded-lg border border-stone-200"
+              type="datetime-local"
+              id="start"
+              {...register("start", {
+                required: true,
+                onChange: (e) => handleMinEndDate(e.target.value),
+              })}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="end">End date</label>
+            <input
+              className="flex py-3 px-4 gap-2 items-center self-stretch rounded-lg border border-stone-200"
+              type="datetime-local"
+              id="end"
+              min={minEndDate}
+              {...register("end")}
+            />
+          </div>
+
           <input
-            type="datetime-local"
-            id="start"
-            {...(register("start"), { required: true })}
+            className="flex py-3 px-4 gap-2 items-center self-stretch rounded-lg border border-stone-200"
+            placeholder="Notes (optional)"
+            {...register("notes")}
           />
 
-          <label htmlFor="end">Choose a time for your appointment:</label>
-          <input type="datetime-local" id="end" {...register("end")} />
-
-          <input placeholder="Notes (optional)" {...register("notes")} />
-
-          <input type="submit" />
+          <button className="flex py-4 px-6 justify-center items-center gap-2 self-stretch rounded-lg bg-amber-400">
+            <span className="font-bold text-base">Create</span>
+          </button>
         </form>
       </div>
     </div>
@@ -183,14 +250,14 @@ function AddEventForm() {
 
 function AddEventFormInputs() {}
 
-function AddEventFormHeader() {
+function AddEventFormHeader(props: { setOpen: any }) {
   return (
     <div className="flex p-4 justify-between items-center self-stretch bg-stone-100">
       <div className="flex flex-row items-center gap-2">
         <CalendarAddOn />
         <p className="text-base font-bold">New event</p>
       </div>
-      <button onClick={() => console.log("NEED TO ADD CLOSING FUNCTIONALITY")}>
+      <button onClick={() => props.setOpen(false)}>
         <Close />
       </button>
     </div>
