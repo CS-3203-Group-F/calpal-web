@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, ReactNode } from "react";
+import { Fragment, useState, useRef, ReactNode } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
   CalendarMonth,
@@ -137,9 +138,18 @@ function AddEventForm(props: { setEvents: any; setOpen: any }) {
   const [minEndDate, setMinEndDate] = useState("");
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
+    // Get the current timestamp
+    const timestamp = Date.now();
+
+    const eventNameWithoutSpaces = data.title.replace(/\s+/g, "");
+
+    // Combine timestamp with event name to create the ID
+    const eventId = `${eventNameWithoutSpaces}-${timestamp}`;
+
     // Adds in classes and interactivity into events
     const newEvent = {
       ...data,
+      id: eventId,
       editable: true,
       classNames: [
         "bg-blue-200/50 border rounded-lg font-semibold border-blue-500",
@@ -247,8 +257,6 @@ function AddEventForm(props: { setEvents: any; setOpen: any }) {
     </div>
   );
 }
-
-function AddEventFormInputs() {}
 
 function AddEventFormHeader(props: { setOpen: any }) {
   return (

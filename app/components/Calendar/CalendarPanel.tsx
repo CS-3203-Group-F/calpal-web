@@ -4,18 +4,13 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { CalendarMonth, Add } from "../Icons";
-import { useState, useRef, ReactNode } from "react";
+import { useState, Fragment, useRef, ReactNode } from "react";
 import { CalendarHeader } from "./CalendarHeader";
-import {
-  Calendar,
-  CalendarApi,
-  CalendarOptions,
-} from "@fullcalendar/core/index.js";
-import { CalendarContentProps } from "@fullcalendar/core/internal";
+import { EventModal } from "./EventModal";
 
 const groupFDataExample = [
   {
+    id: "CalPalplanning-1713828599629",
     title: "CalPal planning",
     description: "Planning session for the upcoming CalPal event.",
     location: "Devon Energy Hall 0270",
@@ -28,6 +23,7 @@ const groupFDataExample = [
     textColor: "#713F12",
   },
   {
+    id: "CalPalplanning-1713828599630",
     title: "CalPal planning",
     description: "Planning session for the upcoming CalPal event.",
     location: "Devon Energy Hall 0270",
@@ -40,6 +36,7 @@ const groupFDataExample = [
     textColor: "#06B6D4",
   },
   {
+    id: "EarningsReport-1713828599631",
     title: "Earnings Report",
     description: "Review and discussion of quarterly earnings report.",
     location: "CalPal Business Park Building 3, Room 2100",
@@ -52,6 +49,7 @@ const groupFDataExample = [
     textColor: "#831843",
   },
   {
+    id: "Bondingtrip-1713828599632",
     title: "Bonding trip",
     description: "Group bonding trip for members of Group F.",
     date: "2024-04-18T09:00:00",
@@ -65,6 +63,7 @@ const groupFDataExample = [
     textColor: "#EF4444",
   },
   {
+    id: "NewEvent1-1713828599633",
     title: "New Event 1",
     description: "Description of new event 1.",
     location: "Location of new event 1",
@@ -77,6 +76,7 @@ const groupFDataExample = [
     textColor: "#3B82F6",
   },
   {
+    id: "NewEvent2-1713828599634",
     title: "New Event 2",
     description: "Description of new event 2.",
     location: "Location of new event 2",
@@ -92,10 +92,32 @@ const groupFDataExample = [
 
 export default function CalendarPanel() {
   const [events, setEvents] = useState(groupFDataExample);
+  const [isOpen, setIsOpen] = useState(false);
   const calendarRef = useRef<FullCalendar>(null);
+  const [currentEvent, setCurrentEvent] = useState({});
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function handleEventClick(event: any) {
+    const currEvent = events.find((arrEvent) => arrEvent.id === event.id);
+    setCurrentEvent({ ...currEvent });
+    openModal();
+  }
 
   return (
     <div className="flex flex-col w-screen h-screen overflow-auto">
+      <EventModal
+        currentEvent={currentEvent}
+        isOpen={isOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+      />
       <CalendarHeader
         calendarRef={calendarRef}
         events={events}
@@ -111,6 +133,7 @@ export default function CalendarPanel() {
         headerToolbar={false}
         nowIndicator={true}
         eventContent={renderEventContent}
+        eventClick={(info) => handleEventClick(info.event)}
       />
     </div>
   );
