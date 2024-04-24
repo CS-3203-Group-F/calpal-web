@@ -13,32 +13,36 @@ import {
 } from "../Icons";
 import FullCalendar from "@fullcalendar/react";
 
-// Create a new Date object
-const currentDate = new Date();
+export function formatDate(input: string) {
+  // Create a new Date object
+  let currentDate = input ? new Date(input) : new Date();
 
-// Define arrays for month names and month abbreviations
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+  // Define arrays for month names and month abbreviations
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-// Extract the month, day, and year
-const month = monthNames[currentDate.getMonth()];
-const day = currentDate.getDate();
-const year = currentDate.getFullYear();
+  // Extract the month, day, and year
+  const month = monthNames[currentDate.getMonth()];
+  const day = currentDate.getDate();
+  const year = currentDate.getFullYear();
 
-// Display the date in the desired format
-const formattedDate = month + " " + day + ", " + year;
+  // Display the date in the desired format
+  const formattedDate = month + " " + day + ", " + year;
+
+  return formattedDate;
+}
 
 export function CalendarHeader(props: {
   calendarRef: React.RefObject<FullCalendar>;
@@ -46,6 +50,7 @@ export function CalendarHeader(props: {
   setEvents: any;
 }) {
   const [currentView, setCurrentView] = useState("dayGridMonth");
+  const formattedDate = formatDate("");
 
   function handleChangeView() {
     const calendarApi = props.calendarRef.current!.getApi();
@@ -74,7 +79,9 @@ export function CalendarHeader(props: {
           )}
         </button>
         <button onClick={handleJumpToToday}>
-          <span className="font-semibold text-xl">{formattedDate}</span>
+          <span className="font-semibold text-xl" suppressHydrationWarning>
+            {formattedDate}
+          </span>
         </button>
       </div>
       <div className="flex flex-row gap-2">
