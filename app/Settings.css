@@ -208,9 +208,10 @@
 
     
 
-    .option {  /*Allows the suboptions to be left aligned on top of each other */
+    .option {  /* This is the options for privacy settings */
       display: flex; 
       align-items: center;
+      
     }
 
     .avatarContainer { /* Container for the profile picture and the text */
@@ -257,3 +258,239 @@
       left: -3.4vw;
 
     }
+
+    .themeButtonContainer {
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid #000; /* Change to match your design */
+      width: fit-content;
+      padding: 5px;
+      margin-left: 30%;
+      position: relative; 
+      
+    }
+    
+    .themeButtonContainer::before {
+      content: '';
+      width: 33.33%; /* Assuming you have 3 buttons */
+      height: 60%; 
+      background: #fffcfc; /* Change to match your design */
+      transition: left 0.3s ease; 
+      z-index: -1;
+      
+    }
+    
+    .themeButton {
+      background: none;
+      border: none;
+      color: #000; /* Change to match your design */
+      cursor: pointer;
+      padding: 5px;
+      width: 33.33%; /* Assuming you have 3 buttons */
+      text-align: center; 
+      text-align: center; 
+      margin-right: 10px; 
+    }
+    
+    .themeButton:nth-child(2).active ~ .themeButtonContainer::before {
+      left: 33.33%; /* Move to the second button */
+    }
+    
+    .themeButton:nth-child(3).active ~ .themeButtonContainer::before {
+      left: 66.66%; /* Move to the third button */
+    }
+    
+    .slider {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 33.33%; /* Assuming you have 3 buttons */
+      height: 100%; /* Adjust as needed */
+      background: #fffcfc; /* Change to match your design */
+      transition: left 0.3s ease; /* Adjust as needed */
+      z-index: -1; /* Add this */
+      
+    }
+
+
+    /*///////////////////////////////////////////// variables for the Light Theme////////////////////////////////////////////// */
+    :root.light-theme {
+
+      .backdrop { /* This is the backdrop that appears when the settings button is clicked */
+        background: rgba(82, 82, 82, 0.5);
+      }
+      
+      .leftPanel {  /* This is the left panel that holds the settings options */
+        background: rgba(255, 255, 255, 0.8);
+      }
+    
+      .mainBox { /* This is the main box that holds the settings options */
+        background: rgba(245, 245, 244, 0.80);
+      }
+    
+      .title { /* This is the title of the settings page */
+        color: #1C1917;
+      }
+    
+      .subtitle { /* This is the subtitles of the settings page */
+        color: var(--stone-700, #44403C);
+      }
+
+      .subtitleDescription { /* This is the small descriptions of subtitles of the settings page */
+        color: var(--stone-500, #78716C);
+      }
+    
+      .selected { /* This is the selected button in the left panel when clicked on */
+        background:rgba(194, 192, 191, 0.568);
+      }
+    
+      .inputBox { /* This is the input box */
+        fill: rgba(255, 255, 255, 0.50);
+        stroke: var(--stone-300, #D6D3D1);
+        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
+        color: var(--stone-500, #78716C);
+      }
+    
+      .inputBiographyBox{ /* This is the input box for biography section */
+        fill: rgba(255, 255, 255, 0.50);
+        stroke: var(--stone-300, #D6D3D1);
+        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
+      }
+    
+      .thinLine {   /* This is the thin line that appears under the profile picture */
+        background: #A8A29E66;
+      }
+    
+      .profileName {    /* This is the name of the profile */
+        color: var(--stone-900, #1C1917);
+      }
+    
+      .saveButton{  /* This is the save button */
+        background-color: #ffffff; 
+        color: var(--stone-700, #44403C);
+      }
+    
+      .inputLabel{  /* This is the label for the input boxes; The Text above the input boxes */
+        color: var(--stone-700, #44403C);
+      }
+    
+        .changeButton {    /* This is the button that appears when you click on the profile picture */
+          color: #000000;
+          background-color: #ffffff;
+        }
+
+    
+        .characterCount {   /* This is the character count text for the biography input box*/
+          color: var(--stone-400, #8d8784);
+        }
+
+        .privacyOptions{
+          color: var(--neutral-500, #737373);
+        }
+
+        .leftPanelButton{
+          color: var(--neutral-600, #525252);
+        }
+
+        
+  }
+  
+
+    
+
+
+
+
+
+
+    /*///////////////////////////////////////////// variables for the dark theme////////////////////////////////////////////// */
+    :root.dark-theme {
+
+      .backdrop { /* This is the backdrop that appears when the settings button is clicked */
+        background: rgba(0, 0, 0, 0.5);
+      }
+      
+      .leftPanel {  /* This is the left panel that holds the settings options */
+        background: rgba(41, 37, 36, 0.80);
+      }
+    
+      .mainBox { /* This is the main box that holds the settings options */
+        background: rgba(28, 25, 23, 0.80);
+      }
+    
+      .title { /* This is the title of the settings page */
+        color: var(--white, #FFF);
+      }
+    
+      .subtitle { /* This is the subtitles of the settings page */
+        color: var(--stone-300, #D6D3D1);
+      }
+
+      .subtitleDescription { /* This is the small descriptions of subtitles of the settings page */
+        color: var(--stone-400, #A8A29E);
+      }
+    
+      .selected { /* This is the selected button in the left panel when clicked on */
+        background: rgba(68, 64, 60, 0.60);
+      }
+    
+      .inputBox { /* This is the input box */
+        fill: rgba(68, 64, 60, 0.50);
+        stroke: var(--stone-700, #44403C);
+        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
+        background:rgba(68, 64, 60, 0.50) ;
+        color: var(--stone-400, #A8A29E);
+      }
+    
+      .inputBiographyBox{ /* This is the input box for biography section */
+        fill: rgba(68, 64, 60, 0.50);
+        stroke: var(--stone-700, #44403C);
+        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
+        background:rgba(68, 64, 60, 0.50) ;
+      }
+    
+      .thinLine {   /* This is the thin line that appears under the profile picture */
+        background: rgba(68, 64, 60, 0.40);
+      }
+    
+      .profileName {    /* This is the name of the profile */
+        color: var(--white, #FFF);
+      }
+    
+      .saveButton{  /* This is the save button */
+        color: var(--stone-400, #A8A29E);
+        stroke: var(--stone-700, #44403C);
+        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
+        background:rgba(68, 64, 60, 0.50) ;
+      }
+    
+      .inputLabel{  /* This is the label for the input boxes; The Text above the input boxes */
+        color: var(--stone-300, #D6D3D1);
+      }
+    
+      .changeButton {    /* This is the button that appears when you click on the profile picture */
+         color: #000000;
+          background-color: #ffffff;
+      }
+
+    
+       .characterCount {   /* This is the character count text for the biography input box*/
+         fill: rgba(28, 25, 23, 0.85);
+         stroke: var(--stone-700, #44403C);
+         filter: drop-shadow(0px 4px 12.7px rgba(0, 0, 0, 0.25));
+      }
+
+      .inputBox option {
+        color: var(--stone-400, #A8A29E);
+        background: rgba(28, 25, 23, 0.80);
+      }
+
+      .privacyOptions{
+        color: var(--stone-400, #A8A29E);
+      }
+
+      .leftPanelButton{
+        color: var(--stone-400, #A8A29E);
+      }
+
+  }

@@ -1,4 +1,5 @@
 "use client"
+import React from 'react';
 import { useState } from "react";
 import './Settings.css'; 
 
@@ -17,44 +18,120 @@ export const Settings = () => {
   const [displayGroups, setDisplayGroups] = useState(false);
   const [displayOption, setDisplayOption] = useState('');
 
-  const openSettings = () => { //function to open settings
-    setIsOpen(true);
-  };
+  //Account Settings Variables
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState('');
+  
 
-  const closeSettings = () => { //function to close settings
-    setIsOpen(false);
-  };
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [timezone, setTimezone] = useState('CST');
+
+  
+  const [theme, setTheme] = useState('system'); //default theme is light
+      
+      
+
+    const openSettings = () => { //function to open settings
+      setIsOpen(true);
+    };
+
+    const closeSettings = () => { //function to close settings
+      setIsOpen(false);
+    };
 
   const handleButtonClick = (view:string) => { //function to handle button click in the left panel
     setCurrentView(view);
     setSelectedButton(view);
   };
+////////////////////////////////////////////Public Profile Variables////////////////////////////////////////////////////////
+    const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle first name change
+      setFirstName(event.target.value);
+    };
+    
+    const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {  //function to handle last name change
+      setLastName(event.target.value);
+    };
+    
+    const handleBiographyChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {  //function to handle biography change
+      setBiography(event.target.value);
+    };
+    
+    const handleProfilePictureChange = (event: React.ChangeEvent<HTMLInputElement>) => {  //function to handle profile picture change
+      if (event.target.files && event.target.files.length > 0) {
+        setAvatar(URL.createObjectURL(event.target.files[0]));
+      }
+    };
 
-  const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle first name change
-    setFirstName(event.target.value);
-  };
-  
-  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {  //function to handle last name change
-    setLastName(event.target.value);
-  };
-  
-  const handleBiographyChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {  //function to handle biography change
-    setBiography(event.target.value);
-  };
-  
-  const handleProfilePictureChange = (event: React.ChangeEvent<HTMLInputElement>) => {  //function to handle profile picture change
-    if (event.target.files && event.target.files.length > 0) {
-      setAvatar(URL.createObjectURL(event.target.files[0]));
-    }
-  };
+    const handleDisplayGroupsChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle display groups change
+      setDisplayGroups(event.target.checked);
+    };
+    
+    const handleDisplayOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle display option change
+      setDisplayOption(event.target.value);
+    };
+////////////////////////////////////////////Account Settings Variables////////////////////////////////////////////////////////
+    const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle username change
+      setUsername(event.target.value);
+    };
+    
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle password change
+      setPassword(event.target.value);
+    };
+    
+    const handleNewPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle new password change
+      setNewPassword(event.target.value);
+    };
+    
+    const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle confirm password change
+      setConfirmPassword(event.target.value);
+    };
+    
+    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle email change
+      setEmail(event.target.value);
+    };
+    
+    const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle phone number change
+      setPhoneNumber(event.target.value);
+    };
 
-  const handleDisplayGroupsChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle display groups change
-    setDisplayGroups(event.target.checked);
-  };
-  
-  const handleDisplayOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => { //function to handle display option change
-    setDisplayOption(event.target.value);
-  };
+    
+
+    const handleTimezoneChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setTimezone(event.target.value);
+    };
+
+    const handleThemeChange = (newTheme: string) => {
+      setTheme(newTheme);
+       
+      // Remove the active class from all buttons
+      const buttons = document.querySelectorAll('.themeButton');
+      buttons.forEach(button => button.classList.remove('active'));
+
+      // Add the active class to the clicked button
+      const activeButton = document.querySelector(`.themeButton[onclick="handleThemeChange('${newTheme}')"]`);
+      if (activeButton) {
+        activeButton.classList.add('active');
+      }
+
+          // Move the rectangle
+      const slider = document.querySelector('.slider') as HTMLElement;
+      if (slider) {
+        if (newTheme === 'system') {
+          slider.style.left = '0';
+        } else if (newTheme === 'light') {
+          slider.style.left = '33.33%';
+        } else if (newTheme === 'dark') {
+          slider.style.left = '66.66%';
+        }
+      }
+
+      const rootElement = document.documentElement;
+      rootElement.classList.remove('light-theme', 'dark-theme'); // Remove the current theme class
+        rootElement.classList.add(`${newTheme}-theme`); // Add the new theme class
+    };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => { //function to handle save Changes button click
     event.preventDefault();
@@ -95,9 +172,11 @@ export const Settings = () => {
             {/* the right side of settings display that shows all the actual settings starts here*/}
             <div className="mainBox">
               {/*Public Profile View of the mainBox */}
+
+              {/*///////////////////////Beginning of Public Profile View//////////////////////////////*/}
               {currentView === 'view1' &&( 
               
-              <form onSubmit={handleSubmit} className="profileForm">
+              <form onSubmit={handleSubmit} >
                 <div className ="saveButtonContainer">
                   <h1 className="title" style={{ paddingTop: '50px', paddingLeft: '20px' }}>Public Profile</h1>
                   <button type="submit" className="saveButton">Save Changes</button>
@@ -234,9 +313,182 @@ export const Settings = () => {
                 </form>   ///////////////////////////////** End of Public Profile Form **/////////////////////////////////////////////////
               )} 
 
+                {/*//////////////////////////////////Beginning of Account Settings Form/////////////////////////////////////////////////*/}
+              {currentView === 'view2' && 
+               <form onSubmit={handleSubmit} >
+               <div className ="saveButtonContainer">
+                 <h1 className="title" style={{ paddingTop: '50px', paddingLeft: '20px', marginBottom: '5%' }}>Account</h1>
+                 <button type="submit" className="saveButton">Save Changes</button>
+               </div>
 
-              {currentView === 'view2' && <div>Content for View 2</div>}  {/*Account View of the mainBox */}
-              {currentView === 'view3' && <div>Content for View 3</div>}  {/*Apperance View of the mainBox */}
+               <div className="inputContainer">
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}> {/*allows correct spacing between input box and subtitle */}
+                      <div style={{ display: 'flex', flexDirection: 'column' }}> {/*allows correct spacing between Title and subtitle */}
+                      <h2 className="subtitle">Username</h2>
+                      <p className="subtitleDescription">The name that other people can find you with</p>
+                      </div>
+                      <div className="inputHorizontal">
+                        <div className="inputLabelContainer">
+                          <input
+                            className="inputBox"
+                            value={username}
+                            onChange={handleUsernameChange}
+                            type="text"
+                            placeholder="Username"
+                            id="username"
+                            name="username"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="inputContainer">
+                      <hr className="thinLine" />
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}> {/*allows correct spacing between input box and subtitle */}
+                      <div style={{ display: 'flex', flexDirection: 'column' }}> {/*allows correct spacing between Title and subtitle */}
+                      <h2 className="subtitle">Password</h2>
+                      <p className="subtitleDescription">The password used to login into your account</p>
+                      </div>
+                      <div className="inputHorizontal">
+                        <div className="inputLabelContainer">
+                          <input
+                            className="inputBox"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            type="text"
+                            placeholder="password"
+                            id="password"
+                            name="password"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+               <div className="inputContainer">
+                      <hr className="thinLine" />
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}> {/*allows correct spacing between input box and subtitle */}
+                      <div style={{ display: 'flex', flexDirection: 'column' }}> {/*allows correct spacing between Title and subtitle */}
+                      <h2 className="subtitle">Contact Information</h2>
+                      <p className="subtitleDescription">The email and phone number used for account recovery.</p>
+                      </div>
+                      <div className="inputHorizontal" style={{ marginRight : '5%' }}>
+                        <div className="inputLabelContainer">
+                          <label className= "inputLabel" htmlFor="firstName">Email</label>
+                          <input
+                            className="inputBox"
+                            value={email}
+                            onChange={handleEmailChange}
+                            type="text"
+                            placeholder="email"
+                            id="email"
+                            name="email"
+                          />
+                        </div>
+                        
+                        <div className="inputLabelConatiner">
+                          <label className ="inputLabel" htmlFor="lastName">Phone Number</label>
+                          <input
+                            className="inputBox"
+                            value={phoneNumber}
+                            onChange={handlePhoneNumberChange}
+                            type="text"
+                            placeholder="(555-555-5555)"
+                            id="phoneNumber"
+                            name="phoneNumber"
+                          />
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="inputContainer">
+                  <hr className="thinLine" />
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}> {/*allows correct spacing between input box and subtitle */}
+                      <div style={{ display: 'flex', flexDirection: 'column' }}> {/*allows correct spacing between Title and subtitle */}
+                      <h2 className="subtitle">Time Zone</h2>
+                      <p className="subtitleDescription">The time zone which is displayed in your calendar</p>
+                      </div>
+                  <div className="inputLabelContainer">
+                  
+                  <select
+                    className="inputBox"
+                    value={timezone}
+                    onChange={handleTimezoneChange}
+                    id="timezone"
+                    name="timezone"
+                  >
+                    <option value="EST">EST "Eastern Standard Time"</option> 
+                    <option value="CST">CST "Central Standard Time"</option>
+                    <option value="MST">MST "Mountain Standard Time"</option>
+                    <option value="PST">PST "Pacific Standard Time"</option>
+                    <option value="AKST">AKST "Alaska Standard Time"</option>
+                    <option value="HAST">HAST "Hawaii-Aleutian Standard Time"</option>
+                    <option value="SST">SST "Samoa Standard Time"</option>
+                    <option value="IDLW">IDLW "International Date Line West"</option>
+                    <option value="UTC">UTC "Coordinated Universal Time"</option>
+                    <option value="CET">CET "Central European Time"</option>
+                    <option value="EET">EET "Eastern European Time"</option>
+                    <option value="FET">FET "Further-Eastern European Time"</option>
+                    <option value="GST">GST "Greenwich Standard Time"</option>
+                    <option value="PKT">PKT "Pakistan Standard Time"</option>
+                    <option value="BST">BST "Bangladesh Standard Time"</option>
+                    <option value="ICT">ICT "Indochina Time"</option>
+                    <option value="CST">CST "China Standard Time"</option>
+                    <option value="JST">JST "Japan Standard Time"</option>
+                    <option value="AEST">AEST "Australian Eastern Standard Time"</option>
+                    <option value="VLAT">VLAT "Vladivostok Standard Time"</option>
+                    <option value="NZST">NZST "New Zealand Standard Time"</option>
+                    <option value="TOT">TOT "Tonga Standard Time"</option>
+                    <option value="LINT">LINT "Line Islands Time"</option>
+                    <option value="SST">SST "Solomon Standard Time"</option>
+
+
+                    
+
+                    {/* Add more options as needed */}
+                  </select>
+                  </div>
+                  </div>
+                  </div>
+
+                  
+
+                  
+
+
+               
+              
+              </form>
+              
+              }  {/*Account View of the mainBox */}
+
+              {/*Apperance View of the mainBox */}
+              {currentView === 'view3' &&
+                 (
+                  
+                  <div >
+                  <div className ="saveButtonContainer">
+                  <h1 className="title" style={{ paddingTop: '50px', paddingLeft: '20px', marginBottom: '5%' }}>Appearance</h1>
+                  <button type="submit" className="saveButton">Save Changes</button>
+                </div>
+                  <div className="inputContainer">
+                  <div style={{ display: 'flex', alignItems: 'flex-start' }}> {/*allows correct spacing between input box and subtitle */}
+                    <div style={{ display: 'flex', flexDirection: 'column' }}> {/*allows correct spacing between Title and subtitle */}
+                    <h2 className="subtitle">Color Theme</h2>
+                    <p className="subtitleDescription">Personalize the general interface theme.</p>
+                    </div>
+                      <div className="themeButtonContainer">
+                        <div className="slider"></div>
+                        <button className="themeButton" onClick={() => handleThemeChange('system')}>System</button>
+                        <button className="themeButton" onClick={() => handleThemeChange('light')}>Light</button>
+                        <button className="themeButton" onClick={() => handleThemeChange('dark')}>Dark</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                )}
+                
               
             </div>
 
@@ -248,3 +500,4 @@ export const Settings = () => {
 }
 
 export default Settings;
+
