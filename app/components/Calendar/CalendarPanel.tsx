@@ -103,20 +103,20 @@ const groupFDataExample = [
   },
 ];
 
-// function Error(props: { message: string }) {
-//   return (
-//     <div className="flex flex-col w-screen h-screen overflow-auto relative">
-//       <div className="flex flex-col justify-center gap-2 items-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-//         <span className="text-2xl font-semibold leading-6 text-gray-900">
-//           An error occured!
-//         </span>
-//         <p className="text-base font-normal leading-6 text-gray-500">
-//           {props.message}
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
+function Error(props: { message: string }) {
+  return (
+    <div className="flex flex-col w-screen h-screen overflow-auto relative">
+      <div className="flex flex-col justify-center gap-2 items-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <span className="text-2xl font-semibold leading-6 text-gray-900">
+          An error occured!
+        </span>
+        <p className="text-base font-normal leading-6 text-gray-500">
+          {props.message}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 // http://35.233.194.137/event/1
 
@@ -125,24 +125,22 @@ export default function CalendarPanel() {
   const [isOpen, setIsOpen] = useState(false);
   const calendarRef = useRef<FullCalendar>(null);
   const [currentEvent, setCurrentEvent] = useState({});
-  // const [data, setData] = useState(null);
-  // const [isLoading, setLoading] = useState(true);
-  // const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  // useEffect(() => {
-  //   fetch("http://35.233.194.137/event/1")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setData(data);
-  //     })
-  //     .catch((e: Error) => {
-  //       setError(e.message);
-  //     });
-  //   setLoading(false);
-  // }, []);
-
-  // if (isLoading) return <p>Loading...</p>;
-  // if (!data) return <Error message={error} />;
+  useEffect(() => {
+    fetch("http://35.233.194.137/event/1")
+      .then((res) => res.json())
+      .then((data) => {
+        // setEvents(data); // Enable when events are set up
+        setLoading(false);
+      })
+      .catch((e: Error) => {
+        setError(e.message);
+      });
+  }, []);
+  if (isLoading) return <p>Loading...</p>;
+  if (!events) return <Error message={error} />;
 
   function closeModal() {
     setIsOpen(false);
