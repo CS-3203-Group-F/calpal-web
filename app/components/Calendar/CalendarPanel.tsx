@@ -4,9 +4,22 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { useState, Fragment, useRef, ReactNode } from "react";
+import { useState, Fragment, useRef, ReactNode, useEffect } from "react";
 import { CalendarHeader } from "./CalendarHeader";
 import { EventModal } from "./EventModal";
+
+// const eventExample = [
+//   {
+//     id: "CalPalplanning-1713828599629",
+//     title: "CalPal planning",
+//     allDay: false,
+//     description: "Planning session for the upcoming CalPal event.",
+//     location: "Devon Energy Hall 0270",
+//     start: "2024-04-17T10:00:00.000Z",
+//     end: "2024-04-17T12:00:00.000Z",
+//     category: "Uncategorized",
+//   },
+// ];
 
 const groupFDataExample = [
   {
@@ -90,11 +103,46 @@ const groupFDataExample = [
   },
 ];
 
+// function Error(props: { message: string }) {
+//   return (
+//     <div className="flex flex-col w-screen h-screen overflow-auto relative">
+//       <div className="flex flex-col justify-center gap-2 items-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+//         <span className="text-2xl font-semibold leading-6 text-gray-900">
+//           An error occured!
+//         </span>
+//         <p className="text-base font-normal leading-6 text-gray-500">
+//           {props.message}
+//         </p>
+//       </div>
+//     </div>
+//   );
+// }
+
+// http://35.233.194.137/event/1
+
 export default function CalendarPanel() {
   const [events, setEvents] = useState(groupFDataExample);
   const [isOpen, setIsOpen] = useState(false);
   const calendarRef = useRef<FullCalendar>(null);
   const [currentEvent, setCurrentEvent] = useState({});
+  // const [data, setData] = useState(null);
+  // const [isLoading, setLoading] = useState(true);
+  // const [error, setError] = useState("");
+
+  // useEffect(() => {
+  //   fetch("http://35.233.194.137/event/1")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setData(data);
+  //     })
+  //     .catch((e: Error) => {
+  //       setError(e.message);
+  //     });
+  //   setLoading(false);
+  // }, []);
+
+  // if (isLoading) return <p>Loading...</p>;
+  // if (!data) return <Error message={error} />;
 
   function closeModal() {
     setIsOpen(false);
