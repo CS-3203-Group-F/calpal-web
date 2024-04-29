@@ -262,7 +262,8 @@
     .themeButtonContainer {
       display: flex;
       justify-content: space-between;
-      border: 1px solid #000; /* Change to match your design */
+      border: 1px solid #000; 
+      border-radius: 8px;
       width: fit-content;
       padding: 5px;
       margin-left: 30%;
@@ -273,8 +274,8 @@
     .themeButtonContainer::before {
       content: '';
       width: 33.33%; /* Assuming you have 3 buttons */
-      height: 60%; 
-      background: #fffcfc; /* Change to match your design */
+      height: 90%; 
+      background: #fffcfc; 
       transition: left 0.3s ease; 
       z-index: -1;
       
@@ -283,7 +284,7 @@
     .themeButton {
       background: none;
       border: none;
-      color: #000; /* Change to match your design */
+      color: #000; 
       cursor: pointer;
       padding: 5px;
       width: 33.33%; /* Assuming you have 3 buttons */
@@ -302,13 +303,15 @@
     
     .slider {
       position: absolute;
-      bottom: 0;
-      left: 0;
+      justify-content: center;
+      bottom: 1;
+      left: -1;
       width: 33.33%; /* Assuming you have 3 buttons */
-      height: 100%; /* Adjust as needed */
+      height: 77%; /* Adjust as needed */
       background: #fffcfc; /* Change to match your design */
       transition: left 0.3s ease; /* Adjust as needed */
       z-index: -1; /* Add this */
+      border-radius: 4px;
       
     }
 
@@ -390,6 +393,20 @@
 
         .leftPanelButton{
           color: var(--neutral-600, #525252);
+        }
+
+        .themeButtonContainer{
+          border: 1px solid var(--stone-300, #D6D3D1);
+          background: rgba(214, 211, 209, 0.50);
+          box-shadow: 0px 4px 19.9px -5px rgba(0, 0, 0, 0.05) inset;
+        }
+
+        .themeButton {
+          color: var(--stone-500, #78716C);
+        }
+
+        .slider{
+          background: #fffcfc;
         }
 
         
@@ -491,6 +508,18 @@
 
       .leftPanelButton{
         color: var(--stone-400, #A8A29E);
+      }
+
+      .themeButtonContainer {
+        border: 1px solid var(--stone-700, #44403C);
+        box-shadow: 0px 4px 19.9px -5px rgba(0, 0, 0, 0.05) inset;
+        background: rgba(68, 64, 60, 0.50);
+      }
+
+      .themeButton {
+        color: var(--stone-300, #D6D3D1);
+        
+        
       }
 
   }

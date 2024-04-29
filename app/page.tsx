@@ -1,6 +1,6 @@
 "use client"
-import React from 'react';
 import { useState } from "react";
+import React, { useEffect } from 'react';
 import './Settings.css'; 
 
 export const Settings = () => {
@@ -30,10 +30,10 @@ export const Settings = () => {
   const [timezone, setTimezone] = useState('CST');
 
   
-  const [theme, setTheme] = useState('system'); //default theme is light
+  const [theme, setTheme] = useState('system'); //default theme is system
+  
       
       
-
     const openSettings = () => { //function to open settings
       setIsOpen(true);
     };
@@ -103,34 +103,38 @@ export const Settings = () => {
       setTimezone(event.target.value);
     };
 
+    
+
+    useEffect(() => {
+      handleThemeChange(theme);
+    }, []);
+
     const handleThemeChange = (newTheme: string) => {
       setTheme(newTheme);
        
       // Remove the active class from all buttons
       const buttons = document.querySelectorAll('.themeButton');
       buttons.forEach(button => button.classList.remove('active'));
-
+        
       // Add the active class to the clicked button
-      const activeButton = document.querySelector(`.themeButton[onclick="handleThemeChange('${newTheme}')"]`);
-      if (activeButton) {
-        activeButton.classList.add('active');
-      }
-
-          // Move the rectangle
+      const activeButton = document.querySelector(`.themeButton[data-theme="${newTheme}"]`);
+      activeButton?.classList.add('active');
+        
+      // Move the rectangle
       const slider = document.querySelector('.slider') as HTMLElement;
-      if (slider) {
-        if (newTheme === 'system') {
-          slider.style.left = '0';
-        } else if (newTheme === 'light') {
-          slider.style.left = '33.33%';
-        } else if (newTheme === 'dark') {
-          slider.style.left = '66.66%';
-        }
+      const container = document.querySelector('.themeButtonContainer');
+      if (slider && activeButton && container) {
+        const activeButtonWidth = activeButton.getBoundingClientRect().width;
+        const activeButtonLeft = activeButton.getBoundingClientRect().left;
+        const containerLeft = container.getBoundingClientRect().left;
+        
+        slider.style.width = `${activeButtonWidth}px`; // Set the width of the slider to the width of the active button
+        slider.style.left = `${activeButtonLeft - containerLeft + activeButtonWidth / 2 - slider.offsetWidth / 2}px`; // Center the slider over the active button
       }
-
+        
       const rootElement = document.documentElement;
       rootElement.classList.remove('light-theme', 'dark-theme'); // Remove the current theme class
-        rootElement.classList.add(`${newTheme}-theme`); // Add the new theme class
+      rootElement.classList.add(`${newTheme}-theme`); // Add the new theme class
     };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => { //function to handle save Changes button click
@@ -142,6 +146,8 @@ export const Settings = () => {
     console.log('Last Name:', lastName);
     console.log('Biography:', biography);
     console.log('Profile Picture:', avatar);
+    console.log(timezone)
+    console.log(theme)
 
     // Close the settings
     closeSettings();
@@ -179,7 +185,7 @@ export const Settings = () => {
               <form onSubmit={handleSubmit} >
                 <div className ="saveButtonContainer">
                   <h1 className="title" style={{ paddingTop: '50px', paddingLeft: '20px' }}>Public Profile</h1>
-                  <button type="submit" className="saveButton">Save Changes</button>
+                  <button type="submit" className="saveButton" style = {{marginTop: '5.5%'}}>Save Changes</button>
                 </div>
                   
                   {/** Profile Picture Section**/}
@@ -443,34 +449,22 @@ export const Settings = () => {
                     <option value="LINT">LINT "Line Islands Time"</option>
                     <option value="SST">SST "Solomon Standard Time"</option>
 
-
-                    
-
-                    {/* Add more options as needed */}
                   </select>
                   </div>
                   </div>
                   </div>
 
-                  
-
-                  
-
-
-               
-              
               </form>
-              
-              }  {/*Account View of the mainBox */}
+              }  {/*///////////////////////////////////////End of Account View //////////////////////////////////////////////////////*/}
 
-              {/*Apperance View of the mainBox */}
+              {/*//////////////////////////////////////Beginnign of Appearance View /////////////////////////////////////////////////*/}
               {currentView === 'view3' &&
-                 (
+                 
                   
                   <div >
                   <div className ="saveButtonContainer">
                   <h1 className="title" style={{ paddingTop: '50px', paddingLeft: '20px', marginBottom: '5%' }}>Appearance</h1>
-                  <button type="submit" className="saveButton">Save Changes</button>
+                  <button type="submit" className="saveButton" onClick= {handleSubmit}>Save Changes</button>
                 </div>
                   <div className="inputContainer">
                   <div style={{ display: 'flex', alignItems: 'flex-start' }}> {/*allows correct spacing between input box and subtitle */}
@@ -480,14 +474,15 @@ export const Settings = () => {
                     </div>
                       <div className="themeButtonContainer">
                         <div className="slider"></div>
-                        <button className="themeButton" onClick={() => handleThemeChange('system')}>System</button>
-                        <button className="themeButton" onClick={() => handleThemeChange('light')}>Light</button>
-                        <button className="themeButton" onClick={() => handleThemeChange('dark')}>Dark</button>
+                        <button className="themeButton" data-theme ="system" onClick={() => handleThemeChange('system')}>System</button>
+                        <button className="themeButton" data-theme ="light" onClick={() => handleThemeChange('light')}>Light</button>
+                        <button className="themeButton" data-theme ="dark" onClick={() => handleThemeChange('dark')}>Dark</button>
                       </div>
                     </div>
                   </div>
                 </div>
-                )}
+              
+                }
                 
               
             </div>
