@@ -1,3 +1,4 @@
+
 import { Group } from "./components/Group/Group";
 import { GroupCard } from "./components/Panel/GroupCard";
 import { Panel } from "./components/Panel/Panel";
@@ -53,3 +54,4 @@ export default function Home() {
     </div>
   );
 }
+
