@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "./Icons";
+import { ChevronLeft, ChevronRight } from "../Icons";
 
 interface PaginationProps {
   onSetPage?: any;
@@ -30,7 +30,7 @@ export function Pagination({ onSetPage, numOfPages }: PaginationProps) {
       >
         <ChevronLeft color={page === 0 ? "#D6D3D1" : ""} />
       </button>
-      <p className=" text-base font-normal">
+      <p className=" text-base font-normal w-12 text-center">
         {page + 1} of {numOfPages}
       </p>
 

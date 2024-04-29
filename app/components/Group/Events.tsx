@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ExpandLess, ExpandMore } from "./Icons";
+import { ExpandLess, ExpandMore } from "../Icons";
 
 interface EventsProps {
   events: any;
