@@ -2,10 +2,20 @@
 import { useState } from "react";
 import React, { useEffect } from "react";
 import "./Settings.css";
-<<<<<<< HEAD
-=======
-import { PersonApple } from "../Icons";
->>>>>>> 242a79f8d7d2f0e862c70c0fc92a858915d575db
+import { PersonApple, SettingsGear } from "../Icons";
+
+function SettingsOpen(props: { handleOpen: any }) {
+  return (
+    <div className="relative">
+      <button
+        onClick={props.handleOpen}
+        className="flex flex-row items-center px-3 py-2 gap-2 rounded-lg"
+      >
+        <SettingsGear />
+      </button>
+    </div>
+  );
+}
 
 export const Settings = () => {
   const [isOpen, setIsOpen] = useState(false); //allows you to open and close the settings page
@@ -197,7 +207,7 @@ export const Settings = () => {
 
   return (
     <div className="z-50">
-      <button onClick={openSettings}>Settings</button>{" "}
+      <SettingsOpen handleOpen={openSettings} />
       {/* button to open settings Page */}
       {isOpen && (
         <div className="backdrop">
