@@ -129,9 +129,9 @@ export default function CalendarPanel() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://35.233.194.137/event/1")
+    fetch("http://35.233.194.137/events/4")
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: any) => {
         // setEvents(data); // Enable when events are set up
         setLoading(false);
       })
@@ -157,7 +157,12 @@ export default function CalendarPanel() {
   }
 
   return (
-    <div className="flex flex-col w-screen h-screen overflow-auto">
+    <div
+      className="flex flex-col w-screen h-screen overflow-auto"
+      onClick={() => {
+        console.log(events);
+      }}
+    >
       <EventModal
         currentEvent={currentEvent}
         isOpen={isOpen}
