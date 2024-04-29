@@ -9,7 +9,6 @@ import Settings from "./components/Settings/Settings";
 export default function Home() {
   return (
     <div className="flex flex-col items-center self-stretch p-6 gap-8">
-      <Settings />
       <Rsvp />
       <Section title="Groups">
         <div className="flex flex-col gap-2">
