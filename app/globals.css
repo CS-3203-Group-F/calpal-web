@@ -24,3 +24,53 @@ h3 {
     text-wrap: balance;
   }
 }
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+/* .fc .fc-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.fc .fc-scroller {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+} */
+
+/* Removes side borders */
+.fc .fc-scrollgrid {
+  border-left-style: none;
+}
+
+.fc .fc-timegrid-slot-minor {
+  border-top-style: hidden;
+}
+
+.fc .fc-timeGridWeek-view td,
+th {
+  border-color: #e7e5e4;
+  border-left: none;
+  border-right: none;
+}
+
+.fc .fc-timegrid-slot-label {
+  font-size: 12px;
+}
+
+/* .fc .fc-timeGridWeek-view table {
+  border-collapse: collapse;
+} */
+
+/* .fc .fc-timeGridWeek-view tr {
+  border-top: 1px dashed #e7e5e4;
+  border-bottom: 1px solid #e7e5e4;
+} */

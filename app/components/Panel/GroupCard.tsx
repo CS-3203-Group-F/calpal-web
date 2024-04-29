@@ -1,18 +1,24 @@
+import Link from "next/link";
+
 interface GroupCard {
   name: string;
   members: string;
+  route: string;
   color?: string;
 }
 
 export const GroupCard = (props: GroupCard) => {
   return (
-    <div className="flex flex-row items-center justify-between p-4 bg-stone-50 rounded-lg hover:bg-stone-200 cursor-pointer">
+    <Link
+      href={props.route}
+      className="flex flex-row items-center justify-between p-4 bg-stone-50 rounded-lg hover:bg-stone-200 cursor-pointer"
+    >
       <div className="flex flex-row items-center gap-3">
         <PFPDefault color={`${props.color}`}></PFPDefault>
         <h3>{props.name}</h3>
       </div>
       <p className="text-base text-stone-500">{props.members} pals</p>
-    </div>
+    </Link>
   );
 };
 

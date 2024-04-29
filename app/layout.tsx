@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Panel } from "./components/Panel/Panel";
+import Image from "next/image";
+import CalendarPanel from "./components/Calendar/CalendarPanel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main className="text-stone-800 flex h-screen flex-row items-center justify-betweenS">
+          <Panel>{children}</Panel>
+          <CalendarPanel />
+          {/* <div className="flex flex-col items-start w-full min-h-screen">
+            <Image
+              width={1541}
+              height={1090}
+              src="http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/075jdbmz87nmcit/calendar_view_iurGMpKA8V.png?token="
+              alt={"Mock calendar view"}
+            />
+          </div> */}
+        </main>
+      </body>
     </html>
   );
 }
