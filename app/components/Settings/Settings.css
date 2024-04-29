@@ -1,529 +1,554 @@
-.backdrop { /* This is the backdrop that appears when the settings button is clicked */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.backdrop {
+  /* This is the backdrop that appears when the settings button is clicked */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settingsContainer {
+  /* This is the container that holds the entire settings Page */
+  width: 60vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+.leftPanel {
+  /* This is the left panel that holds the settings options */
+  width: calc(80vw * 0.25);
+  height: 80vh;
+  flex-shrink: 0;
+  border-radius: 16px 0px 0px 16px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(37.5px);
+}
+
+.mainBox {
+  /* This is the main box that holds the settings options */
+  width: calc(80vw * 0.555);
+  height: 80vh;
+  flex-shrink: 0;
+  border-radius: 0px 16px 16px 0px;
+  background: rgba(245, 245, 244, 0.8);
+  backdrop-filter: blur(37.5px);
+}
+
+.title {
+  /* This is the title of the settings page */
+  color: #1c1917;
+  font-feature-settings: "cv11" on, "cv05" on;
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -1.44px;
+}
+
+.subtitle {
+  /* This is the subtitles of the settings page */
+  color: var(--stone-700, #44403c);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 110% */
+  letter-spacing: -0.4px;
+}
+.subtitleDescription {
+  /* This is the small descriptions of subtitles of the settings page */
+  color: var(--stone-500, #78716c);
+  margin-top: 2%;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 137.5% */
+  letter-spacing: -0.4px;
+  width: 70%;
+}
+
+.leftPanelButton {
+  /* This is the button that appears in the left panel */
+  width: 18vw;
+  height: 5vh;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border-radius: 8px;
+  margin: 10px;
+  cursor: pointer;
+  margin-left: 5%;
+  padding-left: 20%;
+}
+
+.selected {
+  /* This is the selected button in the left panel when clicked on */
+  background: rgba(220, 130, 85, 0.6);
+  border-radius: 8px;
+}
+
+.avatarImage {
+  /* This is the profile picture */
+  border-radius: 50%;
+  width: 9vw;
+  height: 15vh;
+  object-fit: cover; /* This will ensure the image covers the entire area of the circle without distortion */
+  margin-left: 32px;
+}
+
+.inputBox {
+  /* This is the input box */
+  width: 13vw;
+  height: 4vh;
+  margin-top: 5%;
+  flex-shrink: 0;
+  border-radius: 8px;
+  fill: rgba(255, 255, 255, 0.5);
+  stroke-width: 1px;
+  stroke: var(--stone-300, #965f3a);
+  filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0));
+}
+
+.inputBiographyBox {
+  /* This is the input box for biography section */
+  width: 62%;
+  height: 8vh;
+  margin-left: 13.5%;
+  margin-right: 3%;
+  border-radius: 8px;
+  fill: rgba(255, 255, 255, 0.5);
+  stroke-width: 1px;
+  stroke: var(--stone-300, #d6d3d1);
+  filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0));
+}
+
+.characterCount {
+  /* This is the character count for the biography input box*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.inputContainer {
+  /* This is the container for the input boxes */
+  margin-left: 32px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  gap: 40px;
+}
+.thinLine {
+  /* This is the thin line that appears under the profile picture */
+
+  width: 95%;
+  height: 1px;
+  background: #a8a29e66;
+}
+
+.profileName {
+  /* This is the name of the profile */
+  color: var(--stone-900, #1c1917);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 110% */
+  letter-spacing: -0.4px;
+}
+
+.saveButton {
+  /* This is the save button */
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  background-color: #ffffff;
+  color: var(--stone-700, #44403c);
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.inputHorizontal {
+  /* This allows the input boxes to be side by side */
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-left: -10%;
+}
+
+.inputLabel {
+  /* This is the label for the input boxes; The Text above the input boxes */
+  color: var(--stone-700, #44403c);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 137.5% */
+  letter-spacing: -0.4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inputlabelContainer {
+  /* Container for the label and the input boxes */
+  display: flex;
+  flex-direction: column;
+}
+
+.saveButtonContainer {
+  /* Container for the save button */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10%;
+}
+
+.option {
+  /* This is the options for privacy settings */
+  display: flex;
+  align-items: center;
+}
+
+.avatarContainer {
+  /* Container for the profile picture and the text */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.avatarContainer > div:first-child {
+  margin-right: 10%; /* adjust this to add more or less space between the profile picture and the text */
+}
+
+.imageContainer {
+  /* This is the container for the profile picture and the change photo button */
+  position: relative;
+}
+
+.changeButton {
+  /* This is the button that appears when you click on the profile picture */
+  position: absolute;
+  bottom: 0px;
+  right: -25px;
+  border-radius: 80px;
+  color: #000000;
+  cursor: pointer;
+  background-color: #ffffff;
+  padding: 1px;
+  font-size: 12px;
+}
+
+.characterCount {
+  /* This is the character count text for the biography input box*/
+  color: var(--stone-400, #8d8784);
+  text-align: right;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 220% */
+}
+
+.biographyContainer {
+  /* This is the container for the biography input box */
+  position: relative;
+  bottom: -8.5vh;
+  left: -3.4vw;
+}
+
+.themeButtonContainer {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #000;
+  border-radius: 8px;
+  width: fit-content;
+  padding: 5px;
+  margin-left: 30%;
+  position: relative;
+}
+
+.themeButtonContainer::before {
+  content: "";
+  width: 33.33%; /* Assuming you have 3 buttons */
+  height: 90%;
+  background: #fffcfc;
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.themeButton {
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  padding: 5px;
+  width: 33.33%; /* Assuming you have 3 buttons */
+  text-align: center;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.themeButton:nth-child(2).active ~ .themeButtonContainer::before {
+  left: 33.33%; /* Move to the second button */
+}
+
+.themeButton:nth-child(3).active ~ .themeButtonContainer::before {
+  left: 66.66%; /* Move to the third button */
+}
+
+.slider {
+  position: absolute;
+  justify-content: center;
+  bottom: 1;
+  left: -1;
+  width: 33.33%; /* Assuming you have 3 buttons */
+  height: 77%; /* Adjust as needed */
+  background: #fffcfc; /* Change to match your design */
+  transition: left 0.3s ease; /* Adjust as needed */
+  z-index: -1; /* Add this */
+  border-radius: 4px;
+}
+
+/*///////////////////////////////////////////// variables for the Light Theme////////////////////////////////////////////// */
+:root.light-theme {
+  .backdrop {
+    /* This is the backdrop that appears when the settings button is clicked */
+    background: rgba(82, 82, 82, 0.5);
   }
-  
-  .settingsContainer { /* This is the container that holds the entire settings Page */
-    width: 60vw;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    border-radius: 16px;
-    justify-content: flex-start;
-    flex-direction: row;
-  
-    
-  }
-  .leftPanel {  /* This is the left panel that holds the settings options */
-    width: calc(80vw * 0.25);
-    height: 80vh;   
-    flex-shrink: 0;
-    border-radius: 16px 0px 0px 16px;
+
+  .leftPanel {
+    /* This is the left panel that holds the settings options */
     background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(37.5px);
   }
 
-  .mainBox { /* This is the main box that holds the settings options */
-    width: calc(80vw * 0.555);
-    height: 80vh;
-    flex-shrink: 0;
-    border-radius: 0px 16px 16px 0px;
-    background: rgba(245, 245, 244, 0.80);
-    backdrop-filter: blur(37.5px);
+  .mainBox {
+    /* This is the main box that holds the settings options */
+    background: rgba(245, 245, 244, 0.8);
   }
 
-  .title { /* This is the title of the settings page */
-    color: #1C1917;
-    font-feature-settings: 'cv11' on, 'cv05' on;
-    font-family: Inter;
-    font-size: 36px;
-    font-style: normal;
+  .title {
+    /* This is the title of the settings page */
+    color: #1c1917;
+  }
+
+  .subtitle {
+    /* This is the subtitles of the settings page */
+    color: var(--stone-700, #44403c);
+  }
+
+  .subtitleDescription {
+    /* This is the small descriptions of subtitles of the settings page */
+    color: var(--stone-500, #78716c);
+  }
+
+  .selected {
+    /* This is the selected button in the left panel when clicked on */
+    background: rgba(194, 192, 191, 0.568);
+  }
+
+  .inputBox {
+    /* This is the input box */
+    fill: rgba(255, 255, 255, 0.5);
+    stroke: var(--stone-300, #d6d3d1);
+    filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0));
+    color: var(--stone-500, #78716c);
+  }
+
+  .inputBiographyBox {
+    /* This is the input box for biography section */
+    fill: rgba(255, 255, 255, 0.5);
+    stroke: var(--stone-300, #d6d3d1);
+    filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0));
+  }
+
+  .thinLine {
+    /* This is the thin line that appears under the profile picture */
+    background: #a8a29e66;
+  }
+
+  .profileName {
+    /* This is the name of the profile */
+    color: var(--stone-900, #1c1917);
+  }
+
+  .saveButton {
+    /* This is the save button */
+    background-color: #ffffff;
+    color: var(--stone-700, #44403c);
+  }
+
+  .inputLabel {
+    /* This is the label for the input boxes; The Text above the input boxes */
+    color: var(--stone-700, #44403c);
+  }
+
+  .changeButton {
+    /* This is the button that appears when you click on the profile picture */
+    color: #000000;
+    background-color: #ffffff;
+  }
+
+  .characterCount {
+    /* This is the character count text for the biography input box*/
+    color: var(--stone-400, #8d8784);
+  }
+
+  .privacyOptions {
+    color: var(--neutral-500, #737373);
+  }
+
+  .leftPanelButton {
+    color: var(--stone-600, #57534e);
     font-weight: 600;
-    line-height: normal;
-    letter-spacing: -1.44px;
   }
 
-  .subtitle { /* This is the subtitles of the settings page */
-    color: var(--stone-700, #44403C);
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 22px; /* 110% */
-    letter-spacing: -0.4px;
-  }
-  .subtitleDescription { /* This is the small descriptions of subtitles of the settings page */
-    color: var(--stone-500, #78716C);
-    margin-top: 2%;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 22px; /* 137.5% */
-    letter-spacing: -0.4px;
-    width: 70%;
-    
+  .themeButtonContainer {
+    border: 1px solid var(--stone-300, #d6d3d1);
+    background: rgba(214, 211, 209, 0.5);
+    box-shadow: 0px 4px 19.9px -5px rgba(0, 0, 0, 0.05) inset;
   }
 
-  .leftPanelButton{ /* This is the button that appears in the left panel */
-    width: 18vw;
-    height: 5vh;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    border-radius: 8px;
-    margin: 10px;
-    cursor: pointer;
-    margin-left: 5%;
-    padding-left: 20%;
-    
-    }  
-
-  .selected { /* This is the selected button in the left panel when clicked on */
-    background:rgba(220, 130, 85, 0.6);
-    border-radius: 8px;
+  .themeButton {
+    color: var(--stone-500, #78716c);
   }
 
-  .avatarImage { /* This is the profile picture */
-    border-radius: 50%;
-    width: 9vw; 
-    height: 15vh; 
-    object-fit: cover; /* This will ensure the image covers the entire area of the circle without distortion */
-    margin-left: 32px;
+  .slider {
+    background: #fffcfc;
   }
+}
 
-  .inputBox { /* This is the input box */
-    width: 13vw;
-    height: 4vh;
-    margin-top: 5%;
-    flex-shrink: 0;
-    border-radius: 8px;
-    fill: rgba(255, 255, 255, 0.50);
-    stroke-width: 1px;
-    stroke: var(--stone-300, #965f3a);
-    filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
-  }
-
-  .inputBiographyBox{ /* This is the input box for biography section */
-    width: 62%;
-    height: 8vh;
-    margin-left: 13.5%;
-    margin-right: 3%;
-    border-radius: 8px;
-    fill: rgba(255, 255, 255, 0.50);
-    stroke-width: 1px;
-    stroke: var(--stone-300, #D6D3D1);
-    filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
-  }
-
-  .characterCount { /* This is the character count for the biography input box*/
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    
-  }
-
-  .inputContainer { /* This is the container for the input boxes */
-    margin-left: 32px;
-    margin-bottom: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: left;
-    gap: 40px;
-  }
-  .thinLine {   /* This is the thin line that appears under the profile picture */
-   
-    width: 95%;
-    height: 1px;
-    background: #A8A29E66;
-  }
-
-  .profileName {    /* This is the name of the profile */
-    color: var(--stone-900, #1C1917);
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 22px; /* 110% */
-    letter-spacing: -0.4px;
-  }
-
-  .saveButton{  /* This is the save button */
-    display: inline-block;
-    padding: 10px 20px;
-    border: none;
-    background-color: #ffffff; 
-    color: var(--stone-700, #44403C);
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-
-  .inputHorizontal {   /* This allows the input boxes to be side by side */
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    margin-left: -10%; 
-  }
-
-  .inputLabel{  /* This is the label for the input boxes; The Text above the input boxes */
-    color: var(--stone-700, #44403C);
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 22px; /* 137.5% */
-    letter-spacing: -0.4px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .inputlabelContainer {  /* Container for the label and the input boxes */
-    display: flex;
-    flex-direction: column;
-    
-  }
-
-  .saveButtonContainer{ /* Container for the save button */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 10%;
-    
+/*///////////////////////////////////////////// variables for the dark theme////////////////////////////////////////////// */
+@media (prefers-color-scheme: dark) {
+  :root.dark-theme {
+    .backdrop {
+      /* This is the backdrop that appears when the settings button is clicked */
+      background: rgba(0, 0, 0, 0.5);
     }
 
-    
-
-    .option {  /* This is the options for privacy settings */
-      display: flex; 
-      align-items: center;
-      
+    .leftPanel {
+      /* This is the left panel that holds the settings options */
+      background: rgba(41, 37, 36, 0.8);
     }
 
-    .avatarContainer { /* Container for the profile picture and the text */
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-top: 3%;
-      margin-bottom: 3%;
+    .mainBox {
+      /* This is the main box that holds the settings options */
+      background: rgba(28, 25, 23, 0.8);
     }
 
-    .avatarContainer > div:first-child {
-      margin-right: 10%; /* adjust this to add more or less space between the profile picture and the text */
+    .title {
+      /* This is the title of the settings page */
+      color: var(--white, #fff);
     }
 
-    .imageContainer {   /* This is the container for the profile picture and the change photo button */
-      position: relative;
+    .subtitle {
+      /* This is the subtitles of the settings page */
+      color: var(--stone-300, #d6d3d1);
     }
 
-    .changeButton {    /* This is the button that appears when you click on the profile picture */
-      position: absolute;
-      bottom: 0px;
-      right: -25px;
-      border-radius: 80px;
+    .subtitleDescription {
+      /* This is the small descriptions of subtitles of the settings page */
+      color: var(--stone-400, #a8a29e);
+    }
+
+    .selected {
+      /* This is the selected button in the left panel when clicked on */
+      background: rgba(68, 64, 60, 0.6);
+    }
+
+    .inputBox {
+      /* This is the input box */
+      fill: rgba(68, 64, 60, 0.5);
+      stroke: var(--stone-700, #44403c);
+      filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0));
+      background: rgba(68, 64, 60, 0.5);
+      color: var(--stone-400, #a8a29e);
+    }
+
+    .inputBiographyBox {
+      /* This is the input box for biography section */
+      fill: rgba(68, 64, 60, 0.5);
+      stroke: var(--stone-700, #44403c);
+      filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0));
+      background: rgba(68, 64, 60, 0.5);
+    }
+
+    .thinLine {
+      /* This is the thin line that appears under the profile picture */
+      background: rgba(68, 64, 60, 0.4);
+    }
+
+    .profileName {
+      /* This is the name of the profile */
+      color: var(--white, #fff);
+    }
+
+    .saveButton {
+      /* This is the save button */
+      color: var(--stone-400, #a8a29e);
+      stroke: var(--stone-700, #44403c);
+      filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0));
+      background: rgba(68, 64, 60, 0.5);
+    }
+
+    .inputLabel {
+      /* This is the label for the input boxes; The Text above the input boxes */
+      color: var(--stone-300, #d6d3d1);
+    }
+
+    .changeButton {
+      /* This is the button that appears when you click on the profile picture */
       color: #000000;
-      cursor: pointer;
       background-color: #ffffff;
-      padding: 1px;
-      font-size: 12px;
     }
 
-    .characterCount {   /* This is the character count text for the biography input box*/
-      color: var(--stone-400, #8d8784);
-      text-align: right;
-      font-family: Inter;
-      font-size: 10px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 22px; /* 220% */
+    .characterCount {
+      /* This is the character count text for the biography input box*/
+      fill: rgba(28, 25, 23, 0.85);
+      stroke: var(--stone-700, #44403c);
+      filter: drop-shadow(0px 4px 12.7px rgba(0, 0, 0, 0.25));
     }
 
-    .biographyContainer {  /* This is the container for the biography input box */
-      position: relative;
-      bottom: -8.5vh;
-      left: -3.4vw;
+    .inputBox option {
+      color: var(--stone-400, #a8a29e);
+      background: rgba(28, 25, 23, 0.8);
+    }
 
+    .privacyOptions {
+      color: var(--stone-400, #a8a29e);
+    }
+
+    .leftPanelButton {
+      color: var(--stone-400, #a8a29e);
+      font-weight: 600;
     }
 
     .themeButtonContainer {
-      display: flex;
-      justify-content: space-between;
-      border: 1px solid #000; 
-      border-radius: 8px;
-      width: fit-content;
-      padding: 5px;
-      margin-left: 30%;
-      position: relative; 
-      
+      border: 1px solid var(--stone-700, #44403c);
+      box-shadow: 0px 4px 19.9px -5px rgba(0, 0, 0, 0.05) inset;
+      background: rgba(68, 64, 60, 0.5);
     }
-    
-    .themeButtonContainer::before {
-      content: '';
-      width: 33.33%; /* Assuming you have 3 buttons */
-      height: 90%; 
-      background: #fffcfc; 
-      transition: left 0.3s ease; 
-      z-index: -1;
-      
-    }
-    
+
     .themeButton {
-      background: none;
-      border: none;
-      color: #000; 
-      cursor: pointer;
-      padding: 5px;
-      width: 33.33%; /* Assuming you have 3 buttons */
-      text-align: center; 
-      text-align: center; 
-      margin-right: 10px; 
+      color: var(--stone-300, #d6d3d1);
     }
-    
-    .themeButton:nth-child(2).active ~ .themeButtonContainer::before {
-      left: 33.33%; /* Move to the second button */
-    }
-    
-    .themeButton:nth-child(3).active ~ .themeButtonContainer::before {
-      left: 66.66%; /* Move to the third button */
-    }
-    
-    .slider {
-      position: absolute;
-      justify-content: center;
-      bottom: 1;
-      left: -1;
-      width: 33.33%; /* Assuming you have 3 buttons */
-      height: 77%; /* Adjust as needed */
-      background: #fffcfc; /* Change to match your design */
-      transition: left 0.3s ease; /* Adjust as needed */
-      z-index: -1; /* Add this */
-      border-radius: 4px;
-      
-    }
-
-
-    /*///////////////////////////////////////////// variables for the Light Theme////////////////////////////////////////////// */
-    :root.light-theme {
-
-      .backdrop { /* This is the backdrop that appears when the settings button is clicked */
-        background: rgba(82, 82, 82, 0.5);
-      }
-      
-      .leftPanel {  /* This is the left panel that holds the settings options */
-        background: rgba(255, 255, 255, 0.8);
-      }
-    
-      .mainBox { /* This is the main box that holds the settings options */
-        background: rgba(245, 245, 244, 0.80);
-      }
-    
-      .title { /* This is the title of the settings page */
-        color: #1C1917;
-      }
-    
-      .subtitle { /* This is the subtitles of the settings page */
-        color: var(--stone-700, #44403C);
-      }
-
-      .subtitleDescription { /* This is the small descriptions of subtitles of the settings page */
-        color: var(--stone-500, #78716C);
-      }
-    
-      .selected { /* This is the selected button in the left panel when clicked on */
-        background:rgba(194, 192, 191, 0.568);
-      }
-    
-      .inputBox { /* This is the input box */
-        fill: rgba(255, 255, 255, 0.50);
-        stroke: var(--stone-300, #D6D3D1);
-        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
-        color: var(--stone-500, #78716C);
-      }
-    
-      .inputBiographyBox{ /* This is the input box for biography section */
-        fill: rgba(255, 255, 255, 0.50);
-        stroke: var(--stone-300, #D6D3D1);
-        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
-      }
-    
-      .thinLine {   /* This is the thin line that appears under the profile picture */
-        background: #A8A29E66;
-      }
-    
-      .profileName {    /* This is the name of the profile */
-        color: var(--stone-900, #1C1917);
-      }
-    
-      .saveButton{  /* This is the save button */
-        background-color: #ffffff; 
-        color: var(--stone-700, #44403C);
-      }
-    
-      .inputLabel{  /* This is the label for the input boxes; The Text above the input boxes */
-        color: var(--stone-700, #44403C);
-      }
-    
-        .changeButton {    /* This is the button that appears when you click on the profile picture */
-          color: #000000;
-          background-color: #ffffff;
-        }
-
-    
-        .characterCount {   /* This is the character count text for the biography input box*/
-          color: var(--stone-400, #8d8784);
-        }
-
-        .privacyOptions{
-          color: var(--neutral-500, #737373);
-        }
-
-        .leftPanelButton{
-          color: var(--stone-600, #57534E);
-          font-weight: 600;
-        }
-
-        .themeButtonContainer{
-          border: 1px solid var(--stone-300, #D6D3D1);
-          background: rgba(214, 211, 209, 0.50);
-          box-shadow: 0px 4px 19.9px -5px rgba(0, 0, 0, 0.05) inset;
-        }
-
-        .themeButton {
-          color: var(--stone-500, #78716C);
-        }
-
-        .slider{
-          background: #fffcfc;
-        }
-
-        
-  }
-  
-
-    
-
-
-
-
-
-
-    /*///////////////////////////////////////////// variables for the dark theme////////////////////////////////////////////// */
-    @media (prefers-color-scheme: dark){
-    :root.dark-theme {
-
-      .backdrop { /* This is the backdrop that appears when the settings button is clicked */
-        background: rgba(0, 0, 0, 0.5);
-      }
-      
-      .leftPanel {  /* This is the left panel that holds the settings options */
-        background: rgba(41, 37, 36, 0.80);
-      }
-    
-      .mainBox { /* This is the main box that holds the settings options */
-        background: rgba(28, 25, 23, 0.80);
-      }
-    
-      .title { /* This is the title of the settings page */
-        color: var(--white, #FFF);
-      }
-    
-      .subtitle { /* This is the subtitles of the settings page */
-        color: var(--stone-300, #D6D3D1);
-      }
-
-      .subtitleDescription { /* This is the small descriptions of subtitles of the settings page */
-        color: var(--stone-400, #A8A29E);
-      }
-    
-      .selected { /* This is the selected button in the left panel when clicked on */
-        background: rgba(68, 64, 60, 0.60);
-      }
-    
-      .inputBox { /* This is the input box */
-        fill: rgba(68, 64, 60, 0.50);
-        stroke: var(--stone-700, #44403C);
-        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
-        background:rgba(68, 64, 60, 0.50) ;
-        color: var(--stone-400, #A8A29E);
-      }
-    
-      .inputBiographyBox{ /* This is the input box for biography section */
-        fill: rgba(68, 64, 60, 0.50);
-        stroke: var(--stone-700, #44403C);
-        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
-        background:rgba(68, 64, 60, 0.50) ;
-      }
-    
-      .thinLine {   /* This is the thin line that appears under the profile picture */
-        background: rgba(68, 64, 60, 0.40);
-      }
-    
-      .profileName {    /* This is the name of the profile */
-        color: var(--white, #FFF);
-      }
-    
-      .saveButton{  /* This is the save button */
-        color: var(--stone-400, #A8A29E);
-        stroke: var(--stone-700, #44403C);
-        filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0.00));
-        background:rgba(68, 64, 60, 0.50) ;
-      }
-    
-      .inputLabel{  /* This is the label for the input boxes; The Text above the input boxes */
-        color: var(--stone-300, #D6D3D1);
-      }
-    
-      .changeButton {    /* This is the button that appears when you click on the profile picture */
-         color: #000000;
-          background-color: #ffffff;
-      }
-
-    
-       .characterCount {   /* This is the character count text for the biography input box*/
-         fill: rgba(28, 25, 23, 0.85);
-         stroke: var(--stone-700, #44403C);
-         filter: drop-shadow(0px 4px 12.7px rgba(0, 0, 0, 0.25));
-      }
-
-      .inputBox option {
-        color: var(--stone-400, #A8A29E);
-        background: rgba(28, 25, 23, 0.80);
-      }
-
-      .privacyOptions{
-        color: var(--stone-400, #A8A29E);
-      }
-
-      .leftPanelButton{
-        color: var(--stone-400, #A8A29E);
-        font-weight: 600;
-      }
-
-      .themeButtonContainer {
-        border: 1px solid var(--stone-700, #44403C);
-        box-shadow: 0px 4px 19.9px -5px rgba(0, 0, 0, 0.05) inset;
-        background: rgba(68, 64, 60, 0.50);
-      }
-
-      .themeButton {
-        color: var(--stone-300, #D6D3D1);
-        
-        
-      }
-
   }
 }

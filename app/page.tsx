@@ -1,14 +1,15 @@
-
 import { Group } from "./components/Group/Group";
 import { GroupCard } from "./components/Panel/GroupCard";
 import { Panel } from "./components/Panel/Panel";
 import { Rsvp } from "./components/Panel/Rsvp";
 import { Section } from "./components/Panel/Section";
 import { ToolboxCard } from "./components/Panel/Toolbox";
+import Settings from "./components/Settings/Settings";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center self-stretch p-6 gap-8">
+      <Settings />
       <Rsvp />
       <Section title="Groups">
         <div className="flex flex-col gap-2">
@@ -54,4 +55,3 @@ export default function Home() {
     </div>
   );
 }
-
