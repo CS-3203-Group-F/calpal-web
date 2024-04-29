@@ -93,8 +93,8 @@
 
   .avatarImage { /* This is the profile picture */
     border-radius: 50%;
-    width: 130px; 
-    height: 130px; 
+    width: 9vw; 
+    height: 15vh; 
     object-fit: cover; /* This will ensure the image covers the entire area of the circle without distortion */
     margin-left: 32px;
   }
@@ -392,7 +392,8 @@
         }
 
         .leftPanelButton{
-          color: var(--neutral-600, #525252);
+          color: var(--stone-600, #57534E);
+          font-weight: 600;
         }
 
         .themeButtonContainer{
@@ -421,6 +422,7 @@
 
 
     /*///////////////////////////////////////////// variables for the dark theme////////////////////////////////////////////// */
+    @media (prefers-color-scheme: dark){
     :root.dark-theme {
 
       .backdrop { /* This is the backdrop that appears when the settings button is clicked */
@@ -508,6 +510,7 @@
 
       .leftPanelButton{
         color: var(--stone-400, #A8A29E);
+        font-weight: 600;
       }
 
       .themeButtonContainer {
@@ -523,3 +526,4 @@
       }
 
   }
+}
