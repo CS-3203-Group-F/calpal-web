@@ -2,6 +2,10 @@
 import { useState } from "react";
 import React, { useEffect } from "react";
 import "./Settings.css";
+<<<<<<< HEAD
+=======
+import { PersonApple } from "../Icons";
+>>>>>>> 242a79f8d7d2f0e862c70c0fc92a858915d575db
 
 export const Settings = () => {
   const [isOpen, setIsOpen] = useState(false); //allows you to open and close the settings page
@@ -174,7 +178,7 @@ export const Settings = () => {
     rootElement.classList.add(`${newTheme}-theme`); // Add the new theme class
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: any) => {
     //function to handle save Changes button click
     event.preventDefault();
 
@@ -216,6 +220,7 @@ export const Settings = () => {
                 }`}
                 onClick={() => handleButtonClick("view1")}
               >
+                <PersonApple />
                 Public Profile
               </button>
               <button
