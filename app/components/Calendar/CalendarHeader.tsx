@@ -12,6 +12,7 @@ import {
   Close,
 } from "../Icons";
 import FullCalendar from "@fullcalendar/react";
+import Settings, { SettingsOpen } from "../Settings/Settings";
 
 export function formatDate(input: string) {
   // Create a new Date object
@@ -89,6 +90,7 @@ export function CalendarHeader(props: {
         <FilterButton category="School" color="#F886A8" />
         <FilterButton category="Work" color="#DFDD6C" />
         <AddEventButton setEvents={props.setEvents} />
+        <Settings />
       </div>
     </div>
   );

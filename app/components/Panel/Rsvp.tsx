@@ -74,7 +74,7 @@ function formatDateTimeRange(startTimeStr: string, endTimeStr: string) {
   const endTimeFormatted = formatter.format(endTime);
 
   // Construct the output string
-  const outputString = `${startTimeFormatted}-${endTimeFormatted}`;
+  const outputString = `${startTimeFormatted} - ${endTimeFormatted}`;
 
   return outputString;
 }

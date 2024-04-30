@@ -2,7 +2,25 @@
 import { useState } from "react";
 import React, { useEffect } from "react";
 import "./Settings.css";
+<<<<<<< Updated upstream
+import { PersonApple, SettingsGear } from "../Icons";
+
+function SettingsOpen(props: { handleOpen: any }) {
+  return (
+    <div className="relative">
+      <button
+        onClick={props.handleOpen}
+        className="flex flex-row items-center px-3 py-2 gap-2 rounded-lg"
+      >
+        <SettingsGear />
+      </button>
+    </div>
+  );
+}
+=======
 import { PersonApple } from "../Icons";
+import { PaintBrush } from "../Icons";
+>>>>>>> Stashed changes
 
 export const Settings = () => {
   const [isOpen, setIsOpen] = useState(false); //allows you to open and close the settings page
@@ -175,7 +193,7 @@ export const Settings = () => {
     rootElement.classList.add(`${newTheme}-theme`); // Add the new theme class
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: any) => {
     //function to handle save Changes button click
     event.preventDefault();
 
@@ -193,8 +211,8 @@ export const Settings = () => {
   };
 
   return (
-    <div>
-      <button onClick={openSettings}>Settings</button>{" "}
+    <div className="z-50">
+      <SettingsOpen handleOpen={openSettings} />
       {/* button to open settings Page */}
       {isOpen && (
         <div className="backdrop">
@@ -217,6 +235,7 @@ export const Settings = () => {
                 }`}
                 onClick={() => handleButtonClick("view1")}
               >
+                <PersonApple />
                 Public Profile
               </button>
               <button
@@ -233,6 +252,7 @@ export const Settings = () => {
                 }`}
                 onClick={() => handleButtonClick("view3")}
               >
+                <PaintBrush />
                 Appearance
               </button>
               {/* Add more buttons for other settings here */}
@@ -264,7 +284,11 @@ export const Settings = () => {
                   <div className="avatarContainer">
                     <div>
                       <div className="imageContainer">
-                        <PersonApple />
+                        <img
+                          className="avatarImage"
+                          src={avatar}
+                          alt="Profile"
+                        />
                         <label
                           htmlFor="profilePicture"
                           className="changeButton"

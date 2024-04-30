@@ -7,6 +7,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { useState, Fragment, useRef, ReactNode, useEffect } from "react";
 import { CalendarHeader } from "./CalendarHeader";
 import { EventModal } from "./EventModal";
+import { ProgressActivity } from "../Icons";
 
 // const eventExample = [
 //   {
@@ -125,7 +126,7 @@ export default function CalendarPanel() {
   const [isOpen, setIsOpen] = useState(false);
   const calendarRef = useRef<FullCalendar>(null);
   const [currentEvent, setCurrentEvent] = useState({});
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -133,14 +134,21 @@ export default function CalendarPanel() {
       .then((res) => res.json())
       .then((data: any) => {
         // setEvents(data); // Enable when events are set up
-        setLoading(false);
+        setIsLoading(false);
       })
       .catch((e: Error) => {
+        setIsLoading(false);
         setError(e.message);
       });
   }, []);
-  if (isLoading) return <p>Loading...</p>;
-  if (!events) return <Error message={error} />;
+  if (isLoading)
+    return (
+      <div className="mx-auto my-auto animate-spin">
+        <ProgressActivity color="#FBBF24" />
+      </div>
+    );
+
+  if (error) return <Error message={error} />;
 
   function closeModal() {
     setIsOpen(false);
