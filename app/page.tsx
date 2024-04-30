@@ -35,17 +35,17 @@ export default function Home() {
       <Section title="Toolbox">
         <div className="flex flex-col gap-4">
           <ToolboxCard
-            imgURL="http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/tbd6zc5c3646q0o/toolbox_groups_W7QfCRTf9j.png?token="
+            imgURL="toolboxPictures\toolbox-groups.png"
             name="Find groups"
             description="Mingle with other pals"
           ></ToolboxCard>
           <ToolboxCard
-            imgURL="http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/5tvjqloxi2sjc1o/toolbox_schedule_HsJtyyBf2y.png?token="
+            imgURL="toolboxPictures\toolbox-import.png"
             name="Plan a meeting"
             description="with CalPal"
           ></ToolboxCard>
           <ToolboxCard
-            imgURL="http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/bo1y02u8qmozh17/toolbox_import_30lI1DWg4K.png?token="
+            imgURL="toolboxPictures\toolbox-schedule.png"
             name="Import schedules"
             description="into CalPal"
           ></ToolboxCard>
