@@ -2,8 +2,14 @@
 import { useState } from "react";
 import React, { useEffect } from "react";
 import "./Settings.css";
-<<<<<<< Updated upstream
-import { PersonApple, SettingsGear } from "../Icons";
+import Image from "next/image";
+import {
+  PersonApple,
+  SettingsGear,
+  PaintBrush,
+  SettingsGearApple,
+  CameraApple,
+} from "../Icons";
 
 function SettingsOpen(props: { handleOpen: any }) {
   return (
@@ -17,10 +23,6 @@ function SettingsOpen(props: { handleOpen: any }) {
     </div>
   );
 }
-=======
-import { PersonApple } from "../Icons";
-import { PaintBrush } from "../Icons";
->>>>>>> Stashed changes
 
 export const Settings = () => {
   const [isOpen, setIsOpen] = useState(false); //allows you to open and close the settings page
@@ -47,6 +49,7 @@ export const Settings = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [timezone, setTimezone] = useState("CST");
 
+  //Appearance Variables
   const [theme, setTheme] = useState(
     window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -90,11 +93,15 @@ export const Settings = () => {
   };
 
   const handleProfilePictureChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
+    props: any // Add the 'props' parameter
   ) => {
     //function to handle profile picture change
     if (event.target.files && event.target.files.length > 0) {
-      setAvatar(URL.createObjectURL(event.target.files[0]));
+      const newAvatar = URL.createObjectURL(event.target.files[0]);
+      setAvatar(newAvatar);
+      // Call the setAvatar function passed from the parent component
+      props.setAvatar(newAvatar);
     }
   };
 
@@ -155,11 +162,24 @@ export const Settings = () => {
   };
 
   useEffect(() => {
-    document.body.dataset.theme = theme;
-  }, [theme]);
+    handleThemeChange("system");
+  }, []);
 
-  const handleThemeChange = (newTheme: "light" | "dark") => {
-    setTheme(newTheme);
+  const handleThemeChange = (theme: string) => {
+    setTheme(theme);
+
+    if (theme === "system") {
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        // The user's system prefers a dark theme
+        theme = "dark";
+      } else {
+        // The user's system prefers a light theme
+        theme = "light";
+      }
+    }
 
     // Remove the active class from all buttons
     const buttons = document.querySelectorAll(".themeButton");
@@ -167,7 +187,7 @@ export const Settings = () => {
 
     // Add the active class to the clicked button
     const activeButton = document.querySelector(
-      `.themeButton[data-theme="${newTheme}"]`
+      `.themeButton[data-theme="${theme}"]`
     );
     activeButton?.classList.add("active");
 
@@ -190,7 +210,7 @@ export const Settings = () => {
 
     const rootElement = document.documentElement;
     rootElement.classList.remove("light-theme", "dark-theme"); // Remove the current theme class
-    rootElement.classList.add(`${newTheme}-theme`); // Add the new theme class
+    rootElement.classList.add(`${theme}-theme`); // Add the new theme class
   };
 
   const handleSubmit = (event: any) => {
@@ -226,6 +246,11 @@ export const Settings = () => {
                 Settings
               </h1>
               <h2 className="profileName" style={{ paddingLeft: "20px" }}>
+                <img
+                  className="leftProfilePicture"
+                  src={avatar || "/profilePictures/DefaultPFP.png"}
+                  alt="Profile"
+                />
                 {accountName}
               </h2>
               {/*Next three Lines Chnages the color of the selected button as you click and change views of the settings MainBox */}
@@ -235,7 +260,9 @@ export const Settings = () => {
                 }`}
                 onClick={() => handleButtonClick("view1")}
               >
-                <PersonApple />
+                <span className="icon">
+                  <PersonApple color="#78716C" />
+                </span>
                 Public Profile
               </button>
               <button
@@ -244,6 +271,9 @@ export const Settings = () => {
                 }`}
                 onClick={() => handleButtonClick("view2")}
               >
+                <span className="icon">
+                  <SettingsGearApple color="#78716C" />
+                </span>
                 Account
               </button>
               <button
@@ -252,14 +282,18 @@ export const Settings = () => {
                 }`}
                 onClick={() => handleButtonClick("view3")}
               >
-                <PaintBrush />
+                <span className="icon">
+                  <PaintBrush color="#78716C" />
+                </span>
                 Appearance
               </button>
               {/* Add more buttons for other settings here */}
-              <button onClick={closeSettings}>Close</button>
             </div>
             {/* the right side of settings display that shows all the actual settings starts here*/}
             <div className="mainBox">
+              <button className="closeButton" onClick={closeSettings}>
+                X
+              </button>
               {/*Public Profile View of the mainBox */}
               {/*///////////////////////Beginning of Public Profile View//////////////////////////////*/}
               {currentView === "view1" && (
@@ -286,14 +320,19 @@ export const Settings = () => {
                       <div className="imageContainer">
                         <img
                           className="avatarImage"
-                          src={avatar}
+                          src={
+                            avatar !== ""
+                              ? avatar
+                              : "/profilePictures/DefaultPFP.png"
+                          }
                           alt="Profile"
                         />
+
                         <label
                           htmlFor="profilePicture"
                           className="changeButton"
                         >
-                          Change
+                          <CameraApple color="#78716C" />
                         </label>
                         <input
                           type="file"
