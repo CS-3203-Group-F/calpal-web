@@ -10,13 +10,40 @@ import Link from 'next/link';
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
         e.preventDefault();
-        //
-        //DELETE ONCE FINISHED
-        //
-        console.log(email);
-        console.log(pass);
+
+
+        const makeRequest = async () => {
+            try {
+                const res = await fetch("http://localhost:3000/login", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: pass
+                    })
+                });
+                console.log(res);
+                
+        
+                if (res.ok) {
+                    // Redirect to home page or any other page after successful login
+                    window.location.href = '/'; // Redirect to home page
+                } else {
+                    // Handle failed login
+                    console.error('Login failed');
+                }
+            } catch (error) {
+                console.error('An error occurred while logging in:', error);
+            }
+        };
+
+        makeRequest();
+        
         //submit form logic goes here
 
     }
