@@ -97,6 +97,38 @@ export const Register = () =>{
                 console.log(lastName);
                 console.log(Username);
 
+                const makeRequest = async () => {
+                    try {
+                        const res = await fetch('http://localhost:3000/signup', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                email: email,
+                                password: pass,
+                                firstName: firstName,
+                                lastName: lastName,
+                                username: Username
+                            })
+                        });
+                        console.log(res);
+                        
+                
+                        if (res.status === 201) {
+                            // Redirect to home page or any other page after successful login
+                           window.location.href = '/Login'; // Redirect to home page
+                           console.log('registration successful');
+                        } else {
+                            // Handle failed login
+                            console.error('registration failed');
+                        }
+                    } catch (error) {
+                        console.error('An error occurred while registering:', error);
+                    }
+                }
+
+                makeRequest();
 
             }
 
