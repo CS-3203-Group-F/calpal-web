@@ -99,7 +99,7 @@ export const Register = () =>{
 
                 const makeRequest = async () => {
                     try {
-                        const res = await fetch('http://localhost:3000/signup', {
+                        const res = await fetch('http://35.233.194.137/signup', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

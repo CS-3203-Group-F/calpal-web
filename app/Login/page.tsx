@@ -17,7 +17,7 @@ import Link from 'next/link';
 
         const makeRequest = async () => {
             try {
-                const res = await fetch('http://localhost:3000/login', {
+                const res = await fetch('http://35.233.194.137/login', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/x-www-form-urlencoded',
@@ -29,7 +29,7 @@ import Link from 'next/link';
         
                 if (res.status === 200) {
                     // Redirect to home page or any other page after successful login
-                   window.location.href = '/'; // Redirect to home page
+                   //window.location.href = '/'; // Redirect to home page
                    console.log('Login successful');
                 } else {
                     // Handle failed login
