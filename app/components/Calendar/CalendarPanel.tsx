@@ -7,6 +7,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { useState, Fragment, useRef, ReactNode, useEffect } from "react";
 import { CalendarHeader } from "./CalendarHeader";
 import { EventModal } from "./EventModal";
+import { ProgressActivity } from "../Icons";
 
 // const eventExample = [
 //   {
@@ -139,7 +140,12 @@ export default function CalendarPanel() {
         setError(e.message);
       });
   }, []);
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="mx-auto my-auto animate-spin">
+        <ProgressActivity color="#FBBF24" />
+      </div>
+    );
   if (!events) return <Error message={error} />;
 
   function closeModal() {
