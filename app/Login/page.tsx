@@ -17,22 +17,20 @@ import Link from 'next/link';
 
         const makeRequest = async () => {
             try {
-                const res = await fetch("http://localhost:3000/login", {
+                const res = await fetch('http://localhost:3000/login', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                      'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: JSON.stringify({
-                        email: email,
-                        password: pass
-                    })
-                });
+                    body: `username=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`
+                  });
                 console.log(res);
                 
         
-                if (res.ok) {
+                if (res.status === 200) {
                     // Redirect to home page or any other page after successful login
-                    window.location.href = '/'; // Redirect to home page
+                   window.location.href = '/'; // Redirect to home page
+                   console.log('Login successful');
                 } else {
                     // Handle failed login
                     console.error('Login failed');
