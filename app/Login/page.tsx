@@ -29,7 +29,7 @@ import Link from 'next/link';
         
                 if (res.status === 200) {
                     // Redirect to home page or any other page after successful login
-                   //window.location.href = '/'; // Redirect to home page
+                   window.location.href = '/'; // Redirect to home page
                    console.log('Login successful');
                 } else {
                     // Handle failed login
