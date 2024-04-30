@@ -126,7 +126,7 @@ export default function CalendarPanel() {
   const [isOpen, setIsOpen] = useState(false);
   const calendarRef = useRef<FullCalendar>(null);
   const [currentEvent, setCurrentEvent] = useState({});
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -134,9 +134,10 @@ export default function CalendarPanel() {
       .then((res) => res.json())
       .then((data: any) => {
         // setEvents(data); // Enable when events are set up
-        setLoading(false);
+        setIsLoading(false);
       })
       .catch((e: Error) => {
+        setIsLoading(false);
         setError(e.message);
       });
   }, []);
@@ -146,7 +147,8 @@ export default function CalendarPanel() {
         <ProgressActivity color="#FBBF24" />
       </div>
     );
-  if (!events) return <Error message={error} />;
+
+  if (error) return <Error message={error} />;
 
   function closeModal() {
     setIsOpen(false);
