@@ -1,10 +1,7 @@
-import { Group } from "../components/Group/Group";
-import { GroupCard } from "../components/Panel/GroupCard";
-import { Panel } from "../components/Panel/Panel";
-import { Rsvp } from "../components/Panel/Rsvp";
-import { Section } from "../components/Panel/Section";
-import { ToolboxCard } from "../components/Panel/Toolbox";
-import Settings from "../components/Settings/Settings";
+import { GroupCard } from "@/components/Panel/GroupCard";
+import { Rsvp } from "@/components/Panel/Rsvp";
+import { Section } from "@/components/Panel/Section";
+import { ToolboxCard } from "@/components/Panel/Toolbox";
 
 export default function Calendar() {
   return (

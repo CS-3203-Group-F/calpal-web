@@ -25,7 +25,7 @@ export const Login = () => {
 
         if (res.status === 200) {
           // Redirect to home page or any other page after successful login
-          window.location.href = "/Calender"; // Redirect to home page
+          window.location.href = "/Calendar"; // Redirect to home page
           console.log("Login successful");
         } else {
           // Handle failed login

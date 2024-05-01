@@ -1,5 +1,5 @@
-import CalendarPanel from "../components/Calendar/CalendarPanel";
-import { Panel } from "../components/Panel/Panel";
+import CalendarPanel from "@/components/Calendar/CalendarPanel";
+import { Panel } from "@/components/Panel/Panel";
 
 export default function CalendarLayout({
   children,

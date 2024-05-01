@@ -41,7 +41,7 @@ export function GroupHeader({
 function GroupHeaderNavigation() {
   return (
     <div className="flex flex-row items-center justify-between self-stretch py-4">
-      <Link className="flex flex-row items-center" href="/">
+      <Link className="flex flex-row items-center" href="/Calendar">
         <ChevronLeft />
         <p className="text-[17px]">Home</p>
       </Link>
