@@ -28,8 +28,8 @@ const groupFDataExample = [
     title: "CalPal planning",
     description: "Planning session for the upcoming CalPal event.",
     location: "Devon Energy Hall 0270",
-    start: "2024-04-17T10:00:00.000Z",
-    end: "2024-04-17T12:00:00.000Z",
+    start: "2024-05-17T10:00:00.000Z",
+    end: "2024-05-17T12:00:00.000Z",
     editable: true,
     classNames: [
       "bg-yellow-200/50 border rounded-lg font-semibold border-yellow-500",
@@ -41,7 +41,7 @@ const groupFDataExample = [
     title: "CalPal planning",
     description: "Planning session for the upcoming CalPal event.",
     location: "Devon Energy Hall 0270",
-    start: "2024-04-17T14:00:00.000Z",
+    start: "2024-05-17T14:00:00.000Z",
     allDay: true,
     editable: true,
     classNames: [
@@ -54,8 +54,8 @@ const groupFDataExample = [
     title: "Earnings Report",
     description: "Review and discussion of quarterly earnings report.",
     location: "CalPal Business Park Building 3, Room 2100",
-    start: "2024-04-17T09:00:00.000Z",
-    end: "2024-04-17T11:00:00.000Z",
+    start: "2024-05-17T09:00:00.000Z",
+    end: "2024-05-17T11:00:00.000Z",
     editable: true,
     classNames: [
       "bg-pink-200/50 border rounded-lg font-semibold border-pink-500",
@@ -66,10 +66,10 @@ const groupFDataExample = [
     id: "Bondingtrip-1713828599632",
     title: "Bonding trip",
     description: "Group bonding trip for members of Group F.",
-    date: "2024-04-18T09:00:00",
+    date: "2024-05-18T09:00:00",
     location: "Phoenix, Arizona",
-    start: "2024-04-18T09:00:00.000Z",
-    end: "2024-04-18T17:00:00.000Z",
+    start: "2024-05-18T09:00:00.000Z",
+    end: "2024-05-18T17:00:00.000Z",
     editable: true,
     classNames: [
       "bg-red-200/50 border rounded-lg font-semibold border-red-500",
@@ -81,8 +81,8 @@ const groupFDataExample = [
     title: "New Event 1",
     description: "Description of new event 1.",
     location: "Location of new event 1",
-    start: "2024-04-17T15:00:00.000Z",
-    end: "2024-04-17T16:00:00.000Z",
+    start: "2024-05-17T15:00:00.000Z",
+    end: "2024-05-17T16:00:00.000Z",
     editable: true,
     classNames: [
       "bg-blue-200/50 border rounded-lg font-semibold border-blue-500",
@@ -94,8 +94,8 @@ const groupFDataExample = [
     title: "New Event 2",
     description: "Description of new event 2.",
     location: "Location of new event 2",
-    start: "2024-04-18T13:00:00.000Z",
-    end: "2024-04-18T14:00:00.000Z",
+    start: "2024-05-18T13:00:00.000Z",
+    end: "2024-05-18T14:00:00.000Z",
     editable: true,
     classNames: [
       "bg-green-200/50 border rounded-lg font-semibold border-green-500",
@@ -130,15 +130,27 @@ export default function CalendarPanel() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://35.233.194.137/events/4")
-      .then((res) => res.json())
-      .then((data: any) => {
-        // setEvents(data); // Enable when events are set up
+    Promise.all(
+      Array.from({ length: 4 }, (_, i) =>
+        fetch(`http://35.233.194.137/event/${i + 1}`).then((res) => res.json())
+      )
+    )
+      .then((dataArray) => {
+        const updatedEvents = dataArray.map((data) => ({
+          ...data,
+          id: data.title,
+          editable: true,
+          backgroundColor: `${data.color}20`,
+          textColor: `${data.color}`,
+          borderColor: `${data.color}`,
+          display: "block",
+        }));
+        setEvents(updatedEvents);
         setIsLoading(false);
       })
-      .catch((e: Error) => {
+      .catch((error) => {
         setIsLoading(false);
-        setError(e.message);
+        setError(error.message);
       });
   }, []);
   if (isLoading)
@@ -187,7 +199,7 @@ export default function CalendarPanel() {
         ref={calendarRef}
         initialView="dayGridMonth"
         events={events}
-        eventClassNames={"border rounded font-semibold py-2 px-1 shadow"}
+        eventClassNames={"border rounded-lg font-semibold py-2 px-1 shadow"}
         height={"100%"}
         headerToolbar={false}
         nowIndicator={true}
