@@ -179,6 +179,7 @@
 }
 
 .leftProfilePicture {
+  /* This is the profile picture on the left panel */
   width: 3vw;
   height: 6vh;
   border-radius: 50%;
@@ -240,12 +241,12 @@
 }
 
 .closeButton {
+  /* This is the close button */
   position: absolute;
   top: 2%;
   right: 3%;
   font-weight: 800;
   font-size: 120%;
-  /* Other styles as needed */
 }
 
 .option {
@@ -516,6 +517,7 @@
       stroke: var(--stone-700, #44403c);
       filter: drop-shadow(0px 4px 11.8px rgba(0, 0, 0, 0));
       background: rgba(68, 64, 60, 0.5);
+      color: var(--stone-400, #a8a29e);
     }
 
     .thinLine {
