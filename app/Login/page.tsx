@@ -207,7 +207,7 @@ function LoginSignInButton() {
 function LoginWelcomeBackPanel() {
   return (
     <div className="flex justify-end items-center self-stretch py-6 px-16 border-r border-gray-200 bg-white">
-      <div className="flex flex-col items-start gap-2">
+      <div className="hover:gap-4 transition-all flex flex-col items-start gap-0">
         <span className={styles.textWelcome}>Welcome</span>
         <span className={styles.textBack}>Back!</span>
       </div>
