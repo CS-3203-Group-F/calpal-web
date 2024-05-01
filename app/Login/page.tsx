@@ -162,17 +162,15 @@ function LeftLoginPanel() {
           <LoginSignInButton />
         </form>
 
-        <div className="flex-col justify-center items-center gap-4 inline-flex">
+        <div className="flex-row justify-center items-center inline-flex">
           <p className="text-center text-neutral-900 text-xl font-semibold font-['Inter']">
-            Dont have an account?
+            Dont have an account?&nbsp;
           </p>
           <Link
             href="../Register"
-            className="px-32 py-2 rounded-lg border-2 border-teal-200 flex-col justify-center items-center gap-2.5 inline-flex"
+            className="hover:underline text-center text-xl font-semibold font-['Inter'] text-blue-500"
           >
-            <span className="text-center text-teal-200 text-2xl font-semibold font-['Inter']">
-              Sign up!
-            </span>
+            Sign up!
           </Link>
         </div>
       </div>
