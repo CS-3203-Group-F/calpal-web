@@ -1,7 +1,5 @@
 "use client";
-
-import { Fragment, useState, useRef, ReactNode } from "react";
-import { Dialog, Transition } from "@headlessui/react";
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
   CalendarMonth,
@@ -119,8 +117,6 @@ export function CalendarHeader(props: {
     </div>
   );
 }
-
-// NEED TO ADD IN WEEK NAVIGATION (CHEVRON BUTTONS)
 
 function FilterButton(props: { category: string; color: string }) {
   return (
