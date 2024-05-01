@@ -104,6 +104,7 @@ const groupFDataExample = [
   },
 ];
 
+// This function returns an error message in the calendar panel if unable to fetch
 function Error(props: { message: string }) {
   return (
     <div className="flex flex-col w-screen h-screen overflow-auto relative">
@@ -122,13 +123,14 @@ function Error(props: { message: string }) {
 // http://35.233.194.137/event/1
 
 export default function CalendarPanel() {
-  const [events, setEvents] = useState(groupFDataExample);
-  const [isOpen, setIsOpen] = useState(false);
-  const calendarRef = useRef<FullCalendar>(null);
-  const [currentEvent, setCurrentEvent] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [events, setEvents] = useState(groupFDataExample); // The events, an array
+  const [isOpen, setIsOpen] = useState(false); // Boolean to decide whether an event modal is open
+  const calendarRef = useRef<FullCalendar>(null); // Used to access full calendar api
+  const [currentEvent, setCurrentEvent] = useState({}); // This is the data shown in the popup modal
+  const [isLoading, setIsLoading] = useState(true); // Loading state boolean
+  const [error, setError] = useState(""); // The error message
 
+  // Runs when the calendar mounts in React
   useEffect(() => {
     Promise.all(
       Array.from({ length: 4 }, (_, i) =>
@@ -136,6 +138,7 @@ export default function CalendarPanel() {
       )
     )
       .then((dataArray) => {
+        // For each event, first destructure the data using ...data, then add in extra fields
         const updatedEvents = dataArray.map((data) => ({
           ...data,
           id: data.title,
@@ -145,14 +148,16 @@ export default function CalendarPanel() {
           borderColor: `${data.color}`,
           display: "block",
         }));
-        setEvents(updatedEvents);
-        setIsLoading(false);
+        setEvents(updatedEvents); // Sets events viewable in the calendar
+        setIsLoading(false); // Disable loading spinner
       })
       .catch((error) => {
-        setIsLoading(false);
-        setError(error.message);
+        setIsLoading(false); // Disable loading spinner
+        setError(error.message); // Returns an error message in the calendar panel if unable to fetch
       });
   }, []);
+
+  // If isLoading is true, then return a loading spinner
   if (isLoading)
     return (
       <div className="mx-auto my-auto animate-spin">
@@ -160,16 +165,20 @@ export default function CalendarPanel() {
       </div>
     );
 
+  // If an error exists, show an error message
   if (error) return <Error message={error} />;
 
+  // Handler function to close the modal
   function closeModal() {
     setIsOpen(false);
   }
 
+  // Handler function to open the modal
   function openModal() {
     setIsOpen(true);
   }
 
+  // Handler function to handle event clicks
   function handleEventClick(event: any) {
     const currEvent = events.find((arrEvent) => arrEvent.id === event.id);
     setCurrentEvent({ ...currEvent });
@@ -212,6 +221,7 @@ export default function CalendarPanel() {
   );
 }
 
+// Content injection into full calendar event object
 function renderEventContent(eventInfo: any) {
   return (
     <div className="flex flex-col h-full justify-between overflow-hidden">
