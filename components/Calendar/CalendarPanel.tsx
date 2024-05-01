@@ -209,7 +209,7 @@ export default function CalendarPanel() {
         initialView="dayGridMonth"
         events={events}
         eventClassNames={
-          "hover:opacity-70 duration-150 transition-all border rounded-lg font-semibold py-2 px-1 shadow"
+          "hover:opacity-70 duration-150 transition-opacity border rounded-lg font-semibold py-2 px-1 shadow"
         }
         height={"100%"}
         headerToolbar={false}
