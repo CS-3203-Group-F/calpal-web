@@ -12,7 +12,7 @@ import {
   Close,
 } from "../Icons";
 import FullCalendar from "@fullcalendar/react";
-import Settings, { SettingsOpen } from "../Settings/Settings";
+import Settings from "../Settings/Settings";
 
 export function formatDate(input: string) {
   // Create a new Date object

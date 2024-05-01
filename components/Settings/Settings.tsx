@@ -2,8 +2,7 @@
 import { useState } from "react";
 import React, { useEffect } from "react";
 import "./Settings.css";
-<<<<<<< Updated upstream
-import { PersonApple, SettingsGear } from "../Icons";
+import { PersonApple, SettingsGear, PaintBrush } from "../Icons";
 
 function SettingsOpen(props: { handleOpen: any }) {
   return (
@@ -17,10 +16,6 @@ function SettingsOpen(props: { handleOpen: any }) {
     </div>
   );
 }
-=======
-import { PersonApple } from "../Icons";
-import { PaintBrush } from "../Icons";
->>>>>>> Stashed changes
 
 export const Settings = () => {
   const [isOpen, setIsOpen] = useState(false); //allows you to open and close the settings page
