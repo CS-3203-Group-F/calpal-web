@@ -10,9 +10,11 @@ import {
   Add,
   CalendarAddOn,
   Close,
+  ChevronLeft,
+  ChevronRight,
 } from "../Icons";
 import FullCalendar from "@fullcalendar/react";
-import Settings, { SettingsOpen } from "../Settings/Settings";
+import Settings from "../Settings/Settings";
 
 export function formatDate(input: string) {
   // Create a new Date object
@@ -66,6 +68,16 @@ export function CalendarHeader(props: {
     calendarApi.today();
   }
 
+  function handleJumpNext() {
+    const calendarApi = props.calendarRef.current!.getApi();
+    calendarApi.next();
+  }
+
+  function handleJumpPrev() {
+    const calendarApi = props.calendarRef.current!.getApi();
+    calendarApi.prev();
+  }
+
   return (
     <div className="flex flex-row w-full h-max justify-between items-center p-6">
       <div className="flex flex-row items-center gap-4">
@@ -79,10 +91,22 @@ export function CalendarHeader(props: {
             <CalendarViewMonth />
           )}
         </button>
+        <button
+          onClick={handleJumpPrev}
+          className="hover:-translate-x-0.5 transition-transform"
+        >
+          <ChevronLeft />
+        </button>
         <button onClick={handleJumpToToday}>
           <span className="font-semibold text-xl" suppressHydrationWarning>
             {formattedDate}
           </span>
+        </button>
+        <button
+          onClick={handleJumpNext}
+          className="hover:translate-x-0.5 transition-transform"
+        >
+          <ChevronRight />
         </button>
       </div>
       <div className="flex flex-row gap-2">
