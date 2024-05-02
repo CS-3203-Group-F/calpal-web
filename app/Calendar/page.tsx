@@ -2,8 +2,6 @@ import { GroupCard } from "@/components/Panel/GroupCard";
 import { Rsvp } from "@/components/Panel/Rsvp";
 import { Section } from "@/components/Panel/Section";
 import { ToolboxCard } from "@/components/Panel/Toolbox";
-import { useEffect } from "react";
-import { verifySession } from "../lib/dal";
 
 export default function Calendar() {
   return (

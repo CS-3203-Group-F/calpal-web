@@ -1,7 +1,6 @@
 import CalendarPanel from "@/components/Calendar/CalendarPanel";
 import { Panel } from "@/components/Panel/Panel";
 import { verifySession } from "../lib/dal";
-import { deleteSession } from "../lib/session";
 
 export default async function CalendarLayout({
   children,
