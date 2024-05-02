@@ -9,18 +9,12 @@ type FormValues = {
 };
 
 export function LoginForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>();
+  // Destructure useForm from the react hook form library, getting only register
+  const { register } = useForm<FormValues>();
 
+  // Upon submission, the form sends the data to a server action caleld signIn, which can be found in auth.tsx
   return (
-    <form
-      action={signIn}
-      //   onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-8 self-stretch"
-    >
+    <form action={signIn} className="flex flex-col gap-8 self-stretch">
       {/*Input Fields of login Page */}
       <div className="flex flex-col justify-start items-start gap-2 self-stretch">
         <label

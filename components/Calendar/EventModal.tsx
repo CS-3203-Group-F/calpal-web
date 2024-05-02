@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { formatDate } from "./CalendarHeader";
 import { Distance, Schedule } from "../Icons";
 
+// This function converts an input time to a formatted time, formatted as something like "8:00 pm"
 function formatTime(timeString: string) {
   const date = new Date(timeString);
   const hours = date.getHours();

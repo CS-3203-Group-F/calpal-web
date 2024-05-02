@@ -50,9 +50,10 @@ export function CalendarHeader(props: {
   events: any;
   setEvents: any;
 }) {
-  const [currentView, setCurrentView] = useState("dayGridMonth");
-  const formattedDate = formatDate("");
+  const [currentView, setCurrentView] = useState("dayGridMonth"); // The current view for full calendar
+  const formattedDate = formatDate(""); // The formatted date
 
+  // Toggles the calendar view between month and dayList
   function handleChangeView() {
     const calendarApi = props.calendarRef.current!.getApi();
     const newView =
@@ -61,16 +62,19 @@ export function CalendarHeader(props: {
     calendarApi.changeView(newView);
   }
 
+  // Jumps to todays date in the view panel
   function handleJumpToToday() {
     const calendarApi = props.calendarRef.current!.getApi();
     calendarApi.today();
   }
 
+  // Jumps to next week or next month, depending on the view
   function handleJumpNext() {
     const calendarApi = props.calendarRef.current!.getApi();
     calendarApi.next();
   }
 
+  // Jumps to back a week or month, depending on the view
   function handleJumpPrev() {
     const calendarApi = props.calendarRef.current!.getApi();
     calendarApi.prev();
@@ -170,6 +174,7 @@ function AddEventForm(props: { setEvents: any; setOpen: any }) {
     // Get the current timestamp
     const timestamp = Date.now();
 
+    // Remove all spaces
     const eventNameWithoutSpaces = data.title.replace(/\s+/g, "");
 
     // Combine timestamp with event name to create the ID

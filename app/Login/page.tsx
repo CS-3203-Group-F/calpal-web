@@ -2,13 +2,23 @@ import styles from "./Login.module.css";
 import React from "react";
 import Link from "next/link";
 import { LoginForm } from "./LoginForm";
+import { verifySession } from "../lib/dal";
+import { redirect } from "next/navigation";
 
 export default async function Login() {
+  // Session becomes an object when verifySession returns, {isAuth, userId}
+  const session = await verifySession(false);
+
+  // If userId exists, then the session is valid so redirect away from the login page
+  if (session?.userId) {
+    redirect("/Calendar");
+  }
+
   return (
     <div
       style={{
         background:
-          "var(--CalPal-Gradient, linear-gradient(253deg, #FFF 0.52%, #FCFBE8 33.85%, #E8FEFF 99.99%));",
+          "var(--CalPal-Gradient, linear-gradient(253deg, #FFF 0.52%, #FCFBE8 33.85%, #E8FEFF 99.99%))",
       }}
       className="w-screen h-screen flex flex-col justify-center items-center"
     >
