@@ -2,6 +2,8 @@
 // Importing redirect function from next/navigation and session management functions
 import { redirect } from "next/navigation";
 import { createSession, deleteSession } from "../lib/session";
+import { revalidatePath } from "next/cache";
+import { verifySession } from "../lib/dal";
 
 // Function to sign in user
 export async function signIn(data: FormData) {
@@ -78,8 +80,13 @@ export async function getEventData() {
     const dataArray = await Promise.all(eventPromises);
 
     const updatedEvents = dataArray.map((data) => ({
-      ...data,
-      id: data.title,
+      id: `${userId}_${data.title}`,
+      title: data.title,
+      description: data.description,
+      start: adjustTimezoneOffset(data.start),
+      end: data.allDay ? "" : adjustTimezoneOffset(data.end),
+      allDay: data.allDay,
+      location: data.location,
       editable: true,
       backgroundColor: `${data.color}20`,
       textColor: `${data.color}`,
@@ -90,5 +97,74 @@ export async function getEventData() {
     return updatedEvents;
   } catch (error: any) {
     throw new Error("Failed to fetch data");
+  }
+}
+
+function adjustTimezoneOffset(inputTime: string) {
+  const adjustedTime = new Date(inputTime);
+
+  adjustedTime.setTime(
+    adjustedTime.getTime() + adjustedTime.getTimezoneOffset() * 60 * 1000
+  );
+
+  return adjustedTime;
+}
+
+function generateRandomHexColor(): string {
+  // Generate random R, G, and B values
+  const r = Math.floor(Math.random() * 256); // Random number between 0 and 255
+  const g = Math.floor(Math.random() * 256); // Random number between 0 and 255
+  const b = Math.floor(Math.random() * 256); // Random number between 0 and 255
+
+  // Convert R, G, and B values to hex strings and concatenate them
+  const hexColor = `#${r.toString(16).padStart(2, "0")}${g
+    .toString(16)
+    .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+
+  return hexColor;
+}
+
+export async function postEventData(eventData: FormData): Promise<void> {
+  let redirectPath: string | null = null;
+
+  try {
+    const isAllDay =
+      eventData.get("allDay")?.toString() === "on" ? true : false;
+
+    // Add classes and interactivity to the event
+    const newEvent = {
+      user_id: 3,
+      title: eventData.get("title")?.toString(),
+      description: eventData.get("description")?.toString(),
+      start: eventData.get("start")?.toString(),
+      end: eventData.get("end")?.toString(),
+      organizer: "Default organizer",
+      allDay: isAllDay,
+      color: generateRandomHexColor(),
+      location: eventData.get("location")?.toString(),
+    };
+
+    // Now, send the new event data to the server
+    const response = await fetch("http://35.233.194.137/createEvent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // Add any other headers if required
+      },
+      body: JSON.stringify(newEvent),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to post data");
+    }
+
+    revalidatePath(`/Login`);
+
+    redirectPath = `/Login`;
+  } catch (error: any) {
+    throw new Error("Failed to post data: " + error.message);
+  } finally {
+    // Hack to make the Calendar page refresh data!
+    if (redirectPath) redirect(redirectPath);
   }
 }

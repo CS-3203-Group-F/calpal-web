@@ -122,7 +122,7 @@ export default function CalendarPanel() {
   useEffect(() => {
     async function getEvents() {
       try {
-        const updatedEvents = await getEventData();
+        const updatedEvents: any = await getEventData();
         setEvents(updatedEvents);
         setIsLoading(false);
       } catch (error: any) {
