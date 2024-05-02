@@ -186,7 +186,9 @@ export default function CalendarPanel(props: { eventData: any }) {
 
   // Handler function to handle event clicks
   function handleEventClick(event: any) {
-    const currEvent = events.find((arrEvent) => arrEvent.id === event.id);
+    const currEvent = events.find(
+      (arrEvent: { id: any }) => arrEvent.id === event.id
+    );
     setCurrentEvent({ ...currEvent });
     openModal();
   }

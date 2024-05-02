@@ -43,7 +43,7 @@ export default async function CalendarLayout({
   const eventData = await getData();
 
   return (
-    <main className="text-stone-800 flex h-screen flex-row items-center justify-betweenS">
+    <main className="text-stone-800 flex h-screen flex-row items-center justify-between">
       <Panel>{children}</Panel>
       <CalendarPanel eventData={eventData} />
     </main>
