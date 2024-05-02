@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Panel } from "./components/Panel/Panel";
-import Image from "next/image";
-import CalendarPanel from "./components/Calendar/CalendarPanel";
 
 const inter = Inter({ subsets: ["latin"] });
 
