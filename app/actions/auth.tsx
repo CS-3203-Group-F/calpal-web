@@ -17,8 +17,8 @@ export async function signIn(data: FormData) {
 export async function LoginAction(data: FormData) {
   try {
     // Makes sure password and email are not null
-    const password = data.get("password");
-    const email = data.get("email");
+    const password = data.get("password")?.toString();
+    const email = data.get("email")?.toString();
 
     // Only run if password and email are not null
     if (password && email) {

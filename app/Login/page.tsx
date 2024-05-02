@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { LoginForm } from "./LoginForm";
 
-export const Login = () => {
+export default async function Login() {
   return (
     <div
       style={{
@@ -21,9 +21,7 @@ export const Login = () => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}
 
 function LeftLoginPanel() {
   return (
