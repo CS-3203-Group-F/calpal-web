@@ -62,6 +62,33 @@ export async function logout() {
   // Then redirect to the login page
   redirect("/Login"); // Redirect to Login page after logout
 }
-function LoginAction(data: FormData) {
-  throw new Error("Function not implemented.");
+
+const userId = 3;
+
+export async function getEventData() {
+  try {
+    const eventIdArray = await (
+      await fetch(`http://35.233.194.137/events/${userId}`)
+    ).json();
+
+    const eventPromises = eventIdArray.map((eventId: number) =>
+      fetch(`http://35.233.194.137/event/${eventId}`).then((res) => res.json())
+    );
+
+    const dataArray = await Promise.all(eventPromises);
+
+    const updatedEvents = dataArray.map((data) => ({
+      ...data,
+      id: data.title,
+      editable: true,
+      backgroundColor: `${data.color}20`,
+      textColor: `${data.color}`,
+      borderColor: `${data.color}`,
+      display: "block",
+    }));
+
+    return updatedEvents;
+  } catch (error: any) {
+    throw new Error("Failed to fetch data");
+  }
 }
