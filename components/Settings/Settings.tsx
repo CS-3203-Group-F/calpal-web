@@ -16,7 +16,7 @@ function SettingsOpen(props: { handleOpen: any }) {
     <div className="relative">
       <button
         onClick={props.handleOpen}
-        className="flex flex-row items-center px-3 py-2 gap-2 rounded-lg"
+        className="hover:rotate-90 transition-transform flex flex-row items-center px-3 py-2 gap-2 rounded-lg"
       >
         <SettingsGear />
       </button>

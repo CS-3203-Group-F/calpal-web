@@ -2,6 +2,7 @@ import { GroupCard } from "@/components/Panel/GroupCard";
 import { Rsvp } from "@/components/Panel/Rsvp";
 import { Section } from "@/components/Panel/Section";
 import { ToolboxCard } from "@/components/Panel/Toolbox";
+import LogoutButton from "@/components/LogoutButton";
 
 export default function Calendar() {
   return (
@@ -48,6 +49,9 @@ export default function Calendar() {
           ></ToolboxCard>
         </div>
       </Section>
+      <div className="w-full flex items-center justify-center px-6 pt-6 pb-9">
+        <LogoutButton />
+      </div>
     </div>
   );
 }
