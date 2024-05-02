@@ -125,8 +125,6 @@ function generateRandomHexColor(): string {
 }
 
 export async function postEventData(eventData: FormData): Promise<void> {
-  let redirectPath: string | null = null;
-
   try {
     const isAllDay =
       eventData.get("allDay")?.toString() === "on" ? true : false;
@@ -159,12 +157,7 @@ export async function postEventData(eventData: FormData): Promise<void> {
     }
 
     revalidatePath(`/Login`);
-
-    redirectPath = `/Login`;
   } catch (error: any) {
     throw new Error("Failed to post data: " + error.message);
-  } finally {
-    // Hack to make the Calendar page refresh data!
-    if (redirectPath) redirect(redirectPath);
   }
 }
