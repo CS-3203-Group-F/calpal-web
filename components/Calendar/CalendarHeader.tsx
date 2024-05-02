@@ -13,6 +13,8 @@ import {
 } from "../Icons";
 import FullCalendar from "@fullcalendar/react";
 import Settings from "../Settings/Settings";
+import { postEventData } from "@/app/actions/auth";
+import { SubmitButton } from "./SubmitButton";
 
 export function formatDate(input: string) {
   // Create a new Date object
@@ -170,34 +172,6 @@ function AddEventForm(props: { setEvents: any; setOpen: any }) {
 
   const [minEndDate, setMinEndDate] = useState("");
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    // Get the current timestamp
-    const timestamp = Date.now();
-
-    // Remove all spaces
-    const eventNameWithoutSpaces = data.title.replace(/\s+/g, "");
-
-    // Combine timestamp with event name to create the ID
-    const eventId = `${eventNameWithoutSpaces}-${timestamp}`;
-
-    // Adds in classes and interactivity into events
-    const newEvent = {
-      ...data,
-      id: eventId,
-      editable: true,
-      classNames: [
-        "bg-blue-200/50 border rounded-lg font-semibold border-blue-500",
-      ],
-      textColor: "#3B82F6",
-    };
-
-    // Updates event state, which updates the calendar
-    props.setEvents((curr: any) => [...curr, newEvent]);
-
-    // Closes the new event modal
-    props.setOpen(false);
-  };
-
   // Minimum length of an event is 5 minutes
   function handleMinEndDate(data: any) {
     console.log(data);
@@ -228,7 +202,8 @@ function AddEventForm(props: { setEvents: any; setOpen: any }) {
       <div>
         <form
           className="flex flex-col items-center gap-4 self-stretch p-6"
-          onSubmit={handleSubmit(onSubmit)}
+          // onSubmit={handleSubmit(onSubmit)}
+          action={postEventData}
         >
           <input
             className="flex py-3 px-4 gap-2 items-center self-stretch rounded-lg border border-stone-200"
@@ -273,7 +248,7 @@ function AddEventForm(props: { setEvents: any; setOpen: any }) {
               type="datetime-local"
               id="end"
               min={minEndDate}
-              {...register("end")}
+              {...register("end", { required: true })}
             />
           </div>
 
@@ -282,10 +257,7 @@ function AddEventForm(props: { setEvents: any; setOpen: any }) {
             placeholder="Notes (optional)"
             {...register("notes")}
           />
-
-          <button className="flex py-4 px-6 justify-center items-center gap-2 self-stretch rounded-lg bg-amber-400">
-            <span className="font-bold text-base">Create</span>
-          </button>
+          <SubmitButton />
         </form>
       </div>
     </div>
