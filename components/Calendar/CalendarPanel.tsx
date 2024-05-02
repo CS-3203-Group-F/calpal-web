@@ -9,19 +9,6 @@ import { CalendarHeader } from "./CalendarHeader";
 import { EventModal } from "./EventModal";
 import { ProgressActivity } from "../Icons";
 
-// const eventExample = [
-//   {
-//     id: "CalPalplanning-1713828599629",
-//     title: "CalPal planning",
-//     allDay: false,
-//     description: "Planning session for the upcoming CalPal event.",
-//     location: "Devon Energy Hall 0270",
-//     start: "2024-04-17T10:00:00.000Z",
-//     end: "2024-04-17T12:00:00.000Z",
-//     category: "Uncategorized",
-//   },
-// ];
-
 const groupFDataExample = [
   {
     id: "CalPalplanning-1713828599629",
@@ -130,30 +117,49 @@ export default function CalendarPanel() {
   const [isLoading, setIsLoading] = useState(true); // Loading state boolean
   const [error, setError] = useState(""); // The error message
 
+  const userId = 3;
+
   // Runs when the calendar mounts in React
   useEffect(() => {
-    Promise.all(
-      Array.from({ length: 4 }, (_, i) =>
-        fetch(`http://35.233.194.137/event/${i + 1}`).then((res) => res.json())
-      )
-    )
-      .then((dataArray) => {
-        // For each event, first destructure the data using ...data, then add in extra fields
-        const updatedEvents = dataArray.map((data) => ({
-          ...data,
-          id: data.title,
-          editable: true,
-          backgroundColor: `${data.color}20`,
-          textColor: `${data.color}`,
-          borderColor: `${data.color}`,
-          display: "block",
-        }));
-        setEvents(updatedEvents); // Sets events viewable in the calendar
-        setIsLoading(false); // Disable loading spinner
+    // Fetch the event IDs for a specific user (here, user ID 3 is hardcoded)
+    fetch(`http://35.233.194.137/events/${userId}`)
+      .then((res) => res.json())
+      .then((eventIdArray) => {
+        // Map each event ID to a fetch request to get individual event data
+        const eventPromises = eventIdArray.map((eventId: number) =>
+          fetch(`http://35.233.194.137/event/${eventId}`).then((res) =>
+            res.json()
+          )
+        );
+
+        // Once all event fetch requests are complete, process the data
+        Promise.all(eventPromises)
+          .then((dataArray) => {
+            // For each event, destructure the data and add extra fields for display
+            const updatedEvents = dataArray.map((data) => ({
+              ...data,
+              id: data.title,
+              editable: true,
+              backgroundColor: `${data.color}20`,
+              textColor: `${data.color}`,
+              borderColor: `${data.color}`,
+              display: "block",
+            }));
+            // Update state with the processed events
+            setEvents(updatedEvents);
+            // Disable the loading spinner
+            setIsLoading(false);
+          })
+          .catch((error) => {
+            // Handle errors if unable to fetch and process event data
+            setIsLoading(false);
+            setError(error.message);
+          });
       })
       .catch((error) => {
-        setIsLoading(false); // Disable loading spinner
-        setError(error.message); // Returns an error message in the calendar panel if unable to fetch
+        // Handle errors if unable to fetch event IDs
+        setIsLoading(false);
+        setError(error.message);
       });
   }, []);
 
@@ -209,7 +215,7 @@ export default function CalendarPanel() {
         initialView="dayGridMonth"
         events={events}
         eventClassNames={
-          "hover:opacity-70 duration-150 transition-all border rounded-lg font-semibold py-2 px-1 shadow"
+          "hover:opacity-70 duration-150 transition-opacity border rounded-lg font-semibold py-2 px-1 shadow"
         }
         height={"100%"}
         headerToolbar={false}
