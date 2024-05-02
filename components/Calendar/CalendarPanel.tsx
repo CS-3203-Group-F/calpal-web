@@ -109,67 +109,67 @@ function Error(props: { message: string }) {
 
 // http://35.233.194.137/event/1
 
-export default function CalendarPanel() {
-  const [events, setEvents] = useState(groupFDataExample); // The events, an array
+export default function CalendarPanel(props: { eventData: any }) {
+  const [events, setEvents] = useState(props.eventData); // The events, an array
   const [isOpen, setIsOpen] = useState(false); // Boolean to decide whether an event modal is open
   const calendarRef = useRef<FullCalendar>(null); // Used to access full calendar api
   const [currentEvent, setCurrentEvent] = useState({}); // This is the data shown in the popup modal
   const [isLoading, setIsLoading] = useState(true); // Loading state boolean
   const [error, setError] = useState(""); // The error message
 
-  const userId = 3;
+  // const userId = 3;
 
-  // Runs when the calendar mounts in React
-  useEffect(() => {
-    // Fetch the event IDs for a specific user (here, user ID 3 is hardcoded)
-    fetch(`http://35.233.194.137/events/${userId}`)
-      .then((res) => res.json())
-      .then((eventIdArray) => {
-        // Map each event ID to a fetch request to get individual event data
-        const eventPromises = eventIdArray.map((eventId: number) =>
-          fetch(`http://35.233.194.137/event/${eventId}`).then((res) =>
-            res.json()
-          )
-        );
+  // // Runs when the calendar mounts in React
+  // useEffect(() => {
+  //   // Fetch the event IDs for a specific user (here, user ID 3 is hardcoded)
+  //   fetch(`http://35.233.194.137/events/${userId}`)
+  //     .then((res) => res.json())
+  //     .then((eventIdArray) => {
+  //       // Map each event ID to a fetch request to get individual event data
+  //       const eventPromises = eventIdArray.map((eventId: number) =>
+  //         fetch(`http://35.233.194.137/event/${eventId}`).then((res) =>
+  //           res.json()
+  //         )
+  //       );
 
-        // Once all event fetch requests are complete, process the data
-        Promise.all(eventPromises)
-          .then((dataArray) => {
-            // For each event, destructure the data and add extra fields for display
-            const updatedEvents = dataArray.map((data) => ({
-              ...data,
-              id: data.title,
-              editable: true,
-              backgroundColor: `${data.color}20`,
-              textColor: `${data.color}`,
-              borderColor: `${data.color}`,
-              display: "block",
-            }));
-            // Update state with the processed events
-            setEvents(updatedEvents);
-            // Disable the loading spinner
-            setIsLoading(false);
-          })
-          .catch((error) => {
-            // Handle errors if unable to fetch and process event data
-            setIsLoading(false);
-            setError(error.message);
-          });
-      })
-      .catch((error) => {
-        // Handle errors if unable to fetch event IDs
-        setIsLoading(false);
-        setError(error.message);
-      });
-  }, []);
+  //       // Once all event fetch requests are complete, process the data
+  //       Promise.all(eventPromises)
+  //         .then((dataArray) => {
+  //           // For each event, destructure the data and add extra fields for display
+  //           const updatedEvents = dataArray.map((data) => ({
+  //             ...data,
+  //             id: data.title,
+  //             editable: true,
+  //             backgroundColor: `${data.color}20`,
+  //             textColor: `${data.color}`,
+  //             borderColor: `${data.color}`,
+  //             display: "block",
+  //           }));
+  //           // Update state with the processed events
+  //           setEvents(updatedEvents);
+  //           // Disable the loading spinner
+  //           setIsLoading(false);
+  //         })
+  //         .catch((error) => {
+  //           // Handle errors if unable to fetch and process event data
+  //           setIsLoading(false);
+  //           setError(error.message);
+  //         });
+  //     })
+  //     .catch((error) => {
+  //       // Handle errors if unable to fetch event IDs
+  //       setIsLoading(false);
+  //       setError(error.message);
+  //     });
+  // }, []);
 
-  // If isLoading is true, then return a loading spinner
-  if (isLoading)
-    return (
-      <div className="mx-auto my-auto animate-spin">
-        <ProgressActivity color="#FBBF24" />
-      </div>
-    );
+  // // If isLoading is true, then return a loading spinner
+  // if (isLoading)
+  //   return (
+  //     <div className="mx-auto my-auto animate-spin">
+  //       <ProgressActivity color="#FBBF24" />
+  //     </div>
+  //   );
 
   // If an error exists, show an error message
   if (error) return <Error message={error} />;

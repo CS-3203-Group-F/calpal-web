@@ -6,7 +6,7 @@ import { createSession, deleteSession } from "../lib/session";
 // Function to sign in user
 export async function signIn(data: FormData) {
   // There is a bug which prevents us from putting redirect in a try catch block, so this is the workaround
-  const result = await LoginAction(data); // Call LoginAction function to authenticate user
+  const result = await login(data); // Call LoginAction function to authenticate user
   if (result) {
     // If authentication is successful
     const email = data.get("email")?.toString(); // Extract email from form data
@@ -18,7 +18,7 @@ export async function signIn(data: FormData) {
 }
 
 // Function to authenticate user
-export async function LoginAction(data: FormData) {
+export async function login(data: FormData) {
   try {
     // Makes sure password and email are not null
     const password = data.get("password")?.toString(); // Extract password from form data
@@ -61,4 +61,7 @@ export async function logout() {
   deleteSession(); // Delete session data
   // Then redirect to the login page
   redirect("/Login"); // Redirect to Login page after logout
+}
+function LoginAction(data: FormData) {
+  throw new Error("Function not implemented.");
 }
