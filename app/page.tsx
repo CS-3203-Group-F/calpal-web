@@ -1,55 +1,24 @@
-import { Group } from "./components/Group/Group";
-import { GroupCard } from "./components/Panel/GroupCard";
-import { Panel } from "./components/Panel/Panel";
-import { Rsvp } from "./components/Panel/Rsvp";
-import { Section } from "./components/Panel/Section";
-import { ToolboxCard } from "./components/Panel/Toolbox";
+import Link from "next/link"; // Importing the Link component from Next.js
 
-export default function Home() {
+export default function Calendar() {
+  // Defining the Calendar component
   return (
     <div className="flex flex-col items-center self-stretch p-6 gap-8">
-      <Rsvp />
-      <Section title="Groups">
-        <div className="flex flex-col gap-2">
-          <GroupCard
-            color="bg-orange-300"
-            name="Linear Algebra"
-            members="14"
-            route="/Groups"
-          ></GroupCard>
-          <GroupCard
-            color="bg-lime-500"
-            name="comp org"
-            members="3"
-            route=""
-          ></GroupCard>
-          <GroupCard
-            color="bg-red-500"
-            name="roommates"
-            members="4"
-            route=""
-          ></GroupCard>
-        </div>
-      </Section>
-      <Section title="Toolbox">
-        <div className="flex flex-col gap-4">
-          <ToolboxCard
-            imgURL="http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/tbd6zc5c3646q0o/toolbox_groups_W7QfCRTf9j.png?token="
-            name="Find groups"
-            description="Mingle with other pals"
-          ></ToolboxCard>
-          <ToolboxCard
-            imgURL="http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/5tvjqloxi2sjc1o/toolbox_schedule_HsJtyyBf2y.png?token="
-            name="Plan a meeting"
-            description="with CalPal"
-          ></ToolboxCard>
-          <ToolboxCard
-            imgURL="http://127.0.0.1:8090/api/files/urvbq4tamjbjukn/bo1y02u8qmozh17/toolbox_import_30lI1DWg4K.png?token="
-            name="Import schedules"
-            description="into CalPal"
-          ></ToolboxCard>
-        </div>
-      </Section>
+      {/* Div container with flex layout */}
+      {/* Link to the Calendar page */}
+      <Link
+        href="/Calendar" // Path to the Calendar page
+        className="flex flex-row items-center justify-between p-4 bg-stone-50 rounded-lg hover:bg-stone-200 cursor-pointer" // Styling for the link
+      >
+        Calendar {/* Link text */}
+      </Link>
+      {/* Link to the Airlock page */}
+      <Link
+        href="/Airlock" // Path to the Airlock page
+        className="flex flex-row items-center justify-between p-4 bg-stone-50 rounded-lg hover:bg-stone-200 cursor-pointer" // Styling for the link
+      >
+        Landing Page {/* Link text */}
+      </Link>
     </div>
   );
 }
