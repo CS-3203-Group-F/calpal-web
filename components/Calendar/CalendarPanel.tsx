@@ -8,6 +8,7 @@ import { useState, Fragment, useRef, ReactNode, useEffect } from "react";
 import { CalendarHeader } from "./CalendarHeader";
 import { EventModal } from "./EventModal";
 import { ProgressActivity } from "../Icons";
+import { getEventData } from "@/app/actions/auth";
 
 const groupFDataExample = [
   {
@@ -117,50 +118,20 @@ export default function CalendarPanel() {
   const [isLoading, setIsLoading] = useState(true); // Loading state boolean
   const [error, setError] = useState(""); // The error message
 
-  const userId = 3;
-
   // Runs when the calendar mounts in React
   useEffect(() => {
-    // Fetch the event IDs for a specific user (here, user ID 3 is hardcoded)
-    fetch(`http://35.233.194.137/events/${userId}`)
-      .then((res) => res.json())
-      .then((eventIdArray) => {
-        // Map each event ID to a fetch request to get individual event data
-        const eventPromises = eventIdArray.map((eventId: number) =>
-          fetch(`http://35.233.194.137/event/${eventId}`).then((res) =>
-            res.json()
-          )
-        );
-
-        // Once all event fetch requests are complete, process the data
-        Promise.all(eventPromises)
-          .then((dataArray) => {
-            // For each event, destructure the data and add extra fields for display
-            const updatedEvents = dataArray.map((data) => ({
-              ...data,
-              id: data.title,
-              editable: true,
-              backgroundColor: `${data.color}20`,
-              textColor: `${data.color}`,
-              borderColor: `${data.color}`,
-              display: "block",
-            }));
-            // Update state with the processed events
-            setEvents(updatedEvents);
-            // Disable the loading spinner
-            setIsLoading(false);
-          })
-          .catch((error) => {
-            // Handle errors if unable to fetch and process event data
-            setIsLoading(false);
-            setError(error.message);
-          });
-      })
-      .catch((error) => {
-        // Handle errors if unable to fetch event IDs
+    async function getEvents() {
+      try {
+        const updatedEvents: any = await getEventData();
+        setEvents(updatedEvents);
+        setIsLoading(false);
+      } catch (error: any) {
         setIsLoading(false);
         setError(error.message);
-      });
+      }
+    }
+
+    getEvents();
   }, []);
 
   // If isLoading is true, then return a loading spinner
@@ -186,7 +157,9 @@ export default function CalendarPanel() {
 
   // Handler function to handle event clicks
   function handleEventClick(event: any) {
-    const currEvent = events.find((arrEvent) => arrEvent.id === event.id);
+    const currEvent = events.find(
+      (arrEvent: { id: any }) => arrEvent.id === event.id
+    );
     setCurrentEvent({ ...currEvent });
     openModal();
   }

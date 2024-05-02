@@ -12,7 +12,7 @@ export default async function CalendarLayout({
   await verifySession(); // Verify user session before rendering the component, redirect to login if not authenticated
 
   return (
-    <main className="text-stone-800 flex h-screen flex-row items-center justify-betweenS">
+    <main className="text-stone-800 flex h-screen flex-row items-center justify-between">
       <Panel>{children}</Panel>
       <CalendarPanel />
     </main>
